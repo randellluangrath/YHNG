@@ -1,0 +1,11 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+header {
+  background: get-theme-color(background, white);
+  @include header-defaults;
+  padding: 0 50px;
+  > div {
+    height: 100%;
+  }
+}

@@ -1,0 +1,72 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header [title]="'Details'" [canClose]="false">
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="15px">
+    <!--  <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">{{ client.title }}</yh-text>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-display-value label="CIF" [inline]="true">12345</yh-display-value>
+          <yh-display-value label="TIN" [inline]="true"
+            >123456</yh-display-value
+          >
+          <yh-display-value label="Created" [inline]="true"
+            >10/10/2021</yh-display-value
+          >
+          <yh-display-value label="Type" [inline]="true"
+            >Check Fraud</yh-display-value
+          >
+          <yh-display-value
+            label="Insider Code"
+            pTooltip="Insider Code Description"
+            tooltipPosition="top"
+            [inline]="true"
+            >ABC</yh-display-value
+          >
+          <yh-display-value label="Outsider Code" [inline]="true"
+            >DEF</yh-display-value
+          >
+          <yh-display-value label="Class Code" [inline]="true"
+            >A1B2</yh-display-value
+          >
+          <yh-display-value label="Risk Category" [inline]="true"
+            >High</yh-display-value
+          >
+          <yh-display-value label="Maintenanced" [inline]="true"
+            >10/10/2021</yh-display-value
+          >
+          <yh-display-value label="Date of Birth"  [inline]="true">10/10/2021</yh-display-value>
+            <yh-display-value label="Date of Death"  [inline]="true">10/10/2021</yh-display-value> 
+          <yh-display-value label="Beneficial Owner(s)" [inline]="true"
+            >John Smith, Jane Smith</yh-display-value
+          >
+          <yh-display-value label="Percent Ownership" [inline]="true"
+            >15%</yh-display-value
+          >
+        </div>
+      </div></yh-card
+    >-->
+    <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Contact</yh-text>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-display-value label="Phone" [inline]="true"
+            >(123)123-1233</yh-display-value
+          >
+          <yh-display-value label="Fax" [inline]="true"
+            >(123)123-1233</yh-display-value
+          >
+        </div>
+      </div></yh-card
+    >
+    <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Address</yh-text>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <yh-text [secondary]="true">1234 Client Street</yh-text>
+          <yh-text [secondary]="true">Client, TN 12345</yh-text>
+        </div>
+      </div></yh-card
+    >
+  </div>
+</yh-sidebar-layout>

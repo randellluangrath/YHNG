@@ -1,0 +1,16 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.dropzone-target {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+  height: 150px;
+  background: get-theme-color(background);
+  border: 1px dashed get-theme-color(borders);
+
+  &:hover {
+    cursor: pointer;
+  }
+}

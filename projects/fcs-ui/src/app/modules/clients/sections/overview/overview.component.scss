@@ -1,0 +1,6 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+p-table {
+  @include border(1px, 1px, 0, 1px);
+}

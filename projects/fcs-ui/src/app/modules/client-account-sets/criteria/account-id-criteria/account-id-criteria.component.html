@@ -1,0 +1,55 @@
+<yh-card [formGroup]="fgCriteria">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <yh-text [bold]="true">Account ID</yh-text>
+
+    <div>
+      <yh-radio-group-field
+        label="Include accounts that"
+        [control]="fcType"
+        [options]="options"
+      ></yh-radio-group-field>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text [strong]="true" [small]="true">Account IDs</yh-text>
+        <yh-button
+          [iconButton]="true"
+          [secondary]="true"
+          [text]="true"
+          icon="pi pi-plus"
+          (click)="addItem()"
+        ></yh-button>
+      </div>
+
+      <div class="account-ids-wrapper" fxLayout="column" fxLayoutGap="5px">
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div
+            formArrayName="faAccounts"
+            *ngFor="
+              let item of fgCriteria.get('faAccounts')['controls'];
+              let i = index
+            "
+          >
+            <div
+              [formGroupName]="i"
+              fxLayout="row"
+              fxLayoutGap="5px"
+              fxLayoutAlign="space-between center"
+            >
+              <yh-text-field
+                fxFlex="1 1 auto"
+                placeholder="Account Id..."
+                [control]="item.get('fcAccount')"
+              ></yh-text-field>
+              <yh-button
+                *ngIf="faAccounts?.length > 1"
+                [iconButton]="true"
+                icon="pi pi-trash"
+              ></yh-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</yh-card>

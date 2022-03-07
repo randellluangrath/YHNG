@@ -1,0 +1,84 @@
+<div class="yh-dashboard-content-wrapper">
+  <div fxFlex fxLayout="row" fxLayoutAlign="start">
+    <div
+      class="yh-dashboard-content"
+      fxFlex
+      fxLayout="column"
+      fxLayoutGap="25px"
+      fxLayoutAlign="start"
+    >
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-title [level]="2" [title]="'Dashboard'"></yh-title>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxLayout="row">
+            <fa-icon class="check-icon" [icon]="checkIcon"></fa-icon>
+            <yh-title
+              title="Processing"
+              [level]="3"
+              subtitle="100% Data Integrity"
+            ></yh-title>
+          </div>
+
+          <div fxLayout="row">
+            <fa-icon class="check-icon" [icon]="checkIcon"></fa-icon>
+            <yh-title title="BSA" [level]="3"></yh-title>
+          </div>
+        </div>
+      </div>
+      <div
+        class="yh-kpi-wrappers"
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="25px"
+        fxLayoutAlign="space-between"
+      >
+        <yh-kpi-card
+          fxFlex
+          [warning]="true"
+          [value]="45"
+          valueTitle="Last 7 Days"
+          valueCategory="Cases"
+          [valueCategoryTotal]="1655"
+        ></yh-kpi-card>
+        <yh-kpi-card
+          fxFlex
+          [pending]="true"
+          [value]="459"
+          valueTitle="Last 7 Days"
+          valueCategory="Alerts"
+          [valueCategoryTotal]="600"
+        ></yh-kpi-card>
+        <yh-kpi-card
+          fxFlex
+          [information]="true"
+          [value]="8"
+          valueTitle=""
+          valueCategory="SARs due"
+          [showSparkchart]="false"
+        ></yh-kpi-card>
+        <yh-kpi-card
+          fxFlex
+          [danger]="true"
+          [value]="98.6"
+          valueTitle="Doug Smithers"
+          valueCategory="Highest Alert Score"
+          [showSparkchart]="false"
+        ></yh-kpi-card>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between">
+        <yh-transaction-map-widget fxFlex></yh-transaction-map-widget>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="25px">
+        <yh-notifications-widget fxFlex="48%"></yh-notifications-widget>
+        <yh-notifications-widget fxFlex="48%"></yh-notifications-widget>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="25px">
+        <yh-upcoming-edd-widget fxFlex="48%"></yh-upcoming-edd-widget>
+      </div>
+    </div>
+    <div class="yh-performance-panel" fxFlex="1 1 25%">
+      <yh-open-items-panel></yh-open-items-panel>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="Case Details" (close)="handleClose($event)">
+  </yh-sidebar-layout-header>
+
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3px">
+          <yh-title [level]="3" [title]="case.caseName"></yh-title>
+        </div>
+      </div>
+    </div>
+    <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Details</yh-text>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-display-value label="Id" [inline]="true">{{
+            case.caseId
+          }}</yh-display-value>
+          <yh-display-value label="Type" [inline]="true">{{
+            case.caseType.typeName
+          }}</yh-display-value>
+          <yh-display-value label="SubType" [inline]="true">{{
+            case.caseType.subtypeName
+          }}</yh-display-value>
+          <yh-display-value label="Opened" [inline]="true">{{
+            case.openDate | date: "shortDate"
+          }}</yh-display-value>
+          <yh-display-value label="Closed" [inline]="true">{{
+            case.closeDate | date: "shortDate"
+          }}</yh-display-value>
+        </div>
+      </div></yh-card
+    >
+    <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Description</yh-text>
+        <yh-text [secondary]="true" [small]="true">{{
+          case.caseDescription
+        }}</yh-text>
+      </div>
+    </yh-card>
+    <yh-card [flat]="true" padSize="small">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Disposition</yh-text>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <yh-text [medium]="true" [small]="true">Disposition Value</yh-text>
+          <yh-text [secondary]="true" [small]="true">{{
+            case.caseDescription
+          }}</yh-text>
+        </div>
+      </div>
+    </yh-card>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button>View Case</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

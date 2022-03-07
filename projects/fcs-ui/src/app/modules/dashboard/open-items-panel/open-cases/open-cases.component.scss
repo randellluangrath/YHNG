@@ -1,0 +1,14 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.item-wrapper {
+  background: get-theme-color(background);
+  padding: 25px;
+  overflow-y: auto;
+  @include scrollbar-defaults();
+}
+
+.tasks-header {
+  @include border(1px, 0, 1px, 0);
+  padding: 0 25px;
+}

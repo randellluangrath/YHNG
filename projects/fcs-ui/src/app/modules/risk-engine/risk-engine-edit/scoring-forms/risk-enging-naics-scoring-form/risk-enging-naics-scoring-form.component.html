@@ -1,0 +1,153 @@
+<div [formGroup]="fgFilters" fxLayout="column" fxLayoutGap="15px">
+  <yh-text-field
+    [placeholder]="'Search ' + labelPlural + '...'"
+    [search]="true"
+    [control]="fcValue"
+  ></yh-text-field>
+  <p-table
+    [value]="values"
+    dataKey="id"
+    editMode="row"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr class="add-new-row">
+        <td colspan="3">
+          <div fxLayout="row" fxLayoutGap="10px" [formGroup]="fgCreate">
+            <yh-button
+              (click)="showNaicsLookup()"
+              [ghost]="true"
+              [secondary]="true"
+              >{{
+                selectedCode
+                  ? "NAICS: " + getCodeSummary()
+                  : "NAICS:  Select Code"
+              }}</yh-button
+            >
+
+            <yh-number-field
+              fxFlex="100px"
+              placeholder="Score"
+              [min]="0"
+              [max]="0"
+              [control]="fcScore"
+            ></yh-number-field>
+          </div>
+        </td>
+        <td style="text-align: right">
+          <yh-button (click)="addNewItem()">Add New</yh-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-point
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="point">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <yh-button
+                (click)="showNaicsLookup()"
+                [ghost]="true"
+                [secondary]="true"
+                >{{ "NAICS: " + point.code }}</yh-button
+              >
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ point.code }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          {{ point.description }}
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-inputNumber
+                [(ngModel)]="point.score"
+                [ngModelOptions]="{ standalone: true }"
+                [min]="0"
+                [max]="100"
+              >
+              </p-inputNumber>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ point.score }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="text-align: center; width: 150px">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <yh-button
+              *ngIf="!editing"
+              [iconButton]="true"
+              [bordered]="true"
+              [secondary]="true"
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(point)"
+              pInitEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="!editing"
+              [iconButton]="true"
+              [bordered]="true"
+              [secondary]="true"
+              icon="pi pi-trash"
+              (click)="onRowEditInit(point)"
+              pInitEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="editing"
+              [iconButton]="true"
+              [secondary]="true"
+              [bordered]="true"
+              icon="pi pi-check"
+              (click)="onRowEditSave(point)"
+              pSaveEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="editing"
+              [iconButton]="true"
+              [secondary]="true"
+              [bordered]="true"
+              icon="pi pi-times"
+              (click)="onRowEditCancel(point, ri)"
+              pCancelEditableRow
+            ></yh-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="empty-message" colspan="3">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <fa-icon [icon]="infoIcon" class="info-icon"></fa-icon>
+            <yh-text [secondary]="true"
+              >No items found for your search criteria.</yh-text
+            >
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<yh-drawer
+  [visible]="showNaicsDrawer"
+  [closeOnEscape]="true"
+  [title]="'Select NAICS Code'"
+  [width]="'800px'"
+  (hide)="handleOnHide()"
+  [pad]="false"
+>
+  <yh-naics-lookup (selected)="codeSelected($event)"></yh-naics-lookup>
+  <yh-drawer-footer>
+    <yh-button (click)="handleCodeSelected()">Use Selected</yh-button>
+    <yh-button (click)="handleOnHide()"> Cancel </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

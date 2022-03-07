@@ -1,0 +1,56 @@
+<yh-sidebar-layout>
+  <div class="content" fxLayout="column" fxLayoutGap="25px">
+    <yh-well fxLayout="column" fxLayoutGap="25px">
+      <yh-title [level]="3" [title]="'Important Dates'"></yh-title>
+      <yh-display-value-container [horizontal]="true" class="due-dates">
+        <yh-display-value label="Created" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+        <yh-display-value label="Due" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+        <yh-display-value label="Resolved" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+        <yh-display-value label="SAR Decision" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+        <yh-display-value label="SAR Filed" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+        <yh-display-value label="90 Day Review" [inline]="true"
+          >10/10/2020</yh-display-value
+        >
+      </yh-display-value-container>
+    </yh-well>
+    <yh-divider></yh-divider>
+    <yh-well fxLayout="column" fxLayoutGap="25px">
+      <yh-title [level]="3" [title]="'Recent Activity'"></yh-title>
+      <p-timeline
+        [value]="events"
+        align="left"
+        styleClass="customized-timeline"
+      >
+        <ng-template pTemplate="marker" let-event>
+          <span
+            class="custom-marker p-shadow-2"
+            [style.backgroundColor]="event.color"
+          >
+            <i [ngClass]="event.icon"></i>
+          </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event>
+          <div fxLayout="column" fxLayoutGap="10px" style="margin-bottom: 20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <yh-text [strong]="true">{{ event.status }}</yh-text>
+              <yh-text [secondary]="true">{{ event.value }}</yh-text>
+            </div>
+            <yh-text [secondary]="true" [small]="true">{{
+              event.date | date: "shortDate"
+            }}</yh-text>
+          </div>
+        </ng-template>
+      </p-timeline>
+    </yh-well>
+  </div>
+</yh-sidebar-layout>

@@ -1,0 +1,30 @@
+<yh-card padSize="small" [flat]="true">
+  <div
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="space-between start"
+    style="width: 100%"
+  >
+    <yh-text-field
+      placeholder="Add a comment..."
+      [control]="fcNote"
+      fxFlex="1 1 95%"
+    ></yh-text-field>
+
+    <div
+      fxFlex="5%"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="end center"
+    >
+      <yh-button
+        class="edit-note-button"
+        [iconButton]="true"
+        [bordered]="true"
+        [secondary]="true"
+        size="small"
+        icon="pi pi-save"
+      ></yh-button>
+    </div>
+  </div>
+</yh-card>

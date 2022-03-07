@@ -1,0 +1,18 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-calendar
+    [formControl]="control"
+    appendTo="body"
+    [placeholder]="getPlaceholder()"
+    [showIcon]="showIcon"
+    [selectionMode]="range ? 'range' : 'single'"
+    [numberOfMonths]="months"
+    [maxDate]="max"
+    [view]="view"
+    [showTime]="showTime"
+    [hourFormat]="hourFormat"
+    [disabledDays]="disabledDays"
+    rangeSeparator="to"
+  ></p-calendar>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

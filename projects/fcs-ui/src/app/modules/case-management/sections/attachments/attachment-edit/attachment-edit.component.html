@@ -1,0 +1,30 @@
+<div
+  class="content"
+  [formGroup]="fgAttachment"
+  fxLayout="column"
+  fxLayoutGap="20px"
+>
+  <yh-textarea-field
+    label="Note"
+    [control]="fcNote"
+    [small]="true"
+  ></yh-textarea-field>
+  <yh-upload-field
+    label="Attachment"
+    [control]="fcAttachment"
+    [hideSelect]="true"
+    [multiple]="true"
+    [required]="true"
+  >
+    <yh-form-field-error *ngIf="fcAttachment.errors"
+      >You must include at least one attachment.</yh-form-field-error
+    >
+  </yh-upload-field>
+
+  <div>
+    <yh-attachment-file-item
+      [file]="file"
+      *ngFor="let file of attachments"
+    ></yh-attachment-file-item>
+  </div>
+</div>

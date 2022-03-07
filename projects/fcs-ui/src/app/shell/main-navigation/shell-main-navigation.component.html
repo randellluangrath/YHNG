@@ -1,0 +1,16 @@
+<yh-default-navigation
+  (onExpanded)="expansionChanged($event)"
+  *ngIf="targetNavigation === NavigationTarget.Default"
+></yh-default-navigation>
+<yh-case-management-navigation
+  (onExpanded)="expansionChanged($event)"
+  *ngIf="targetNavigation === NavigationTarget.CaseManagement"
+></yh-case-management-navigation>
+<yh-client-management-navigation
+  (onExpanded)="expansionChanged($event)"
+  *ngIf="targetNavigation === NavigationTarget.ClientManagement"
+></yh-client-management-navigation>
+<yh-scenario-engine-navigation
+  (onExpanded)="expansionChanged($event)"
+  *ngIf="targetNavigation === NavigationTarget.ScenarioEngine"
+></yh-scenario-engine-navigation>

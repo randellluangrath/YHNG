@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+  <div fxLayout="column" fxLayoutGap="3px">
+    <yh-title
+      [level]="4"
+      [title]="
+        identification.typeOther
+          ? identification.typeOther
+          : identification.type
+      "
+    ></yh-title>
+
+    <yh-text [secondary]="true"
+      >{{ identification.state }}, {{ identification.country }}</yh-text
+    >
+
+    <yh-text [secondary]="true">{{ identification.number }}</yh-text>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div fxLayout="column" fxLayoutGap="5px">
+  <!-- Forms of Identifiication -->
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      [text]="true"
+      [bordered]="true"
+      [secondary]="true"
+      icon="pi pi-plus"
+      (click)="showFormPanel($event)"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div>
+    <yh-text
+      style="margin-top: 15px; display: block"
+      *ngIf="subject?.identifications.length === 0"
+      [secondary]="true"
+      >No forms of identification have been added.</yh-text
+    >
+  </div>
+  <div fxLayout="column" fxLayoutGap="25px">
+    <ng-template
+      ngFor
+      let-index
+      let-identity
+      [ngForOf]="subject?.identifications"
+    >
+      <div
+        class="item-row"
+        fxLayout="row"
+        fxLayoutGap="25px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <yh-subject-identification-item
+            [identification]="identity"
+          ></yh-subject-identification-item>
+          <yh-text *ngIf="trashed.has(identity)" [warning]="true"
+            >Marked for deletion</yh-text
+          >
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+          <yh-button
+            [iconButton]="true"
+            [text]="true"
+            [secondary]="true"
+            [bordered]="true"
+            icon="pi pi-pencil"
+          ></yh-button>
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [icon]="trashed.has(identity) ? 'pi pi-undo' : 'pi pi-trash'"
+            [text]="true"
+            [secondary]="true"
+            (click)="markForDelete(identity)"
+          ></yh-button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <yh-overlay-panel [dismissable]="false">
+    <yh-subject-identification-edit
+      (onSave)="saveItem($event)"
+      (onCancel)="cancelItem()"
+    ></yh-subject-identification-edit>
+  </yh-overlay-panel>
+</div>

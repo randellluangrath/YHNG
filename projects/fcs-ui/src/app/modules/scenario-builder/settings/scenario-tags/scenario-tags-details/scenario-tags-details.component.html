@@ -1,0 +1,41 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="Tag Details" (close)="handleClose($event)">
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text [bold]="true">Tag A</yh-text>
+          <yh-display-value label="Created" [inline]="true"
+            >10/10/2021</yh-display-value
+          >
+          <yh-display-value label="Last Updated" [inline]="true">
+            10/10/2021</yh-display-value
+          >
+          <yh-display-value label="Updated By" [inline]="true"
+            >John W.</yh-display-value
+          >
+        </div></yh-card
+      >
+    </div>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text [bold]="true">Scenarios</yh-text>
+
+          <yh-text
+            *ngFor="let scenario of tag.scenarios"
+            [small]="true"
+            [information]="true"
+            [strong]="true"
+            >{{ scenario }}</yh-text
+          >
+        </div></yh-card
+      >
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button>Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true">Remove</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

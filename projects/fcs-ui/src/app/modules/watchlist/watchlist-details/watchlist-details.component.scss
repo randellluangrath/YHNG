@@ -1,0 +1,17 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.simple-table {
+  .matched {
+    td {
+      @include border(1px, 0, 1px, 0, get-theme-color(state, warn));
+      &:first-child {
+        border-width: 1px 0 1px 1px;
+      }
+      &:last-child {
+        border-width: 1px 1px 1px 0;
+      }
+      background: lighten(get-theme-color(state, warn), 30);
+    }
+  }
+}

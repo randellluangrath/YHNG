@@ -1,0 +1,227 @@
+<yh-general-layout>
+  <yh-general-layout-header [title]="'Cases'">
+    <!-- <yh-general-layout-header-template>
+      <div fxLayout="row" fxLayoutGap="10px">
+       <yh-case-management-list-filters></yh-case-management-list-filters>
+      </div>
+    </yh-general-layout-header-template> -->
+    <yh-actions>
+      <yh-button>Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content>
+    <div class="flex-table-wrapper">
+      <p-table
+        [value]="cases"
+        [lazy]="true"
+        [loading]="false"
+        selectionMode="single"
+        (onRowSelect)="onRowSelect($event)"
+        [scrollable]="true"
+        scrollHeight="flex"
+      >
+        <ng-template pTemplate="caption">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            [formGroup]="fgFilter"
+            [style.padding]="'0 35px 0 10px'"
+          >
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="15px"
+              [formGroup]="fgFilter"
+              style="padding-left: 25px; width: 100%"
+            >
+              <div
+                fxLayout="row"
+                fxLayoutGap="15px"
+                fxLayoutAlign="start center"
+              >
+                <yh-text-field
+                  [search]="true"
+                  [control]="fcTerm"
+                  placeholder="Search cases"
+                ></yh-text-field>
+                <div
+                  fxLayout="column"
+                  fxLayoutGap="3px"
+                  fxLayoutAlign="start start"
+                >
+                  <!-- <yh-text [strong]="true" [small]="true">Filter </yh-text> -->
+                  <div
+                    fxLayout="row"
+                    fxLayoutGap="3px"
+                    fxLayoutAlign="start center"
+                  >
+                    <p-chip
+                      label="3 statuses"
+                      [removable]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      tooltipPosition="top"
+                    ></p-chip>
+                    <p-chip
+                      label="2 types"
+                      [removable]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      tooltipPosition="top"
+                    ></p-chip>
+                    <p-chip
+                      label="John W."
+                      [removable]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      tooltipPosition="top"
+                    ></p-chip>
+                    <p-chip
+                      label="10/12/21 - 11/04/21"
+                      [removable]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      tooltipPosition="top"
+                    ></p-chip>
+                    <!-- <yh-text
+                      [secondary]="false"
+                      [small]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      [escape]="false"
+                      tooltipPosition="top"
+                      >3 statuses <a><fa-icon [icon]="clearIcon"></fa-icon></a
+                    ></yh-text>
+                    <yh-text [secondary]="true" [small]="true">/</yh-text>
+                    <yh-text
+                      [secondary]="false"
+                      [small]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      [escape]="false"
+                      tooltipPosition="top"
+                      >2 types <a><fa-icon [icon]="clearIcon"></fa-icon></a
+                    ></yh-text>
+                    <yh-text [secondary]="true" [small]="true">/</yh-text>
+                    <yh-text
+                      [secondary]="false"
+                      [small]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      [escape]="false"
+                      tooltipPosition="top"
+                      >Assigned to John W.
+                      <a><fa-icon [icon]="clearIcon"></fa-icon></a
+                    ></yh-text>
+                    <yh-text [secondary]="true" [small]="true">/</yh-text>
+
+                    <yh-text
+                      [secondary]="false"
+                      [small]="true"
+                      pTooltip="Open, Pending, Reopened"
+                      [escape]="false"
+                      tooltipPosition="top"
+                      >Between 10/12/21 - 11/04/21
+                      <a><fa-icon [icon]="clearIcon"></fa-icon></a
+                    ></yh-text> -->
+                  </div>
+                </div>
+              </div>
+              <yh-button
+                (click)="showFiltersDrawer()"
+                icon="fal fa-filter"
+                label="Filters"
+                [ghost]="true"
+              ></yh-button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr class="table-header">
+            <th
+              pSortableColumn="highPriority"
+              style="padding-left: 45px; flex: 0 0 85px"
+            >
+              &nbsp;
+            </th>
+            <th pSortableColumn="caseId" style="flex: 0 0 125px">Id</th>
+            <th pSortableColumn="caseName" style="flex: 1 0 300px">Name</th>
+            <th pSortableColumn="dueDate" style="flex: 0 0 125px">Due</th>
+            <th pSortableColumn="caseStatus.name" style="flex: 0 0 150px">
+              Status
+            </th>
+            <th pSortableColumn="caseType.typeName" style="flex: 0 0 175px">
+              Activity Type
+            </th>
+            <th pSortableColumn="primary" style="flex: 0 0 175px">
+              Assigned To
+            </th>
+            <th style="flex: 0 0 85px">&nbsp;</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-case>
+          <tr [pSelectableRow]="case">
+            <td style="padding-left: 45px; flex: 0 0 85px">
+              <yh-button
+                [warning]="case.highPriority"
+                [iconButton]="true"
+                [bordered]="false"
+                [text]="true"
+                [secondary]="!case.highPriority"
+                [icon]="case.highPriority ? 'fas fa-star' : 'fal fa-star'"
+              ></yh-button>
+            </td>
+            <td style="flex: 0 0 125px">
+              <yh-text [secondary]="true"> {{ case.caseId }}</yh-text>
+            </td>
+            <td style="flex: 1 0 300px">
+              <yh-text> {{ case.caseName }}</yh-text>
+            </td>
+            <td style="flex: 0 0 125px">
+              <yh-text [secondary]="true">{{
+                case.dueDate | date: "shortDate"
+              }}</yh-text>
+            </td>
+            <td style="flex: 0 0 150px">
+              <yh-text [secondary]="true"> {{ case.caseStatus.name }}</yh-text>
+            </td>
+            <td style="flex: 0 0 175px">
+              <yh-text [secondary]="true">{{ case.caseType.typeName }}</yh-text>
+            </td>
+            <td style="flex: 0 0 175px">
+              <yh-text [secondary]="true">{{ case.primary }}</yh-text>
+            </td>
+            <td style="flex: 0 0 85px">
+              <yh-button
+                [iconButton]="true"
+                [secondary]="true"
+                [ghost]="true"
+                icon="fas fa-ellipsis-h"
+                (click)="toggleOptionsMenu($event)"
+              ></yh-button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td class="empty-message" colspan="8">
+              No cases found - please check your filters and try again
+              or&nbsp;<a>​click here</a>&nbsp;to add a new case.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-menu #menu [popup]="true" [model]="items"></p-menu>
+  </yh-general-layout-content>
+</yh-general-layout>
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  [width]="'400px'"
+  [title]="'Filters'"
+  (hide)="hideFiltersDrawer()"
+>
+  <yh-case-management-list-filters
+    [vertical]="true"
+  ></yh-case-management-list-filters>
+  <yh-drawer-footer>
+    <yh-button (click)="hideFiltersDrawer()">Filter</yh-button>
+    <yh-button [ghost]="true" (click)="hideFiltersDrawer()">Clear</yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

@@ -1,0 +1,23 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-listbox
+    [options]="options"
+    [formControl]="control"
+    [metaKeySelection]="false"
+    [checkbox]="true"
+    [filter]="showFilter"
+    [showToggleAll]="showToggleAll"
+    [multiple]="true"
+    optionLabel="label"
+    optionValue="value"
+    [listStyle]="{ 'max-height': '250px' }"
+    [style]="{ width: '15rem' }"
+  >
+    <ng-template let-item pTemplate="item">
+      <div class="item">
+        <yh-text [secondary]="false">{{ item.label }}</yh-text>
+      </div>
+    </ng-template>
+  </p-listbox>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

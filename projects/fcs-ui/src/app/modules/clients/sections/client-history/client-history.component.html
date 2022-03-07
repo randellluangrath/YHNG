@@ -1,0 +1,38 @@
+<yh-general-layout
+  [pad]="data.view !== ViewState.Alert"
+  *ngIf="{ view: viewState$ | async } as data"
+>
+  <yh-general-layout-header [title]="'History'">
+    <yh-actions>
+      <p-tabMenu
+        class="client-history-tabs"
+        [model]="items"
+        [activeItem]="activeItem"
+      ></p-tabMenu
+    ></yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content">
+    <container-element [ngSwitch]="data.view">
+      <yh-case-history
+        *ngSwitchCase="ViewState.Case"
+        (selected)="selectCase($event)"
+      ></yh-case-history>
+      <yh-alert-history *ngSwitchCase="ViewState.Alert"></yh-alert-history>
+      <yh-risk-history *ngSwitchCase="ViewState.Risk"></yh-risk-history>
+      <yh-sar-history
+        *ngSwitchCase="ViewState.Sar"
+        (selected)="selectSar($event)"
+      ></yh-sar-history>
+    </container-element>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar *ngIf="selectedCase || selectedSar">
+    <yh-case-history-details
+      *ngIf="selectedCase"
+      [case]="selectedCase"
+    ></yh-case-history-details>
+    <yh-sar-history-details
+      *ngIf="selectedSar"
+      [sar]="selectedSar"
+    ></yh-sar-history-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>

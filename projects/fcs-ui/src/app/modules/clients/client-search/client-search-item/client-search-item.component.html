@@ -1,0 +1,15 @@
+<yh-card [selectable]="true">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <yh-risk-indicator
+      [low]="client.isLowRisk()"
+      [medium]="client.isMediumRisk()"
+      [high]="client.isHighRisk()"
+    ></yh-risk-indicator>
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ client.title }}</yh-text>
+      <yh-text [strong]="true" [secondary]="true" [small]="true">{{
+        client.tin
+      }}</yh-text>
+    </div>
+  </div>
+</yh-card>

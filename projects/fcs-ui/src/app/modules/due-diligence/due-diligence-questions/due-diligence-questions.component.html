@@ -1,0 +1,82 @@
+<yh-sidebar-layout [pad]="false">
+  <yh-sidebar-layout-header
+    title="Questions"
+    [canClose]="false"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div fxLayout="column" style="height: 100%">
+    <div
+      class="filter-wrapper"
+      fxFlex="0 0 75px"
+      [formGroup]="fgFilter"
+      fxLayoutAlign="center center"
+    >
+      <yh-text-field
+        placeholder="Filter questions..."
+        [search]="true"
+        [control]="fcFilter"
+        fxFlex="1 1 100%"
+      ></yh-text-field>
+    </div>
+    <div
+      id="availableQuestionsScrollContainer"
+      fxFlex="1 1 auto"
+      class="question-content"
+    >
+      <tree-root #tree [nodes]="nodes" [options]="options">
+        <ng-template
+          #treeNodeFullTemplate
+          let-node
+          let-index="index"
+          let-templates="templates"
+        >
+          <div
+            [class]="node.getClass()"
+            [class.tree-node]="true"
+            [class.tree-node-expanded]="node.isExpanded && node.hasChildren"
+            [class.tree-node-collapsed]="node.isCollapsed && node.hasChildren"
+            [class.tree-node-leaf]="node.isLeaf"
+            [class.tree-node-active]="node.isActive"
+            [class.tree-node-focused]="node.isFocused"
+          >
+            <tree-node-wrapper
+              [node]="node"
+              [index]="index"
+              [templates]="templates"
+            >
+            </tree-node-wrapper>
+
+            <ng-template #treeNodeTemplate let-node let-index="index">
+              <yh-card
+                [selectable]="true"
+                [selected]="node.isActive"
+                padSize="small"
+                (click)="editQuestion()"
+              >
+                <div fxLayout="column" fxLayoutGap="5px">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <yh-text [strong]="true" [secondary]="true" [small]="true"
+                      >Question #{{ index + 1 }}</yh-text
+                    >
+                    <yh-text
+                      class="edit-icon"
+                      [small]="true"
+                      [secondary]="true"
+                    >
+                      <fa-icon [icon]="editIcon"></fa-icon>
+                    </yh-text>
+                  </div>
+                  <yh-text> {{ node.data.name }}</yh-text>
+                </div>
+              </yh-card>
+            </ng-template>
+          </div>
+        </ng-template>
+      </tree-root>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <button pButton>Add New</button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

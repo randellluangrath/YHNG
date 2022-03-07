@@ -1,0 +1,73 @@
+<div
+  fxLayout="row"
+  fxLayoutGap="10px"
+  fxLayoutAlign="center center"
+  (click)="toggleSwithUserPanel()"
+>
+  <div>
+    <yh-avatar [url]="'/assets/user.jpg'"></yh-avatar>
+  </div>
+  <div fxLayout="column" fxLayoutGap="0px">
+    <yh-title [level]="4" title="Julie S"></yh-title>
+    <yh-text [secondary]="true" [strong]="true">BSA Manager</yh-text>
+  </div>
+</div>
+<yh-overlay-panel [dismissable]="false">
+  <div [formGroup]="fgSwitchUser" style="width: 250px">
+    <yh-dropdown-field
+      label="Act As"
+      [control]="fcUser"
+      [options]="options"
+    ></yh-dropdown-field>
+  </div>
+</yh-overlay-panel>
+
+<yh-drawer
+  [visible]="showUserPanel"
+  [closeOnEscape]="true"
+  [title]="'Switch Account'"
+  width="400px"
+  (hide)="toggleSwithUserPanel()"
+>
+  <div class="switch-to-user-wrapper" fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div>
+        <yh-avatar [url]="'/assets/user.jpg'"></yh-avatar>
+      </div>
+      <div fxLayout="column" fxLayoutGap="0px">
+        <yh-title [level]="4" title="Julie S"></yh-title>
+        <yh-text [secondary]="true" [strong]="true">BSA Manager</yh-text>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div>
+        <yh-avatar [url]="'/assets/user.jpg'"></yh-avatar>
+      </div>
+      <div fxLayout="column" fxLayoutGap="0px">
+        <yh-title [level]="4" title="Julie S"></yh-title>
+        <yh-text [secondary]="true" [strong]="true">BSA Investigator</yh-text>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div>
+        <yh-avatar [url]="'/assets/user.jpg'"></yh-avatar>
+      </div>
+      <div fxLayout="column" fxLayoutGap="0px">
+        <yh-title [level]="4" title="Julie S"></yh-title>
+        <yh-text [secondary]="true" [strong]="true">BSA Admin</yh-text>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div>
+        <yh-avatar [url]="'/assets/user.jpg'"></yh-avatar>
+      </div>
+      <div fxLayout="column" fxLayoutGap="0px">
+        <yh-title [level]="4" title="Julie S"></yh-title>
+        <yh-text [secondary]="true" [strong]="true">BSA User</yh-text>
+      </div>
+    </div>
+  </div>
+  <yh-drawer-footer>
+    <!-- <yh-button>Logout</yh-button> -->
+  </yh-drawer-footer>
+</yh-drawer>

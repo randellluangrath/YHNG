@@ -1,0 +1,25 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-autoComplete
+    [formControl]="control"
+    [suggestions]="filteredOptions"
+    (onSelect)="selectOption($event)"
+    (completeMethod)="handleComplete($event)"
+    [minLength]="1"
+    [placeholder]="placeholder"
+    [forceSelection]="true"
+    [autoHighlight]="true"
+    appendTo="body"
+    field="label"
+  >
+    <ng-template let-option pTemplate="item">
+      <div class="autocomplete-item">
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-text [strong]="true">{{ option.label }}</yh-text>
+          <yh-text [secondary]="true">{{ option.secondaryLabel }}</yh-text>
+        </div>
+      </div>
+    </ng-template>
+  </p-autoComplete>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

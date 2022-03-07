@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include footer-defaults;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  gap: 10px;
+}

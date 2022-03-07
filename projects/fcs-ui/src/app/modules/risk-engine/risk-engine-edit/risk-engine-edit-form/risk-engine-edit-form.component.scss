@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include full-height();
+}
+yh-multiselect-field {
+  max-width: 349px;
+}

@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  background: get-theme-color(basic, white);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

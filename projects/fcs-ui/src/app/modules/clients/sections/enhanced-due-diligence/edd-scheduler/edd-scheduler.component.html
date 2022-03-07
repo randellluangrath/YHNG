@@ -1,0 +1,55 @@
+<div [formGroup]="fgSchedule" fxLayout="column" fxLayoutGap="15px">
+  <yh-divider
+    [title]="'Status'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [options]="statusOptions"
+    [control]="fcStatus"
+  ></yh-listbox-field>
+  <yh-divider
+    [title]="'Alert Type'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcSchedule"
+    [options]="scheduleOptions"
+  ></yh-listbox-field>
+  <yh-divider
+    [title]="'Scenario Type'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcScheduleDate"
+    [options]="scenarioTypeOptions"
+  ></yh-listbox-field>
+  <yh-divider
+    [title]="'Scenario Sub-Type'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcScheduleDate"
+    [options]="scenarioSubTypeOptions"
+  ></yh-listbox-field>
+  <yh-divider [title]="'Date'" placement="left" background="white"></yh-divider>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <yh-date-field
+      [control]="fcDate"
+      [range]="false"
+      [months]="1"
+    ></yh-date-field>
+    <yh-checkbox [control]="fcBetween" label="Range"></yh-checkbox>
+  </div>
+</div>

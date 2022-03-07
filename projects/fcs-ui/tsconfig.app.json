@@ -1,0 +1,20 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "types": [],
+    "paths": {
+      "shared": ["dist/shared/shared", "dist/shared"],
+      "@yellowhammer/shared": ["projects/shared/src/public-api.ts"],
+      "@fcs/app": ["projects/fcs-ui/src/app"],
+      "@fcs/app/*": ["projects/fcs-ui/src/app/*"],
+      "@fcs/shared": ["projects/fcs-ui/src/app/@shared"],
+      "@fcs/core": ["projects/fcs-ui/src/app/@core"],
+      "@fcs/core/*": ["projects/fcs-ui/src/app/@core/"],
+      "@fcs/env": ["projects/fcs-ui/src/environments"]
+    }
+  },
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["src/**/*.d.ts"]
+}

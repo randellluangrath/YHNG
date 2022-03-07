@@ -1,0 +1,23 @@
+<yh-form-field [label]="label" [required]="required" [inline]="inline">
+  <p-selectButton
+    *ngIf="!iconOnly"
+    [options]="options"
+    [formControl]="control"
+    [optionLabel]="'label'"
+    [optionValue]="'value'"
+  >
+  </p-selectButton>
+  <p-selectButton
+    *ngIf="iconOnly"
+    [options]="options"
+    [formControl]="control"
+    [optionLabel]="'label'"
+    [optionValue]="'value'"
+  >
+    <ng-template let-item>
+      <i [class]="item.icon"></i>
+    </ng-template>
+  </p-selectButton>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

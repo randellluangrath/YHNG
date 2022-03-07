@@ -1,0 +1,6 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  background: darken(get-theme-color(brand, primary-dark), 5);
+}

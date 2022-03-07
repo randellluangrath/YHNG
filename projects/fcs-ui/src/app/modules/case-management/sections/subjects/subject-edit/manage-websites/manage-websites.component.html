@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutGap="5px" [formGroup]="fgWebsites">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      [bordered]="true"
+      [secondary]="true"
+      icon="pi pi-plus"
+      (click)="addItem()"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <div
+      formArrayName="faWebsites"
+      *ngFor="
+        let item of fgWebsites.get('faWebsites')['controls'];
+        let i = index
+      "
+      class="item-row"
+    >
+      <div
+        [formGroupName]="i"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <yh-text-field
+          fxFlex="1 1 auto"
+          placeholder="Website..."
+          [control]="item.get('fcWebsite')"
+        ></yh-text-field>
+        <yh-button
+          *ngIf="faWebsites?.length > 1"
+          [iconButton]="true"
+          [bordered]="true"
+          [secondary]="true"
+          icon="pi pi-trash"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+</div>

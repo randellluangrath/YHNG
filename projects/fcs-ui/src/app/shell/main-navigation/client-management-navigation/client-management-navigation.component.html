@@ -1,0 +1,37 @@
+<yh-main-navigation
+  title="FCD"
+  [groupedItems]="groups"
+  (expanded)="handleExpanded($event)"
+>
+  <div
+    class="client-information"
+    [class.is-collapsed]="!isExpanded"
+    fxLayout="row"
+    fxLayoutGap="5px"
+    [fxLayoutAlign]="!isExpanded ? 'center center' : 'start start'"
+  >
+    <div class="client-details-description">
+      <yh-text
+        [warning]="true"
+        [uppercase]="true"
+        [strong]="true"
+        [small]="true"
+        >Client</yh-text
+      >
+      <yh-title [knockout]="true" [level]="4" title="Guy Edwards"></yh-title>
+    </div>
+  </div>
+  <yh-main-navigation-footer>
+    <div class="client-management-navigation-footer" (click)="returnToList()">
+      <a
+        class="return-link"
+        routerLink="/dashboard"
+        fxLayout="row"
+        [fxLayoutGap]="isExpanded ? '10px' : '0'"
+        [fxLayoutAlign]="isExpanded ? 'start center' : 'center center'"
+        ><fa-icon [icon]="exitArrow"></fa-icon
+        ><span *ngIf="isExpanded">Return to Clients</span></a
+      >
+    </div>
+  </yh-main-navigation-footer>
+</yh-main-navigation>

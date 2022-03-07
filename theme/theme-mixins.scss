@@ -1,0 +1,181 @@
+@import "~bootstrap/scss/mixins/_breakpoints";
+@import "theme-variables";
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin box-shadow($shadow: 0 0 5px 5px rgba(0, 0, 0, $default-opacity-factor)) {
+  box-shadow: $shadow;
+}
+@mixin border-radius($radius: $default-border-radius) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow($shadow: $default-box-shadow) {
+  box-shadow: $shadow;
+}
+
+@mixin semibold-font-weight() {
+  font-weight: 600;
+}
+
+@mixin medium-bold-font-weight() {
+  font-weight: 700;
+}
+@mixin bold-font-weight() {
+  font-weight: 900;
+}
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin border(
+  $top-left: 1px,
+  $top-right: 1px,
+  $bottom-right: 1px,
+  $bottom-left: 1px,
+  $color: get-theme-color(borders)
+) {
+  border-style: solid;
+  border-color: $color;
+  border-width: $top-left $top-right $bottom-right $bottom-left;
+}
+
+@mixin header-defaults($bordered: true, $padding: 25px) {
+  background: get-theme-color(basic, white);
+  height: map-get($yh-component-heights, headers);
+  @if $bordered {
+    @include border(0, 0, 1px, 0);
+  }
+  padding: $padding;
+  display: flex;
+  place-items: flex-start;
+  align-items: center;
+}
+
+@mixin footer-defaults($bordered: true, $padding: 15px) {
+  background: get-theme-color(basic, white);
+  height: map-get($yh-component-heights, headers);
+  @if $bordered {
+    @include border(1px, 0, 0, 0);
+  }
+  padding: $padding;
+  display: flex;
+  align-items: center;
+}
+
+@mixin full-height() {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@mixin flex-content() {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+}
+
+@mixin card-defaults() {
+  background: get-theme-color(basic, white);
+  display: block;
+  @include border();
+  @include border-radius();
+  @include box-shadow();
+
+  position: relative;
+  z-index: 0;
+}
+
+@mixin font-open-sans(
+  $size: false,
+  $colour: false,
+  $weight: false,
+  $lh: false
+) {
+  font-family: $default-font-family;
+  @if $size {
+    font-size: $size;
+  }
+  @if $colour {
+    color: $colour;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+}
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin scrollbar-defaults() {
+  @include scrollbars(
+    5px,
+    get-theme-color(state, secondary),
+    rgba(darken(get-theme-color(brand, primary-dark), 5), 0.1)
+  );
+}
+
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+
+  // Firefox support
+  scrollbar-color: $foreground-color $background-color;
+  scrollbar-width: thin;
+}

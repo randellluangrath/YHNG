@@ -1,0 +1,18 @@
+<yh-form-field [label]="label" [required]="required">
+  <angular-editor
+    [formControl]="control"
+    [config]="editorConfig"
+  ></angular-editor>
+  <div *ngIf="enableCharacterCounter" fxLayout="row" fxLayoutAlign="end end">
+    <yh-text
+      [secondary]="true"
+      [strong]="true"
+      [small]="true"
+      [danger]="control.value?.length > max"
+      >{{ control.value?.length ?? 0 }} of {{ max }} characters</yh-text
+    >
+  </div>
+
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

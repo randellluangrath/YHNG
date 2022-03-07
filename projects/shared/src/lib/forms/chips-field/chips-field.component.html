@@ -1,0 +1,10 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-chips [formControl]="control">
+    <ng-template let-item pTemplate="item">
+      {{ item.values.length }} {{ item.name }}
+    </ng-template>
+  </p-chips>
+  <ng-content select="yh-form-field-description"></ng-content>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

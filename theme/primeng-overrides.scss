@@ -1,0 +1,348 @@
+.p-component {
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: get-theme-color(text);
+    opacity: 1; /* Firefox */
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: get-theme-color(text);
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: get-theme-color(text);
+  }
+
+  &:not(.p-tag) {
+    font-size: 1em;
+  }
+
+  &.p-listbox {
+    width: 100% !important;
+  }
+}
+
+.p-inputnumber {
+  width: 100%;
+}
+
+.p-dropdown,
+.p-multiselect,
+.p-autocomplete {
+  width: 100%;
+  .p-dropdown-label,
+  .p-multiselect-label {
+    font-size: 14px;
+    &.p-placeholder {
+      color: get-theme-color(text);
+    }
+  }
+  .p-autocomplete-input {
+    width: 100%;
+  }
+}
+
+.p-accordion {
+  .p-accordion-tab {
+    .p-accordion-header {
+      .p-accordion-header-link {
+        padding: 0.65rem;
+        .p-accordion-toggle-icon {
+          font-size: 0.65rem;
+        }
+      }
+    }
+  }
+}
+
+.p-selectbutton {
+  .p-button {
+    color: get-theme-color(brand, primary);
+  }
+}
+
+.p-radiobutton,
+.p-checkbox {
+  width: 15px !important;
+  height: 15px !important;
+  .p-radiobutton-box,
+  .p-checkbox-box {
+    width: 15px !important;
+    height: 15px !important;
+    .p-radiobutton-icon {
+      width: 11px;
+      height: 11px;
+    }
+  }
+}
+
+.p-button {
+  &:focus {
+    box-shadow: none !important;
+  }
+  &.p-button-secondary {
+    color: get-theme-color(state, secondary) !important;
+    &.p-button-outlined {
+      color: get-theme-color(state, secondary);
+      border-color: get-theme-color(state, secondary);
+    }
+  }
+
+  &.p-button-rounded {
+    &.p-button-icon-only {
+      &.p-button-warning {
+        color: darken(get-theme-color(state, warn), 15);
+      }
+    }
+  }
+
+  &.p-button-warning {
+    &:not(.p-button-outlined) {
+      color: get-theme-color(basic, white);
+    }
+  }
+}
+
+.p-avatar {
+  &.is-xsmall {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.65rem;
+  }
+}
+
+.p-carousel {
+  .p-carousel-content {
+    .p-carousel-indicators {
+      .p-carousel-indicator {
+        .p-link {
+          border-radius: 50%;
+          height: 0.75rem;
+          width: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+p-calendar {
+  width: inherit;
+  .p-calendar {
+    width: inherit;
+  }
+}
+
+//Override Table flex scroll
+.p-datatable-flex-scrollable .p-datatable-wrapper {
+  @include scrollbar-defaults;
+}
+
+// Supports sizing in the yh-checkbox.  Since using ng-deep is deprecated.
+// This is the best alternative
+yh-checkbox {
+  &.is-small {
+    .p-checkbox {
+      width: 15px;
+      height: 15px;
+      .p-checkbox-box {
+        width: inherit;
+        height: inherit;
+      }
+    }
+  }
+}
+
+yh-radio-group-field {
+  .yh-radio-label {
+    color: get-theme-color(text);
+  }
+}
+
+yh-text-field {
+  //Using a search icon with the text input causes the field to not take up
+  // all the horizontal space
+  .p-input-icon-left,
+  .p-input-icon-right {
+    width: inherit;
+  }
+}
+
+.p-tabmenu {
+  .p-tabmenu-nav {
+    .p-tabmenuitem {
+      .p-menuitem-link {
+        color: get-theme-color(state, secondary);
+        &:focus {
+          box-shadow: none !important;
+        }
+      }
+      &:hover {
+        .p-menuitem-link {
+          color: darken(get-theme-color(state, secondary), 2%) !important;
+          border-color: darken(
+            get-theme-color(state, secondary),
+            2%
+          ) !important;
+        }
+      }
+    }
+  }
+}
+
+.p-chip {
+  background: get-theme-color(state, info);
+  color: get-theme-color(basic, white);
+}
+
+// Alert Details Tabs
+.alert-details-tabs {
+  ul {
+    padding-left: 25px;
+  }
+}
+
+.investigator-details-tabs {
+  ul {
+    place-content: center;
+  }
+}
+
+//Client Account Sets
+.client-account-sets-edit-tabs {
+  ul {
+    padding-left: 25px;
+  }
+}
+
+.p-tabmenu {
+  .p-tabmenu-nav {
+    border-color: transparent;
+    .p-tabmenuitem {
+      .p-menuitem-link {
+        border-width: 0 0 1px 0;
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.p-timeline-left .p-timeline-event-opposite {
+  display: none;
+}
+
+yh-upload-field {
+  &.hidden-select {
+    .p-fileupload-buttonbar,
+    p-progressbar {
+      display: none;
+    }
+
+    .p-fileupload-content {
+      border: none;
+      padding: 0;
+    }
+  }
+}
+
+yh-risk-engine-edit {
+  p-tabMenu {
+    .p-tabmenu-nav {
+      padding-left: 50px;
+      border-width: 0 0 1px 0 !important;
+      .p-tabmenuitem {
+        height: 75px;
+        &.p-highlight {
+          .p-menuitem-link {
+            border-width: 0 0 1px 0 !important;
+          }
+        }
+        .p-menuitem-link {
+          border-width: 0 0 0 0 !important;
+          height: 100%;
+          margin: 0 0 0 0 !important;
+        }
+      }
+    }
+  }
+}
+
+/**
+Scroll container styling on p-tables
+**/
+.p-datatable-scrollable-body {
+  @include scrollbar-defaults();
+}
+
+.p-tooltip {
+  &.navigation-menu-tooltip {
+    margin-left: 15px;
+    .p-tooltip-text {
+      background: get-theme-color(basic, white);
+      color: get-theme-color(brand);
+      @include semibold-font-weight();
+    }
+
+    .p-tooltip-arrow {
+      border-right-color: get-theme-color(basic, white);
+    }
+  }
+}
+
+.pi-exclamation-triangle {
+  color: get-theme-color(state, warn);
+}
+
+.confirm-delete {
+  max-width: 300px;
+}
+
+.criteria-matches-overlaypanel {
+  height: 300px;
+  width: 250px;
+  .p-overlaypanel-content {
+    height: inherit;
+    overflow-y: auto;
+  }
+}
+
+/**
+Dialog Button styles
+**/
+.dialog-button-danger {
+  background: get-theme-color(state, danger);
+  border-color: get-theme-color(state, danger);
+  &:enabled {
+    &:hover {
+      background: darken(get-theme-color(state, danger), 5);
+      border-color: darken(get-theme-color(state, danger), 5);
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem
+      rgba(lighten(get-theme-color(state, danger), 15), 0.4);
+  }
+}
+
+// .p-datatable {
+//   .p-datatable-wrapper {
+//     .p-datatable-table {
+//       .p-datatable-tbody {
+//         tr {
+//           td {
+//             &.p-frozen-column {
+//               background: get-theme-color(background);
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+.link-analysis-tree {
+  > div {
+    margin-top: -15px;
+  }
+}

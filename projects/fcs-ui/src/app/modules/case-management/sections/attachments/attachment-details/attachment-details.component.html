@@ -1,0 +1,78 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Attachment Details"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+      <yh-file-type-icon
+        [small]="true"
+        [type]="firstAttachment.type"
+        [bordered]="false"
+      ></yh-file-type-icon>
+
+      <span fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <yh-title [level]="4" [title]="'Attachment Name'"></yh-title>
+        <yh-text [secondary]="true" [small]="true">File Size: 10MB</yh-text>
+      </span>
+      <yh-button
+        [iconButton]="true"
+        icon="pi pi-download"
+        [bordered]="true"
+      ></yh-button>
+    </div>
+    <yh-divider></yh-divider>
+
+    <yh-display-value-container [horizontal]="true">
+      <yh-display-value label="Created" [inline]="true">{{
+        firstAttachment.created | date: "shortDate"
+      }}</yh-display-value>
+      <yh-display-value label="Created By" [inline]="true">{{
+        firstAttachment.createdBy
+      }}</yh-display-value>
+    </yh-display-value-container>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <yh-title [level]="4" title="Note"></yh-title>
+      <yh-text [secondary]="true">{{ group.note }}</yh-text>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-title [level]="4" title="Related Attachments"></yh-title>
+      <div
+        *ngFor="let attachment of relatedAttachments"
+        class="file-display-container"
+        fxLayout="row"
+        fxLayoutGap="25px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="row" fxLayoutGap="15px">
+          <yh-file-type-icon
+            [type]="attachment.type"
+            [small]="true"
+            [bordered]="false"
+          ></yh-file-type-icon>
+
+          <span
+            fxLayout="column"
+            fxLayoutGap="5px"
+            fxLayoutAlign="center start"
+          >
+            <yh-text [strong]="true">Attachment Name</yh-text>
+            <yh-text [secondary]="true" [small]="true">File Size: 10MB</yh-text>
+          </span>
+        </div>
+        <yh-button
+          [iconButton]="true"
+          icon="pi pi-download"
+          [bordered]="true"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button [information]="true">Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true">Delete</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

@@ -1,0 +1,15 @@
+<div class="kpi" fxFlex fxLayout="column">
+  <div fxFlex fxLayout="column" fxLayoutAlign="start">
+    <span class="kpi-value">{{ value }}</span>
+    <span class="kpi-value-title">{{ valueTitle }}</span>
+  </div>
+  <div fxFlex fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div *ngIf="showSparkchart" class="kpi-progress-spark-chart">
+      <span class="kpi-progress-spark-chart-progress" [style.width]="(value / valueCategoryTotal) * 100 + '%'"></span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="kpi-value-category">{{ valueCategory }}</span>
+      <span class="kpi-value-category-total">{{ valueCategoryTotal }}</span>
+    </div>
+  </div>
+</div>

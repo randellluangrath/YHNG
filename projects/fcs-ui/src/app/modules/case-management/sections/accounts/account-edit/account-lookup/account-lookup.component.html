@@ -1,0 +1,35 @@
+<div fxLayout="column" [formGroup]="fgFilters" fxFlex="100%">
+  <div class="search-wrapper" fxLayout="row" fxFlex="75px">
+    <yh-text-field
+      fxFlex="100%"
+      [search]="true"
+      [control]="fcAccounts"
+      placeholder="Search Internal/External Accounts by Name or Account Number..."
+    ></yh-text-field>
+  </div>
+  <div
+    class="results-wrapper"
+    fxLayout="column"
+    fxLayoutGap="15px"
+    fxFlex="auto"
+  >
+    <yh-card
+      *ngFor="let account of accounts; let i = index"
+      (click)="account.selected = !account.selected"
+      [selectable]="true"
+      [selected]="account.selected"
+    >
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-text [strong]="true">{{ account.name }}</yh-text>
+          <yh-text [secondary]="true">
+            {{ account.accountType }} - {{ account.accountId }}</yh-text
+          >
+        </div>
+        <yh-text [secondary]="true" [medium]="true">{{
+          i % 2 == 0 ? "Internal" : "External"
+        }}</yh-text>
+      </div>
+    </yh-card>
+  </div>
+</div>

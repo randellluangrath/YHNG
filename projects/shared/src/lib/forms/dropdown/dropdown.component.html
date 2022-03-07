@@ -1,0 +1,16 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-dropdown
+    [options]="options"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    [showClear]="true"
+    [filter]="filter"
+    [filterPlaceholder]="'Filter ' + label + '...'"
+    [autoDisplayFirst]="false"
+    optionLabel="label"
+    optionValue="value"
+    appendTo="body"
+  ></p-dropdown>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

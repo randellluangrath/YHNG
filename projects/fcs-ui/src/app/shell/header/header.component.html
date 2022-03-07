@@ -1,0 +1,17 @@
+<header fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayoutAlign="center center">
+    <span><yh-title [level]="2" [title]="title"></yh-title></span>
+  </div>
+  <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="25px">
+    <yh-action-bar *showItBootstrap="['md', 'lg', 'xl']"></yh-action-bar>
+    <yh-logged-in-user
+      *showItBootstrap="['md', 'lg', 'xl']"
+    ></yh-logged-in-user>
+    <yh-button
+      *showItBootstrap="['sm', 'xs']"
+      [bordered]="true"
+      [iconButton]="true"
+      icon="pi pi-cog"
+    ></yh-button>
+  </div>
+</header>

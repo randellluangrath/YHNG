@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutGap="5px">
+  <yh-text [strong]="true"
+    >{{ phone.phone | phone }}
+    <span *ngIf="phone.extension">ext. {{ phone.extension }}</span></yh-text
+  >
+  <yh-text [secondary]="true">{{ phone.type }}</yh-text>
+</div>

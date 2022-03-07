@@ -1,0 +1,77 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Enhanced Due Diligence">
+    <yh-actions
+      ><p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="">
+    <div
+      fxLayout="column"
+      fxLayoutGap="15px"
+      *ngIf="{ view: viewState$ | async } as data"
+    >
+      <yh-card
+        [title]="
+          data.view == ViewState.Current ? 'Current' : 'Past Questionnaires'
+        "
+      >
+        <yh-actions>
+          <yh-split-button
+            *ngIf="data.view == ViewState.Current"
+            label="Save"
+            [options]="saveOptions"
+          ></yh-split-button>
+        </yh-actions>
+        <div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgQuestionnaire">
+          <yh-dropdown-field
+            *ngIf="data.view == ViewState.History"
+            placeholder="Select Questionnaire..."
+            [control]="fcQuestionnaire"
+            [options]="pastOptions"
+            [style.width]="'300px'"
+          >
+          </yh-dropdown-field>
+          <yh-questionnaire></yh-questionnaire>
+        </div>
+      </yh-card>
+
+      <!-- <yh-card *ngFor="let question of questions">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          fxLayoutGap="25px"
+        >
+          <yh-text [secondary]="true" [medium]="true">{{
+            question.question
+          }}</yh-text>
+          <p-toggleButton
+            [style]="{ width: '10em' }"
+            onLabel="Reviewed"
+            offLabel="Review"
+            onIcon="fal fa-check-square"
+            offIcon="fal fa-square"
+            (click)="showQuestionaireForm()"
+          ></p-toggleButton>
+        </div>
+      </yh-card> -->
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>
+
+<!-- <yh-drawer
+  [visible]="showQuestionaire"
+  [closeOnEscape]="true"
+  [title]="'Questionaire Name'"
+  [fullscreen]="true"
+  [pad]="false"
+  [showCloseIcon]="true"
+  (hide)="handleOnHide()"
+>
+  <yh-questionnaire></yh-questionnaire>
+  <yh-drawer-footer>
+    <yh-split-button label="Save" [options]="saveOptions"></yh-split-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer> -->

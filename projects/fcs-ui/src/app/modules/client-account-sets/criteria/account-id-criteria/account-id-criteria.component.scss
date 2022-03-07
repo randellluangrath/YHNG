@@ -1,0 +1,8 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.account-ids-wrapper {
+  background: get-theme-color(background);
+  padding: 25px;
+  @include border-radius;
+}

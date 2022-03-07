@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="column" fxLayoutGap="5px">
+    <yh-text [strong]="true">Primary Alias</yh-text>
+    <yh-text [secondary]="true">SL857:NAA0212 - (Hung M Nguyen)</yh-text>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <yh-text
+      >Review the client aliases below. Choose aliases to create and separate
+      out into new, separate clients.</yh-text
+    >
+  </div>
+
+  <p-table [value]="clients">
+    <ng-template pTemplate="header">
+      <tr>
+        <th width="50px"></th>
+        <th>External Id</th>
+        <th>Name</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client>
+      <tr>
+        <td><p-tableCheckbox [value]="client"></p-tableCheckbox></td>
+        <td>{{ client.clientId }}</td>
+        <td>{{ client.externalId }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

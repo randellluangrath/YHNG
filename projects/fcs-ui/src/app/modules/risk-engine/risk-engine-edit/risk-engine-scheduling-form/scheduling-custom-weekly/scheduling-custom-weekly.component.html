@@ -1,0 +1,14 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgScheduling">
+  <yh-number-field
+    label="Number of Weeks"
+    placeholder="Weeks..."
+    [required]="true"
+    [control]="fcWeeks"
+  ></yh-number-field>
+  <yh-select-button
+    label="On"
+    [control]="fcDayOfWeek"
+    [required]="true"
+    [options]="daysOptions"
+  ></yh-select-button>
+</div>

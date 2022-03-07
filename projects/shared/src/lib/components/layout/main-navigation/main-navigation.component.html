@@ -1,0 +1,35 @@
+<yh-main-navigation-header
+  [title]="title"
+  (expanded)="handleExpand($event)"
+></yh-main-navigation-header>
+<aside fxLayout="column" fxLayoutAlign="start" fxFlex="1 1 auto">
+  <ng-content></ng-content>
+  <div *ngIf="groupedItems?.length > 0" fxLayout="column" fxLayoutGap="25px">
+    <ng-template ngFor let-group [ngForOf]="groupedItems">
+      <div class="group">
+        <yh-text
+          *ngIf="isExpanded && group.name"
+          class="group-title"
+          [small]="true"
+          [strong]="true"
+          [warning]="true"
+          [uppercase]="true"
+          >{{ group.name }}</yh-text
+        >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <ng-template ngFor let-item [ngForOf]="group.items">
+            <div>
+              <yh-main-navigation-item [expanded]="isExpanded" [item]="item">{{
+                item.title
+              }}</yh-main-navigation-item>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</aside>
+<ng-content
+  *ngIf="footerComponent"
+  select="yh-main-navigation-footer"
+></ng-content>

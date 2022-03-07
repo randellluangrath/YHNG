@@ -1,0 +1,51 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgBranch">
+  <yh-title [level]="3" title="Add Branch"></yh-title>
+  <div>
+    <yh-checkbox-group
+      label="Role"
+      formArrayName="faRole"
+      [formGroup]="fgBranch"
+      [options]="roleOptions"
+      [inline]="true"
+    ></yh-checkbox-group>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+    <yh-text-field label="RSSD Number" [control]="fcRssdNumber">
+    </yh-text-field>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+    <yh-text-field label="Address" [control]="fcAddress"> </yh-text-field>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="5px" style="width: 100%">
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48">
+      <yh-text-field label="City" [control]="fcCity"> </yh-text-field>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+      <yh-dropdown-field label="State" [control]="fcState"> </yh-dropdown-field>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="5px" style="width: 100%">
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+      <yh-text-field label="Zip Code" [control]="fcZipCode"> </yh-text-field>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+      <yh-dropdown-field
+        label="Country"
+        [control]="fcCountry"
+        [required]="true"
+      >
+      </yh-dropdown-field>
+    </div>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="10px"
+    style="width: 100%"
+  >
+    <yh-button (click)="saveItem()">Add</yh-button>
+    <yh-button (click)="cancelItem()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </div>
+</div>

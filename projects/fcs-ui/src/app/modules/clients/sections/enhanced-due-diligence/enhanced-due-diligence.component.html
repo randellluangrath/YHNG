@@ -1,0 +1,100 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header [title]="'Enhanced Due Diligence'">
+    <yh-actions>
+      <yh-button (click)="openScheduler()" [ghost]="false"
+        >Edit Scheduler</yh-button
+      ></yh-actions
+    >
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <p-messages severity="info">
+        <ng-template pTemplate>
+          <div
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="space-between center"
+            [style.width]="'100%'"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <yh-text [strong]="true" [compliment]="true" [information]="true"
+                ><fa-icon [icon]="infoIcon"></fa-icon
+              ></yh-text>
+              <yh-text [strong]="true" [compliment]="true" [information]="true"
+                >Schedule:</yh-text
+              >
+              <yh-text [information]="true" [compliment]="true"
+                >Enabled, 1/22/22 assigned to John W.</yh-text
+              >
+            </div>
+          </div>
+        </ng-template>
+      </p-messages>
+      <!-- <p-messages severity="warn">
+        <ng-template pTemplate>
+          <div
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="space-between center"
+            [style.width]="'100%'"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <yh-text [strong]="true" [compliment]="true" [warning]="true">
+                <fa-icon [icon]="warnIcon"></fa-icon>
+              </yh-text>
+              <yh-text [strong]="true" [compliment]="true" [warning]="true"
+                >Upcoming:
+              </yh-text>
+              <yh-text [strong]="false" [compliment]="true" [warning]="true"
+                >Scheduled for John W. to review on 1/22/22</yh-text
+              >
+            </div>
+          </div>
+        </ng-template>
+      </p-messages> -->
+      <!-- <p-messages severity="error">
+        <ng-template pTemplate>
+          <div
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="space-between center"
+            [style.width]="'100%'"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <yh-text [strong]="true" [compliment]="true" [danger]="true"
+                ><fa-icon [icon]="warnIcon"></fa-icon>
+              </yh-text>
+              <yh-text [strong]="true" [compliment]="true" [danger]="true"
+                >Overdue:
+              </yh-text>
+              <yh-text [strong]="false" [compliment]="true" [danger]="true"
+                >Scheduled for John W. to review on 1/22/22</yh-text
+              >
+            </div>
+          </div>
+        </ng-template>
+      </p-messages> -->
+
+      <yh-enhanced-due-diligence-item
+        *ngFor="let record of records"
+        [record]="record"
+      ></yh-enhanced-due-diligence-item>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar
+    ><yh-customer-risk-factors-details></yh-customer-risk-factors-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+<yh-drawer
+  [visible]="showSchedulerDrawer"
+  [closeOnEscape]="true"
+  [title]="'Edit EDD Scheduler'"
+  width="800px"
+  (hide)="closeScheduler()"
+>
+  <yh-edd-scheduler></yh-edd-scheduler>
+  <yh-drawer-footer>
+    <yh-button (click)="closeScheduler()">Save</yh-button>
+    <yh-button (click)="closeScheduler()"> Cancel </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

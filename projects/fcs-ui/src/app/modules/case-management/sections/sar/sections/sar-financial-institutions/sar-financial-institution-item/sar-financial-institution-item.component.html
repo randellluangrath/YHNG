@@ -1,0 +1,105 @@
+<yh-card [title]="institution.name" [flat]="true">
+  <yh-actions>
+    <yh-button
+      [iconButton]="true"
+      [text]="true"
+      [secondary]="true"
+      [bordered]="true"
+      icon="pi pi-pencil"
+      size="small"
+    ></yh-button>
+    <yh-button
+      [iconButton]="true"
+      [bordered]="true"
+      [icon]="'pi pi-trash'"
+      [text]="true"
+      [secondary]="true"
+      size="small"
+    ></yh-button>
+  </yh-actions>
+  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="25px">
+    <yh-card [flat]="true" [style.width]="'100%'">
+      <div fxLayout="row" fxLayoutGap="25px">
+        <yh-display-value label="Alternate Name" [inline]="false"
+          >12345</yh-display-value
+        >
+        <yh-display-value label="Type" [inline]="false"
+          >123456</yh-display-value
+        >
+        <yh-display-value label="Type Other" [inline]="false"
+          >Fraud</yh-display-value
+        >
+        <yh-display-value label="Identification" [inline]="false"
+          >Check Fraud</yh-display-value
+        >
+        <yh-display-value label="Identification #" [inline]="false"
+          >Open</yh-display-value
+        >
+        <yh-display-value
+          label="Internal Control / File Number"
+          [inline]="false"
+          >Aaron Hardy</yh-display-value
+        >
+        <yh-display-value label="Loss" [inline]="false">{{
+          institution.loss | currency
+        }}</yh-display-value>
+      </div></yh-card
+    >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+      [style.width]="'100%'"
+    >
+      <yh-card [flat]="true" fxFlex="48%">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center start"
+          fxFlex="auto"
+          fxLayoutGap="25px"
+        >
+          <div fxLayout="column" fxLayoutGap="3px">
+            <yh-text [strong]="true">Address</yh-text>
+            <yh-text [secondary]="true" [medium]="true"
+              >503 Autumn Springs Court, Franklin TN 37067</yh-text
+            >
+          </div>
+          <div fxLayout="column" fxLayoutGap="3px">
+            <yh-text [strong]="true">Role</yh-text>
+            <yh-text [secondary]="true" [medium]="true">{{
+              institution.role.join(", ")
+            }}</yh-text>
+          </div>
+          <div fxLayout="column" fxLayoutGap="3px">
+            <yh-text [strong]="true">Type of Gaming Institution</yh-text>
+            <yh-text [secondary]="true" [medium]="true">{{
+              institution.typeOfGaming.join(", ")
+            }}</yh-text>
+          </div>
+          <div fxLayout="column" fxLayoutGap="3px">
+            <yh-text [strong]="true"
+              >Type of Securities & Futures Institution/Individual</yh-text
+            >
+            <yh-text [secondary]="true" [medium]="true">{{
+              institution.typeOfSecurities.join(", ")
+            }}</yh-text>
+          </div>
+        </div></yh-card
+      >
+      <yh-card [flat]="true" fxFlex="48%">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center start"
+          fxFlex="auto"
+          fxLayoutGap="25px"
+        >
+          <yh-text [strong]="true">Branches</yh-text>
+          <div class="stripe" [style.width]="'100%'">
+            <div *ngFor="let item of institution.branches">
+              <yh-sar-branch-item [branch]="item"></yh-sar-branch-item>
+            </div>
+          </div>
+        </div>
+      </yh-card>
+    </div>
+  </div>
+</yh-card>

@@ -1,0 +1,30 @@
+<div class="content" [formGroup]="fgTask" fxLayout="column" fxLayoutGap="20px">
+  <yh-text-field
+    label="Title"
+    [control]="fcName"
+    [required]="true"
+  ></yh-text-field>
+  <yh-dropdown-field
+    label="Assigned To"
+    placeholder="Assigned To"
+    [required]="true"
+    [control]="fcAssignedTo"
+  ></yh-dropdown-field>
+  <yh-dropdown-field
+    label="Status"
+    placeholder="Status"
+    [options]="statusOptions"
+    [required]="true"
+    [control]="fcStatus"
+  ></yh-dropdown-field>
+  <yh-date-field label="Due On" [control]="fcDueOn"> </yh-date-field>
+  <yh-date-field label="Remind Me" [control]="fcReminder"> </yh-date-field>
+
+  <yh-textarea-field
+    label="Description"
+    placeholder="Note"
+    [required]="true"
+    [max]="500"
+    [control]="fcNote"
+  ></yh-textarea-field>
+</div>

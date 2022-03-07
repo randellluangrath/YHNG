@@ -1,0 +1,78 @@
+<yh-sidebar-layout [formGroup]="fgRisk">
+  <yh-sidebar-layout-header title="Personal Risk" [canClose]="false">
+    <yh-actions>
+      <yh-checkbox label="Disabled" [control]="fcStatus"></yh-checkbox>
+    </yh-actions>
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="25px">
+    <yh-text-field
+      label="Name"
+      [required]="true"
+      [control]="fcName"
+    ></yh-text-field>
+
+    <yh-textarea-field
+      label="Description"
+      [required]="true"
+      [control]="fcDescription"
+    ></yh-textarea-field>
+
+    <!-- <yh-select-button
+      label="Enabled"
+      [options]="statusOptions"
+      [required]="true"
+      [control]="fcStatus"
+    ></yh-select-button> -->
+
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-button-field
+        label="Scheduling"
+        [required]="true"
+        [control]="fcScheduling"
+        (onButtonClick)="showSchedulingDrawer()"
+        >Select Scheduling &nbsp;<fa-icon [icon]="editIcon"></fa-icon
+      ></yh-button-field>
+      <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text [small]="true" [secondary]="true"
+          >Yearly - on the 1st of January
+        </yh-text>
+      </div> -->
+    </div>
+    <yh-multiselect-field
+      label="Client Sets"
+      [required]="true"
+      [control]="fcClientGroups"
+      [options]="options"
+    >
+    </yh-multiselect-field>
+    <yh-multiselect-field
+      label="Account Sets"
+      [required]="true"
+      [control]="fcAccountGroups"
+      [options]="options"
+    >
+    </yh-multiselect-field>
+    <yh-multiselect-field
+      label="Excluded Relationships"
+      [control]="fcExcludedRelationships"
+      [options]="options"
+    >
+    </yh-multiselect-field>
+  </div>
+</yh-sidebar-layout>
+<yh-drawer
+  [visible]="showSchedulingForm"
+  [closeOnEscape]="true"
+  [title]="'Set Scheduling'"
+  [pad]="true"
+  width="800px"
+  (hide)="hideSchedulingDrawer()"
+>
+  <yh-risk-engine-scheduling-form></yh-risk-engine-scheduling-form>
+  <yh-drawer-footer>
+    <yh-button>Set</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="hideSchedulingDrawer()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

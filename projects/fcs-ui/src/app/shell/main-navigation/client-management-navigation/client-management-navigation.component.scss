@@ -1,0 +1,41 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.client-information {
+  background: darken(get-theme-color(brand, primary-dark), 5);
+  padding: 15px 25px 15px 25px;
+  .client-details-description {
+    text-indent: 0;
+    transition: text-indent 0.45s ease-in-out;
+  }
+  .client-information-icon-wrapper {
+    text-indent: -9999px;
+  }
+  &.is-collapsed {
+    .client-details-description {
+      text-indent: -9999px;
+    }
+    .client-information-icon-wrapper {
+      text-indent: 0;
+    }
+  }
+}
+
+.client-information-icon-wrapper {
+  color: get-theme-color(brand, secondary);
+  text-align: center;
+}
+.client-management-navigation-footer {
+  padding: 15px 25px 15px 25px;
+  background: get-theme-color(brand, secondary);
+  transition: background 0.3s ease-in-out;
+  &:hover {
+    background: get-theme-color(brand, secondary-dark);
+    cursor: pointer;
+  }
+}
+.return-link {
+  color: get-theme-color(brand, primary-dark);
+  @include semibold-font-weight();
+  text-decoration: none;
+}

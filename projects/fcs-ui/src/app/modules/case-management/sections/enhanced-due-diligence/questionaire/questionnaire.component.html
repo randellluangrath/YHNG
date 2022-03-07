@@ -1,0 +1,102 @@
+<div class="questionnaire-wrapper" fxLayout="column" fxLayoutGap="15px">
+  <div class="questionnaire-content">
+    <div fxLayout="column" fxLayoutGap="25px" [formGroup]="fgQuestions">
+      <!-- <yh-divider
+        [title]="'Minimum Enhanced Due Diligence'"
+        placement="left"
+        background="white"
+      ></yh-divider> -->
+      <yh-text [bold]="true">Minimum Enhanced Due Diligence</yh-text>
+      <yh-card [flat]="true">
+        <div fxLayout="column" fxLayoutGap="25px">
+          <yh-questionnaire-question
+            question="Has Minimum Enhanced Due Diligence been conducted on the
+          customer?"
+            [control]="fcQuestionA1"
+            [options]="yesNoOptions"
+            previousAnswer="Yes"
+          ></yh-questionnaire-question>
+          <div fxLayout="column" fxLayoutGap="25px" *ngIf="fcQuestionA1.value">
+            <yh-questionnaire-question
+              question="Did a negative news/adverse media search of the customer or
+            principals (in the case of entities) produce any results of
+            concern?"
+              [control]="fcQuestionA1"
+              [options]="yesNoOptions"
+              previousAnswer="Yes"
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="Have any SARs involving the customer or principals been filed
+                since the prior review?"
+              [control]="fcQuestionB"
+              [options]="yesNoOptions"
+              previousAnswer="No"
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="Has the customer or any principals been the subject of any
+            suspicious acivity reviews since the prior review?"
+              [control]="fcQuestionC"
+              [options]="yesNoOptions"
+              previousAnswer="Yes"
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="Has the customer or any principals been the subject of any
+            subpoenas or law enforcement requests since the prior review?"
+              [control]="fcQuestionC"
+              [options]="yesNoOptions"
+              previousAnswer="Yes"
+            ></yh-questionnaire-question>
+          </div>
+        </div>
+      </yh-card>
+      <yh-text [bold]="true">Risk-Based Enhanced Due Diligence</yh-text>
+      <!-- <yh-divider
+        [title]="'Risk-Based Enhanced Due Diligence'"
+        placement="left"
+        background="white"
+      ></yh-divider> -->
+      <yh-card [flat]="true">
+        <div fxLayout="column" fxLayoutGap="25px">
+          <yh-questionnaire-question
+            question="Does the customer merit further Risk-Based Enhanced Due
+          Diligence?"
+            [control]="fcQuestionE1"
+            [options]="yesNoOptions"
+            previousAnswer="Yes"
+          ></yh-questionnaire-question>
+
+          <div fxLayout="column" fxLayoutGap="25px" *ngIf="fcQuestionE1.value">
+            <yh-questionnaire-question
+              question="What is the customers business, business structure or source of
+            wealth?"
+              [control]="fcQuestionC"
+              [type]="QuestionnaireQuestionType.Text"
+              previousAnswer="They invested in Bitcoin early on."
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="Does the customer have an established banking relationship
+            and/or is the account activity consistent with expectations?"
+              [control]="fcQuestionF"
+              [options]="yesNoOptions"
+              previousAnswer="Yes"
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="What is the nature and the purpose of the customer's
+            relationship?"
+              [control]="fcQuestionH"
+              [type]="QuestionnaireQuestionType.Text"
+              previousAnswer="To be like Super Mario and collect all the Bitcoins."
+            ></yh-questionnaire-question>
+            <yh-questionnaire-question
+              question="Has the customer's Beneficial ownership been updated if
+          applicable?"
+              [control]="fcQuestionI"
+              [options]="yesNoOptions"
+              previousAnswer="Yes"
+            ></yh-questionnaire-question>
+          </div>
+        </div>
+      </yh-card>
+    </div>
+  </div>
+</div>

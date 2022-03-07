@@ -1,0 +1,229 @@
+<div class="activity-table-wrapper">
+  <p-table
+    [value]="transactions"
+    [scrollable]="true"
+    scrollDirection="both"
+    scrollHeight="flex"
+    [paginator]="true"
+    [selectionMode]="'multiple'"
+    [(selection)]="selectedTransactions"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [rows]="10"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template pTemplate="caption">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="15px"
+          style="padding: 0 35px"
+          [formGroup]="fgFilters"
+        >
+          <yh-text-field
+            fxFlex="200px"
+            [control]="fcFreeText"
+            placeholder="Search Transactions..."
+            [search]="true"
+          ></yh-text-field>
+          <yh-dropdown-field
+            fxFlex="200px"
+            [control]="fcMedium"
+            [options]="mediumOptions"
+            placeholder="Select Medium..."
+          ></yh-dropdown-field>
+          <yh-date-field
+            fxFlex="250px"
+            [control]="fcDateRange"
+            [range]="true"
+            [months]="2"
+          ></yh-date-field>
+          <yh-select-button
+            [control]="fcType"
+            [options]="transactionTypeOptions"
+          ></yh-select-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+          <yh-toggle-button [icon]="exportIconLight"></yh-toggle-button>
+          <yh-button
+            [iconButton]="true"
+            icon="fal fa-cog"
+            [text]="true"
+            [secondary]="true"
+            (click)="toggleFilters()"
+          ></yh-button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th
+          style="width: 100px; padding-left: 50px"
+          alignFrozen="left"
+          pFrozenColumn
+          [frozen]="true"
+        ></th>
+        <th
+          style="width: 100px"
+          alignFrozen="left"
+          pFrozenColumn
+          [frozen]="true"
+        >
+          <yh-text [strong]="true"> Date</yh-text>
+        </th>
+        <th
+          style="width: 200px"
+          alignFrozen="left"
+          pFrozenColumn
+          [frozen]="true"
+        >
+          <yh-text [strong]="true"> Account</yh-text>
+        </th>
+
+        <th style="width: 100px"><yh-text [strong]="true"> Type</yh-text></th>
+        <th style="width: 100px"><yh-text [strong]="true"> Batch</yh-text></th>
+        <th style="width: 100px">
+          <yh-text [strong]="true"> Sequence</yh-text>
+        </th>
+        <th style="width: 100px">
+          <yh-text [strong]="true"> Effective</yh-text>
+        </th>
+        <th style="width: 652px">
+          <yh-text [strong]="true"> Description</yh-text>
+        </th>
+        <th style="width: 100px"><yh-text [strong]="true"> Debit</yh-text></th>
+        <th style="width: 100px"><yh-text [strong]="true"> Credit</yh-text></th>
+        <th style="width: 100px">
+          <yh-text [strong]="true"> Cash In</yh-text>
+        </th>
+        <th style="width: 100px">
+          <yh-text [strong]="true"> Cash Out</yh-text>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction let-columns="columns">
+      <tr
+        [class.is-flagged]="transaction.flagged"
+        [pSelectableRow]="transaction"
+      >
+        <td style="width: 100px; padding-left: 50px" pFrozenColumn>
+          <yh-button
+            [iconButton]="true"
+            [text]="true"
+            [bordered]="false"
+            icon="fas fa-bookmark"
+            [danger]="transaction.flagged"
+            [secondary]="!transaction.flagged"
+            (click)="transaction.flagged = !transaction.flagged"
+            size="small"
+          ></yh-button>
+        </td>
+        <td style="width: 100px" pFrozenColumn>
+          <yh-text [danger]="transaction.flagged">{{
+            transaction.created | date: "shortDate"
+          }}</yh-text>
+        </td>
+        <td style="width: 200px" pFrozenColumn>
+          <yh-text [danger]="transaction.flagged">{{
+            transaction.account
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true"
+            >Wire</yh-text
+          >
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.batch
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.sequence
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.effective | date: "shortDate"
+          }}</yh-text>
+        </td>
+        <td style="width: 652px">
+          <yh-text
+            [danger]="transaction.flagged"
+            [secondary]="true"
+            [preventWrap]="true"
+            >{{ transaction.description }}</yh-text
+          >
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.debit | currency
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.credit | currency
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.debit | currency
+          }}</yh-text>
+        </td>
+        <td style="width: 100px">
+          <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+            transaction.credit | currency
+          }}</yh-text>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <yh-text [strong]="true" [secondary]="true"
+          >Debit Total:
+          <yh-text>{{
+            getSelectedTransactionsTotal() | currency
+          }}</yh-text></yh-text
+        >
+        <yh-text [strong]="true" [secondary]="true"
+          >Credit Total:
+          <yh-text>{{
+            getSelectedTransactionsTotal() | currency
+          }}</yh-text></yh-text
+        >
+        <yh-text [strong]="true" [secondary]="true"
+          >Cash In Total:
+          <yh-text>{{
+            getSelectedTransactionsTotal() | currency
+          }}</yh-text></yh-text
+        >
+        <yh-text [strong]="true" [secondary]="true"
+          >Cash Out Total:
+          <yh-text>{{
+            getSelectedTransactionsTotal() | currency
+          }}</yh-text></yh-text
+        >
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<yh-drawer
+  [visible]="showFilters"
+  [closeOnEscape]="true"
+  [title]="'Accounts'"
+  [pad]="true"
+  width="800px"
+  (hide)="handleOnHide()"
+>
+  <yh-accounts-filters></yh-accounts-filters>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

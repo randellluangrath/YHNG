@@ -1,0 +1,26 @@
+<div [formGroup]="fgQuestion" fxLayout="column" fxLayoutGap="10px">
+  <yh-text-field
+    label="Question"
+    [control]="fcQuestion"
+    [required]="true"
+  ></yh-text-field>
+  <yh-text-field label="Description" [control]="fcDescription"></yh-text-field>
+  <yh-dropdown-field
+    label="Category"
+    [control]="fcCategory"
+    [options]="categoryOptions"
+    [required]="true"
+  ></yh-dropdown-field>
+
+  <container-element [ngSwitch]="fcCategory.value">
+    <yh-list-category-edit *ngSwitchCase="'List'"></yh-list-category-edit>
+    <yh-number-category-edit *ngSwitchCase="'Number'"></yh-number-category-edit>
+    <yh-country-category-edit
+      *ngSwitchCase="'Country'"
+    ></yh-country-category-edit>
+    <yh-state-category-edit *ngSwitchCase="'State'"></yh-state-category-edit>
+    <yh-naics-category-edit *ngSwitchCase="'Naics'"></yh-naics-category-edit>
+    <yh-soc-category-edit *ngSwitchCase="'Soc'"></yh-soc-category-edit>
+    <yh-range-category-edit *ngSwitchCase="'Range'"></yh-range-category-edit>
+  </container-element>
+</div>

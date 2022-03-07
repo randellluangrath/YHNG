@@ -1,0 +1,32 @@
+<div fxLayout="column" fxFlex="100%">
+  <div fxLayout="column" fxFlex="50%" class="item-wrapper" fxLayoutGap="15px">
+    <yh-card
+      [selectable]="true"
+      padSize="small"
+      [flat]="true"
+      *ngFor="let case of openCases"
+    >
+      <yh-case-item [case]="case"></yh-case-item>
+    </yh-card>
+  </div>
+  <div fxLayout="column" fxFlex="50%">
+    <div
+      fxFlex="50px"
+      class="tasks-header"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+    >
+      <yh-text [bold]="true">Tasks</yh-text>
+    </div>
+    <div class="item-wrapper" fxLayout="column" fxLayoutGap="15px">
+      <yh-card
+        [selectable]="true"
+        padSize="small"
+        [flat]="true"
+        *ngFor="let task of openTasks"
+      >
+        <yh-case-task-item [task]="task"></yh-case-task-item>
+      </yh-card>
+    </div>
+  </div>
+</div>

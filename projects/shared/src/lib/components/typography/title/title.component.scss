@@ -1,0 +1,23 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.knockout {
+  color: get-theme-color(basic, white);
+}
+
+@for $i from 1 through 4 {
+  h#{$i} {
+    font-size: $default-font-size + $heading-scale * (4 - $i);
+    @if ($i < 3) {
+      font-weight: 900;
+    } @else {
+      font-weight: 800;
+    }
+
+    color: get-theme-color(brand, primary-dark);
+    margin: 0px;
+    + small {
+      margin-bottom: 5px;
+    }
+  }
+}

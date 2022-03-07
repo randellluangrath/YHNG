@@ -1,0 +1,21 @@
+<div class="field-control-wrapper" fxLayout="column" fxLayoutGap="5px">
+  <div
+    [fxLayout]="inline ? 'row' : 'column'"
+    fxLayoutGap="5px"
+    [fxLayoutAlign]="inline ? 'space-between start' : 'start start'"
+  >
+    <yh-form-field-label
+      [label]="label"
+      *ngIf="label"
+      [required]="required"
+      [disabled]="disabled"
+    ></yh-form-field-label>
+
+    <div class="field-control">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div *ngIf="description" class="field-control-description">
+    {{ description }}
+  </div>
+</div>

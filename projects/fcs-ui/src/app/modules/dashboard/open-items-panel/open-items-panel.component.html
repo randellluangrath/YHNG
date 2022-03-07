@@ -1,0 +1,22 @@
+<yh-sidebar-layout [pad]="false" [formGroup]="fgOptions">
+  <yh-sidebar-layout-header title="Open Items" [canClose]="false">
+    <yh-actions>
+      <yh-select-button [options]="options" [control]="fcOptions">
+      </yh-select-button
+    ></yh-actions>
+  </yh-sidebar-layout-header>
+  <div fxLayout="column" fxFlex="100%">
+    <yh-open-alerts
+      *ngIf="_viewState === ViewState.Alerts"
+      fxFlex="100%"
+    ></yh-open-alerts>
+    <yh-open-cases
+      *ngIf="_viewState === ViewState.Cases"
+      fxFlex="100%"
+    ></yh-open-cases>
+    <yh-open-sars
+      *ngIf="_viewState === ViewState.Sars"
+      fxFlex="100%"
+    ></yh-open-sars>
+  </div>
+</yh-sidebar-layout>

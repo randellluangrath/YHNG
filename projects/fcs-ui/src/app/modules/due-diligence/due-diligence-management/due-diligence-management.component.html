@@ -1,0 +1,132 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header>
+    <yh-general-layout-header-template>
+      <p-tabMenu
+        class="question-tabs"
+        [model]="items"
+        [activeItem]="activeItem"
+      ></p-tabMenu>
+    </yh-general-layout-header-template>
+    <yh-actions>
+      <button pButton>Save</button>
+      <button pButton class="p-button-outlined">Cancel</button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content" id="questionTree">
+    <p-messages severity="info">
+      <ng-template pTemplate>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <fa-icon [icon]="infoIcon"></fa-icon>
+          <div>
+            To add a question to the tree, drag it from the list of available
+            questions and drop it in the desired position.
+          </div>
+        </div>
+      </ng-template>
+    </p-messages>
+    <tree-root
+      #tree
+      [nodes]="nodes"
+      [options]="options"
+      (toggleExpanded)="onEvent($event)"
+    >
+      <ng-template
+        #treeNodeFullTemplate
+        let-node
+        let-index="index"
+        let-templates="templates"
+      >
+        <div
+          [class]="node.getClass()"
+          [class.tree-node]="true"
+          [class.tree-node-expanded]="node.isExpanded && node.hasChildren"
+          [class.tree-node-collapsed]="node.isCollapsed && node.hasChildren"
+          [class.tree-node-leaf]="node.isLeaf"
+          [class.tree-node-active]="node.isActive"
+          [class.tree-node-focused]="node.isFocused"
+        >
+          <tree-node-drop-slot
+            *ngIf="index === 0"
+            [dropIndex]="node.index"
+            [node]="node.parent"
+          >
+          </tree-node-drop-slot>
+
+          <tree-node-wrapper
+            [node]="node"
+            [index]="index"
+            [templates]="templates"
+          >
+          </tree-node-wrapper>
+
+          <ng-template #treeNodeTemplate let-node let-index="index">
+            <yh-card
+              [selectable]="true"
+              [selected]="node.isActive"
+              padSize="small"
+            >
+              <div
+                fxLayout="row"
+                fxLayoutGap="25px"
+                fxLayoutAlign="space-between center"
+              >
+                <div fxLayout="row" fxLayoutGap="5px">
+                  <yh-text [strong]="true" [secondary]="true" [small]="true"
+                    ><fa-icon
+                      [icon]="node.data.isQuestion ? questionIcon : answerIcon"
+                    ></fa-icon>
+                  </yh-text>
+                  <yh-text> {{ node.data.name }}</yh-text>
+                </div>
+                <div
+                  fxLayout="row"
+                  *ngIf="node.data.isQuestion"
+                  fxLayoutGap="10px"
+                >
+                  <yh-button
+                    *ngIf="node.data.isCustom"
+                    [iconButton]="true"
+                    [bordered]="true"
+                    icon="pi pi-pencil"
+                  ></yh-button>
+                  <yh-button
+                    [iconButton]="true"
+                    [secondary]="true"
+                    [bordered]="true"
+                    icon="pi pi-trash"
+                  ></yh-button>
+                </div>
+              </div>
+            </yh-card>
+          </ng-template>
+
+          <tree-node-children [node]="node" [templates]="templates">
+          </tree-node-children>
+          <tree-node-drop-slot
+            [dropIndex]="node.index + 1"
+            [node]="node.parent"
+          >
+          </tree-node-drop-slot>
+        </div>
+      </ng-template>
+    </tree-root>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar>
+    <yh-due-diligence-questions></yh-due-diligence-questions>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  [title]="'Add New Question'"
+  width="800px"
+  (hide)="handleOnHide()"
+>
+  <yh-due-diligence-edit></yh-due-diligence-edit>
+  <yh-drawer-footer>
+    <yh-button>Add</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

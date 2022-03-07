@@ -1,0 +1,17 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include full-height();
+}
+
+.search-wrapper {
+  @include header-defaults;
+}
+.results-wrapper {
+  background: get-theme-color(background);
+  overflow-y: auto;
+  @include scrollbar-defaults;
+  height: 100%;
+  padding: 50px;
+}

@@ -1,0 +1,45 @@
+<yh-main-navigation
+  [title]="'FCD'"
+  [groupedItems]="groups"
+  (expanded)="handleExpanded($event)"
+>
+  <div
+    class="case-information"
+    [class.is-collapsed]="!isExpanded"
+    fxLayout="row"
+    fxLayoutGap="5px"
+    [fxLayoutAlign]="!isExpanded ? 'center center' : 'start start'"
+  >
+    <div class="case-details-description">
+      <yh-text
+        [warning]="true"
+        [uppercase]="true"
+        [strong]="true"
+        [small]="true"
+        >Case 1234</yh-text
+      >
+      <yh-title [knockout]="true" [level]="4" title="Guy Edwards"></yh-title>
+    </div>
+    <div class="case-information-icon-wrapper">
+      <fa-icon
+        [icon]="breifcaseIcon"
+        pTooltip="Case 1234: Guy Edwards"
+        tooltipPosition="right"
+        tooltipStyleClass="navigation-menu-tooltip"
+      ></fa-icon>
+    </div>
+  </div>
+  <yh-main-navigation-footer>
+    <div class="case-management-navigation-footer" (click)="returnToList()">
+      <a
+        class="return-link"
+        routerLink="/dashboard"
+        fxLayout="row"
+        [fxLayoutGap]="isExpanded ? '10px' : '0'"
+        [fxLayoutAlign]="isExpanded ? 'start center' : 'center center'"
+        ><fa-icon [icon]="exitArrow"></fa-icon
+        ><span *ngIf="isExpanded">Return to Cases</span></a
+      >
+    </div>
+  </yh-main-navigation-footer>
+</yh-main-navigation>

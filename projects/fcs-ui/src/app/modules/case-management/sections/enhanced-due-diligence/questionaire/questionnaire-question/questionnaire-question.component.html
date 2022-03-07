@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+    <yh-text [strong]="false" [secondary]="false" [style.width]="'600px'">{{
+      question
+    }}</yh-text>
+    <yh-previous-answer-item
+      *ngIf="previousAnswer"
+      [answer]="previousAnswer"
+    ></yh-previous-answer-item>
+  </div>
+  <container-element [ngSwitch]="type">
+    <yh-select-button
+      *ngSwitchCase="QuestionnaireQuestionType.Boolean"
+      placeholder="Select Answer..."
+      [control]="control"
+      [options]="options"
+    ></yh-select-button>
+    <yh-text-field
+      *ngSwitchCase="QuestionnaireQuestionType.Text"
+      placeholder="Answer..."
+      [control]="control"
+    ></yh-text-field>
+  </container-element>
+</div>

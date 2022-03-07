@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.flagged {
+  color: get-theme-color(state, danger);
+}
+.unflagged {
+  color: get-theme-color(state, secondary);
+}

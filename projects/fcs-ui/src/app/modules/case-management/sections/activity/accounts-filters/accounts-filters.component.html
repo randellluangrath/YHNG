@@ -1,0 +1,153 @@
+<div fxLayout="column" fxLayoutGap="25px" [formGroup]="fgFilters">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutGap="5px">
+        <yh-text [medium]="true">
+          <fa-icon [icon]="infoIcon"></fa-icon
+        ></yh-text>
+        <yh-text [secondary]="true" [medium]="true"
+          >Select an Account below or include one by searching.</yh-text
+        >
+      </div>
+      <yh-button
+        [iconButton]="true"
+        icon="pi pi-search"
+        [secondary]="true"
+        [bordered]="true"
+        [text]="true"
+        (click)="showFindAccountDrawer = !showFindAccountDrawer"
+      ></yh-button>
+    </div>
+    <yh-divider></yh-divider>
+
+    <yh-card [flat]="true">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <yh-text [bold]="true">Manually Added Accounts</yh-text>
+        </div>
+        <yh-text *ngIf="accountSuggestions.length === 0" [secondary]="true"
+          >No internal accounts added.</yh-text
+        >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div
+            formArrayName="faSuggestedAccounts"
+            *ngFor="
+              let item of fgFilters.get('faSuggestedAccounts')['controls'];
+              let i = index
+            "
+          >
+            <yh-card [flat]="true" padSize="small">
+              <div
+                fxLayout="row"
+                fxLayoutGap="5px"
+                fxLayoutAlign="space-between center"
+              >
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="15px"
+                  fxLayoutAlign="start center"
+                >
+                  <yh-checkbox [control]="item"></yh-checkbox>
+                  <div fxLayout="column" fxLayoutGap="3px">
+                    <yh-text [strong]="true">{{ accounts[i].name }}</yh-text>
+                    <yh-text [secondary]="true" [medium]="true" [small]="true"
+                      >{{ accountSuggestions[i].accountType }} -
+                      {{ accountSuggestions[i].accountId }}</yh-text
+                    >
+                  </div>
+                </div>
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="10px"
+                  fxLayoutAlign="start center"
+                >
+                  <p-tag>Suggested</p-tag>
+                  <!-- <yh-button
+                [iconButton]="true"
+                icon="pi pi-trash"
+                [secondary]="true"
+                [ghost]="true"
+              ></yh-button> -->
+                </div>
+              </div>
+            </yh-card>
+          </div>
+        </div>
+      </div>
+    </yh-card>
+    <yh-card [flat]="true">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <yh-text [bold]="true">Case Accounts</yh-text>
+          <!-- <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [secondary]="true"
+            icon="pi pi-plus"
+            (click)="showForm($event)"
+          ></yh-button> -->
+        </div>
+        <yh-text *ngIf="caseAccounts.length === 0" [secondary]="true"
+          >No accounts added.</yh-text
+        >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div
+            formArrayName="faCaseAccounts"
+            *ngFor="
+              let item of fgFilters.get('faCaseAccounts')['controls'];
+              let i = index
+            "
+          >
+            <yh-card [flat]="true" padSize="small">
+              <div
+                fxLayout="row"
+                fxLayoutGap="5px"
+                fxLayoutAlign="space-between center"
+              >
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="15px"
+                  fxLayoutAlign="start center"
+                >
+                  <yh-checkbox [control]="item"></yh-checkbox>
+                  <div fxLayout="column" fxLayoutGap="3px">
+                    <yh-text [strong]="true">{{
+                      caseAccounts[i].name
+                    }}</yh-text>
+                    <yh-text [secondary]="true" [medium]="true" [small]="true"
+                      >{{ caseAccounts[i].accountType }} -
+                      {{ caseAccounts[i].accountId }}</yh-text
+                    >
+                  </div>
+                </div>
+              </div>
+            </yh-card>
+          </div>
+        </div>
+      </div>
+    </yh-card>
+  </div>
+</div>
+<yh-overlay-panel [dismissable]="false">
+  <yh-account-edit-external></yh-account-edit-external>
+</yh-overlay-panel>
+<yh-drawer
+  [visible]="showFindAccountDrawer"
+  [closeOnEscape]="true"
+  [title]="'Search Accounts'"
+  [pad]="false"
+  width="800px"
+  (hide)="showFindAccountDrawer = !showFindAccountDrawer"
+>
+  <yh-account-lookup></yh-account-lookup>
+  <yh-drawer-footer>
+    <yh-button>Add Selected</yh-button>
+    <yh-button
+      [ghost]="true"
+      [warning]="true"
+      (click)="showFindAccountDrawer = !showFindAccountDrawer"
+    >
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

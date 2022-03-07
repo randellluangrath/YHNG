@@ -1,0 +1,105 @@
+<div
+  class="alert-information"
+  fxLayout="column"
+  *ngIf="{ view: viewState$ | async } as data"
+>
+  <div>
+    <div
+      class="alert-details-wrapper"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="50px"
+      [style.width]="'100%'"
+    >
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-text [strong]="true" class="alert-name">Michael L. Caruso</yh-text>
+        <yh-text [medium]="true" [small]="true">07/01/2021 @ 5:23pm</yh-text>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <yh-text [medium]="true">Client</yh-text>
+        <yh-text [medium]="true">/</yh-text>
+        <yh-text [medium]="true">Daily</yh-text>
+        <yh-text [medium]="true">
+          <yh-risk-indicator
+            [low]="true"
+            [style]="{ display: 'inline-block', 'margin-right': '5px' }"
+          ></yh-risk-indicator
+          >15
+        </yh-text>
+        <yh-text [medium]="true">/</yh-text>
+        <yh-text [medium]="true">Large Wire over 30 Days</yh-text>
+        <yh-text [medium]="true">/</yh-text>
+        <yh-text [medium]="true">$18,000</yh-text>
+      </div>
+
+      <!-- <yh-display-value label="Name" [inline]="false"
+        >Michael L. Caruso</yh-display-value
+      >
+      <yh-display-value label="Date" [inline]="false"
+        >07/01/2021 @ 5:23pm</yh-display-value
+      >
+      <yh-display-value label="Level" [inline]="false">Client</yh-display-value>
+      <yh-display-value label="Schedule" [inline]="false"
+        >Daily</yh-display-value
+      >
+      <yh-display-value label="Score" [inline]="false"
+        ><yh-risk-indicator
+          [low]="true"
+          [style]="{ display: 'inline-block', 'margin-right': '5px' }"
+        ></yh-risk-indicator
+        >15</yh-display-value
+      >
+      <yh-display-value label="Type" [inline]="false"
+        >Large Wire over 30 Days</yh-display-value
+      >
+      <yh-display-value label="Amount" [inline]="false"
+        >$18,000</yh-display-value
+      > -->
+      <!-- <yh-card
+    [title]="'Scenario Violations'"
+    [flat]="true"
+    fxFlex="75%"
+    padSize="small"
+    [style.height]="'100%'"
+    [pad]="false"
+  >
+    <yh-actions>
+      <yh-text [warning]="true" [medium]="true">8 Violations</yh-text>
+    </yh-actions>
+    <yh-alert-details-analysis></yh-alert-details-analysis>
+  </yh-card> -->
+    </div>
+    <div class="alert-tabs-wrapper">
+      <p-tabMenu
+        class="alert-details-tabs"
+        [model]="items"
+        [activeItem]="activeItem"
+      ></p-tabMenu>
+    </div>
+  </div>
+  <div class="alert-information-content">
+    <yh-alert-details-analysis
+      *ngIf="data.view === ViewState.Violations"
+    ></yh-alert-details-analysis>
+    <yh-alert-details-transactions
+      *ngIf="data.view === ViewState.Transactions"
+    ></yh-alert-details-transactions>
+    <yh-alert-details-history
+      *ngIf="data.view === ViewState.History"
+    ></yh-alert-details-history>
+  </div>
+
+  <!-- <yh-card [title]="'Transactions'">
+    <yh-actions>
+      <yh-text [secondary]="true" [medium]="true">30 Transactions</yh-text>
+    </yh-actions>
+    <yh-alert-details-transactions></yh-alert-details-transactions>
+  </yh-card> -->
+  <!-- <yh-card [title]="'History'">
+    <yh-actions>
+      <yh-text [secondary]="true" [medium]="true">20 Records</yh-text>
+    </yh-actions>
+    <yh-alert-details-history></yh-alert-details-history>
+  </yh-card> -->
+</div>

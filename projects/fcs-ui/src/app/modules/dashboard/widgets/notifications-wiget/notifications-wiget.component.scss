@@ -1,0 +1,9 @@
+@import "theme-functions";
+
+.indicator {
+  background: get-theme-color(state, danger);
+  border-radius: 50%;
+  display: block;
+  width: 10px;
+  height: 10px;
+}

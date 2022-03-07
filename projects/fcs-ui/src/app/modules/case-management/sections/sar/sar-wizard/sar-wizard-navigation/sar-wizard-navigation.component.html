@@ -1,0 +1,202 @@
+<div class="section-list" fxLayout="column" fxLayoutGap="15px">
+  <div class="section">
+    <yh-text [strong]="true">General</yh-text>
+    <ul>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToOverview()"
+        [class.is-active]="currentView === SarWizardView.Overview"
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Overview</span>
+      </li>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToFilingInstitution()"
+        [class.is-active]="currentView === SarWizardView.Contact"
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span>Filing Institution</span>
+      </li>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        [class.is-active]="currentView === SarWizardView.SuspiciousActivity"
+        (click)="goToSuspiciousActivity()"
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span>Suspicious Activity</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Attachments</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Narrative</span>
+      </li>
+    </ul>
+  </div>
+  <div class="section" fxLayout="column" fxLayoutGap="0">
+    <yh-text [strong]="true">Subject Information</yh-text>
+    <ul>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToSubjects()"
+        [class.is-active]="currentView === SarWizardView.Subjects"
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Subjects</span>
+      </li>
+    </ul>
+  </div>
+  <div class="section">
+    <yh-text [strong]="true">Financial Institutions</yh-text>
+    <ul>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToFinancialInstitutionsById(null)"
+        [class.is-active]="
+          currentView === SarWizardView.FinancialActivity &&
+          targetFinancialId == null
+        "
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Institutions</span>
+      </li>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToFinancialInstitutionsById(item.id)"
+        *ngFor="let item of sar.financialInstitutions"
+        [class.is-active]="
+          currentView === SarWizardView.FinancialActivity &&
+          targetFinancialId == item.id
+        "
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">{{ item.name }}</span>
+      </li>
+    </ul>
+  </div>
+  <!-- <div class="section">
+    <yh-text [strong]="true">Suspicious Activity</yh-text>
+    <ul>
+      <li
+        fxLayout="row"
+        fxLayoutGap="10px"
+        (click)="goToSuspiciousActivity()"
+        [class.is-active]="currentView === SarWizardView.SuspiciousActivity"
+      >
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">General</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Structuring</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Terrorist Financing</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Fraud</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Gaming Activities</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Identification/Documentation</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Other Suspicious Activities</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Insurance</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Securities / Futures / Options</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Mortgage Fraud</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Cyber Event</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Product Types</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Instrument Types</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">IP Addresses</span>
+      </li>
+      <li fxLayout="row" fxLayoutGap="10px">
+        <yh-text [secondary]="true"
+          ><fa-icon [icon]="circleIcon"></fa-icon
+        ></yh-text>
+        <span class="link-title">Cyber Events</span>
+      </li>
+    </ul>
+  </div> -->
+</div>

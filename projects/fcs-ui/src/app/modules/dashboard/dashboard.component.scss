@@ -1,0 +1,24 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.yh-dashboard-content-wrapper {
+  background: get-theme-color(background);
+  height: 100%;
+
+  .yh-dashboard-content {
+    padding: 25px;
+    @include scrollbar-defaults();
+    overflow-y: scroll;
+  }
+}
+.yh-performance-panel {
+  background: get-theme-color(basic, white);
+}
+
+.check-icon {
+  color: get-theme-color(state, success);
+  @include bold-font-weight;
+  font-size: 1.25em;
+  padding: 0 8px;
+  margin-top: -3px;
+}

@@ -1,0 +1,26 @@
+<div fxLayout="column" fxFlex="100%">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    class="sort-wrapper"
+    fxFlex="75px"
+    fxLayoutGap="15px"
+    [formGroup]="fgFilter"
+  >
+    <yh-dropdown-field
+      [options]="options"
+      [control]="fcFilter"
+      placeholder="Select Status"
+    ></yh-dropdown-field>
+  </div>
+  <div fxLayout="column" fxLayoutGap="15px" fxFlex="auto" class="item-wrapper">
+    <yh-card
+      [selectable]="false"
+      padSize="small"
+      [flat]="true"
+      *ngFor="let sar of openSars"
+    >
+      <yh-open-sars-item [sar]="sar"></yh-open-sars-item>
+    </yh-card>
+  </div>
+</div>

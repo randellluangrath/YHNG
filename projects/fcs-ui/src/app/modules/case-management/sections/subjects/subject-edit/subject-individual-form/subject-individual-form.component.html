@@ -1,0 +1,79 @@
+<div [formGroup]="fgIdentity" fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 49%">
+      <yh-text-field
+        label="First Name"
+        [control]="fcFirstName"
+        [required]="true"
+      >
+        <yh-form-field-error></yh-form-field-error>
+      </yh-text-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcFirstNameUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+    <yh-text-field
+      fxFlex="1 1 49%"
+      label="Middle Name/Initial"
+      [control]="fcMiddleName"
+    ></yh-text-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 49%">
+      <yh-text-field
+        label="Last Name"
+        [control]="fcLastName"
+        [required]="true"
+      ></yh-text-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcLastNameUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+
+    <yh-text-field
+      label="Suffix"
+      [control]="fcSuffix"
+      fxFlex="1 1 49%"
+    ></yh-text-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutGap="5px">
+      <yh-date-field
+        fxFlex="1 1 24.5%"
+        label="Date of Birth"
+        [control]="fcDateOfBirth"
+        [required]="true"
+        [showIcon]="false"
+      ></yh-date-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcSuffixUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+    <yh-dropdown-field
+      fxFlex="1 1 24.5%"
+      label="Gender"
+      [required]="true"
+      [control]="fcGender"
+    ></yh-dropdown-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <yh-text-field
+      fxFlex="1 1 23.5%"
+      label="TIN"
+      [control]="fcTin"
+    ></yh-text-field>
+    <yh-dropdown-field
+      fxFlex="1 1 24.5%"
+      label="TIN Type"
+      placeholder="Select Type..."
+      [control]="fcTinType"
+      [options]="[]"
+    ></yh-dropdown-field>
+  </div>
+</div>

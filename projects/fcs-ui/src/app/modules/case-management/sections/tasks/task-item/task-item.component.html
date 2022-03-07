@@ -1,0 +1,89 @@
+<yh-card>
+  <yh-card-content-template>
+    <div fxLayout="column" fxLayoutGap="25px">
+      <div
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-title [level]="4" [title]="task.name"></yh-title>
+          <yh-text [small]="true" [secondary]="true" [strong]="false"
+            >Remind 12/14/2021, due on 12/10/2021
+          </yh-text>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end center">
+          <yh-button
+            (click)="menu.toggle($event)"
+            [secondary]="true"
+            [text]="true"
+          >
+            <fa-icon class="state-icon" [icon]="getIcon(task.state)"></fa-icon>
+            {{ getTaskDescription() }}</yh-button
+          >
+          <yh-button
+            [secondary]="true"
+            [text]="true"
+            (click)="showForm($event)"
+          >
+            <fa-icon [icon]="userIcon" style="margin-right: 5px"></fa-icon>
+            John Wood
+          </yh-button>
+          <yh-button
+            [secondary]="!showNotes"
+            [text]="!showNotes"
+            [bordered]="showNotes"
+            (click)="toggleNotes()"
+            icon="far fa-comment"
+            [label]="task.comments.length + ' Comments'"
+          ></yh-button>
+          <yh-text
+            pTooltip="Created by John Wood on 12/10/2021. <br/> <br/> Updated by Melanie Bennet on 12/11/2021"
+            [escape]="false"
+            tooltipPosition="left"
+            ><fa-icon [icon]="informationIcon"></fa-icon
+          ></yh-text>
+        </div>
+      </div>
+      <div *ngIf="task.description" style="max-width: 600px">
+        <yh-text [secondary]="true">{{ task.description }}</yh-text>
+      </div>
+      <div
+        *ngIf="task.comments?.length > 0 && !showNotes"
+        fxLayout="column"
+        fxLayoutGap="25px"
+      >
+        <yh-card [flat]="true" padSize="small">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+            <yh-text [secondary]="true"
+              ><fa-icon [icon]="commentIcon"></fa-icon
+            ></yh-text>
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-text [strong]="true">Most Recent Comment</yh-text>
+              <yh-text [secondary]="true">{{
+                task.comments[0].comment
+              }}</yh-text>
+            </div>
+          </div>
+        </yh-card>
+      </div>
+
+      <div *ngIf="showNotes" fxLayout="column" fxLayoutGap="25px">
+        <div class="comments-wrapper" fxLayout="column" fxLayoutGap="10px">
+          <yh-task-comment-form></yh-task-comment-form>
+          <div fxLayout="column" fxLayoutGap="5px" fxFlex="100%">
+            <yh-task-comment-item
+              *ngFor="let comment of task.comments"
+              [comment]="comment"
+            ></yh-task-comment-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </yh-card-content-template>
+</yh-card>
+<p-menu #menu [popup]="true" [model]="statusOptions"></p-menu>
+<yh-overlay-panel [dismissable]="true">
+  <yh-task-assignment-form></yh-task-assignment-form>
+</yh-overlay-panel>

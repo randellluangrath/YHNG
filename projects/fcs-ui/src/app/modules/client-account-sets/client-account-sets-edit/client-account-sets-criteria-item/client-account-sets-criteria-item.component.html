@@ -1,0 +1,57 @@
+<yh-card padSize="small" [pad]="false" [flat]="true">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div
+      class="criteria-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <yh-text [bold]="true">Include Clients</yh-text>
+      <div class="card-actions">
+        <yh-button
+          [iconButton]="true"
+          icon="pi pi-user"
+          [secondary]="true"
+          [text]="true"
+          (click)="showMatches($event)"
+        ></yh-button>
+        <yh-button
+          [iconButton]="true"
+          icon="pi pi-pencil"
+          [secondary]="true"
+          [text]="true"
+        ></yh-button>
+        <yh-button
+          [iconButton]="true"
+          [text]="true"
+          [danger]="true"
+          icon="pi pi-trash"
+          (click)="confirmDelete($event)"
+        ></yh-button>
+        <p-confirmPopup styleClass="confirm-delete"></p-confirmPopup>
+        <yh-overlay-panel
+          [styleClass]="'criteria-matches-overlaypanel'"
+          [dismissable]="false"
+        >
+          <yh-client-account-matches-list></yh-client-account-matches-list>
+        </yh-overlay-panel>
+      </div>
+    </div>
+    <div class="critieria-list-wrapper" fxLayout="column" fxLayoutGap="10px">
+      <yh-text [strong]="false" [secondary]="true"
+        >That are <yh-text [strong]="false">individuals</yh-text></yh-text
+      >
+      <yh-text [strong]="false" [secondary]="true"
+        >That have a risk category of
+        <yh-text [strong]="false">Low, Medium, or High</yh-text></yh-text
+      >
+      <yh-text [strong]="false" [secondary]="true"
+        >Whose term is between <yh-text [strong]="false">0 days</yh-text> and
+        <yh-text [strong]="false">2 days</yh-text></yh-text
+      >
+      <yh-text [strong]="false" [secondary]="true"
+        >That are <yh-text [strong]="false">Missing TIN</yh-text> or
+        <yh-text [strong]="false">Has Tin</yh-text></yh-text
+      >
+    </div>
+  </div>
+</yh-card>

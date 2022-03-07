@@ -1,0 +1,62 @@
+<div
+  [formGroup]="fgIdentification"
+  fxLayout="column"
+  fxLayoutGap="15px"
+  fxLayoutAlign="start start"
+>
+  <yh-title [level]="3" title="Add Form of Identification"></yh-title>
+  <div fxLayout="row" fxLayoutGap="5px" style="width: 100%">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="row" fxLayoutGap="5px" style="width: 100%">
+        <yh-dropdown-field
+          label="Type"
+          [options]="typeOptions"
+          [control]="fcType"
+          [required]="true"
+          fxFlex="0 0 200px"
+        >
+        </yh-dropdown-field>
+        <yh-text-field
+          label="Other Type"
+          [control]="fcTypeOther"
+          [required]="fcType.value === 'Other'"
+          fxFlex="0 0 200px"
+        >
+        </yh-text-field>
+      </div>
+      <yh-text-field label="Number" [control]="fcNumber" [required]="true">
+      </yh-text-field>
+      <div fxLayout="row" fxLayoutGap="5px" style="width: 100%">
+        <yh-dropdown-field
+          label="Country"
+          [options]="countryOptions"
+          [control]="fcCountry"
+          [required]="true"
+          fxFlex="0 0 200px"
+        >
+        </yh-dropdown-field>
+
+        <yh-dropdown-field
+          label="State"
+          [options]="stateOptions"
+          [control]="fcState"
+          [required]="true"
+          fxFlex="0 0 200px"
+        >
+        </yh-dropdown-field>
+      </div>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="10px"
+    style="width: 100%"
+  >
+    <yh-button (click)="saveIdentification()">Add</yh-button>
+    <yh-button (click)="cancelIdentification()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </div>
+</div>

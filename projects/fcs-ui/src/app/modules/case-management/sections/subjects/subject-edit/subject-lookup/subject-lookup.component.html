@@ -1,0 +1,510 @@
+<div fxLayout="row" class="lookup-container">
+  <div
+    class="lookup-column"
+    fxLayout="column"
+    [formGroup]="fgLookup"
+    fxFlex="50%"
+  >
+    <div class="search-wrapper" fxLayout="row" fxLayoutGap="10px">
+      <yh-autocomplete-field
+        [control]="fcTerm"
+        placeholder="Search by Name, Alt Name, Cust Id, or TIN ..."
+        [options]="subjectOptions"
+        (onComplete)="handleSelection($event)"
+        fxFlex="auto"
+      ></yh-autocomplete-field>
+      <yh-toggle-button
+        (click)="showSuggested = !showSuggested"
+        [icon]="showSuggested ? suggestedIconOn : suggestedIcon"
+        [active]="showSuggested"
+      ></yh-toggle-button>
+    </div>
+    <div
+      class="lookup-results-wrapper"
+      fxFlex="1 1 auto"
+      fxLayout="column"
+      fxLayoutGap="15px"
+    >
+      <!-- <yh-card [flat]="true">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div class="stripe" fxLayout="column" fxLayoutGap="15px">
+            <div
+              formArrayName="faSuggestedSubjects"
+              *ngFor="
+                let item of fgLookup.get('faSuggestedSubjects')['controls'];
+                let i = index
+              "
+              fxLayout="row"
+              fxLayoutGap="5px"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                fxLayout="row"
+                fxLayoutGap="15px"
+                fxLayoutAlign="start start"
+              >
+                <yh-checkbox
+                  [control]="item"
+                  [style]="{ top: '2px', position: 'relative' }"
+                ></yh-checkbox>
+                <div fxLayout="column" fxLayoutGap="3px">
+                  <yh-text [strong]="true">{{ subjects[i].name }}</yh-text>
+                  <yh-text [secondary]="true">{{
+                    subjects[i].identifyingInformation
+                  }}</yh-text>
+                </div>
+              </div>
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="10px"
+              >
+                <p-tag>Suggested</p-tag>
+                <yh-button
+                  [iconButton]="true"
+                  icon="pi pi-trash"
+                  [secondary]="true"
+                  [ghost]="true"
+                ></yh-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </yh-card> -->
+      <yh-divider
+        [title]="'Suggested'"
+        background="bg"
+        placement="left"
+      ></yh-divider>
+      <yh-card padSize="small" *ngIf="showSuggested">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <div fxLayout="column" fxLayoutGap="3px">
+              <yh-text [strong]="true">John Smith</yh-text>
+              <yh-text [secondary]="true" [small]="true" [medium]="true"
+                >123456 / 654321</yh-text
+              >
+            </div>
+            <yh-text [secondary]="true" [small]="true" [medium]="true"
+              >Linked from Account</yh-text
+            >
+          </div>
+          <yh-text [information]="true">
+            <fa-icon
+              [icon]="suggestedIconOn"
+              pTooltip="Suggested Subject"
+              tooltipPosition="top"
+            ></fa-icon
+          ></yh-text>
+        </div>
+      </yh-card>
+      <yh-divider
+        [title]="'From Search'"
+        background="bg"
+        placement="left"
+      ></yh-divider>
+      <yh-card
+        padSize="small"
+        *ngFor="let s of subjectList"
+        (click)="subject = s"
+        [selectable]="true"
+        [selected]="s === subject"
+      >
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div fxLayout="column" fxLayoutGap="3px">
+            <yh-text [strong]="true"
+              >{{ s.firstName }} {{ s.lastName }}</yh-text
+            >
+            <yh-text [secondary]="true" [small]="true" [medium]="true"
+              >123456 / 654321</yh-text
+            >
+          </div>
+          <yh-text [secondary]="true" [small]="true" [medium]="true"
+            >Matched on Alternate Name</yh-text
+          >
+        </div>
+      </yh-card>
+    </div>
+  </div>
+
+  <div fxFlex="50%" class="subject-details-wrapper">
+    <div *ngIf="!subject" class="content" fxLayout="column" fxLayoutGap="10px">
+      <yh-card [flat]="true">
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
+          <yh-text [information]="false">
+            <fa-icon [icon]="infoIcon"></fa-icon
+          ></yh-text>
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [bold]="true">Instructions</yh-text>
+            <yh-text [secondary]="true" [medium]="true"
+              >Search for existing Subjects using the form on the left. Then
+              select a Subject to view its details. If your Subject doesn't
+              exist, you can create a new one.</yh-text
+            >
+          </div>
+        </div>
+      </yh-card>
+    </div>
+    <div *ngIf="subject" class="content" fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+          <!-- <yh-avatar
+              size="xlarge"
+              [label]="subject.firstName[0] + subject.lastName[0]"
+            ></yh-avatar> -->
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+            <yh-text [bold]="true">
+              {{
+                subject.firstName +
+                  " " +
+                  subject.middleName +
+                  " " +
+                  subject.lastName +
+                  " " +
+                  (subject.suffix ? subject.suffix : "")
+              }}</yh-text
+            >
+
+            <yh-text [secondary]="true" [small]="true" [strong]="true"
+              >{{ subject.type }}
+
+              <span *ngIf="subject.type === 'Individual'"
+                >&nbsp;- {{ subject.gender }}</span
+              >
+              <span *ngIf="subject.type === 'Individual'"
+                >&nbsp;- Born
+                {{ subject.dateOfBirth | date: "shortDate" }}</span
+              ></yh-text
+            >
+            <yh-text [secondary]="true" [small]="true" [strong]="true"
+              >EIN: 122345</yh-text
+            >
+          </div>
+        </div>
+      </div>
+      <yh-card padSize="small" [flat]="true">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <yh-text [bold]="true">Description</yh-text>
+          <yh-text [secondary]="true"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.</yh-text
+          >
+        </div>
+      </yh-card>
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <yh-toggle-button
+              [icon]="
+                isOccupationInformationExpanded
+                  ? occupationInformationCollapseIcon
+                  : occupationInformationExpandedIcon
+              "
+              (click)="
+                isOccupationInformationExpanded =
+                  !isOccupationInformationExpanded
+              "
+            ></yh-toggle-button>
+            <yh-text [bold]="true">Occupation Information</yh-text>
+          </div>
+
+          <div
+            *ngIf="isOccupationInformationExpanded"
+            class="scroll-section"
+            [style]="{ width: '100%', height: '200px' }"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-card
+                [flat]="true"
+                padSize="small"
+                *ngFor="let name of subject.alternateNames"
+              >
+                <yh-text [secondary]="true" [small]="true" [medium]="true"
+                  >{{ name.firstName }} {{ name.lastName }}</yh-text
+                >
+              </yh-card>
+            </div>
+          </div>
+        </div>
+      </yh-card>
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <yh-toggle-button
+              [icon]="
+                isAlternateNamesExpanded
+                  ? alternateNamesCollapseIcon
+                  : alternateNamesExpandedIcon
+              "
+              (click)="isAlternateNamesExpanded = !isAlternateNamesExpanded"
+            ></yh-toggle-button>
+            <yh-text [bold]="true">Alternate Names</yh-text>
+          </div>
+
+          <div *ngIf="isAlternateNamesExpanded">
+            <p-table
+              [value]="subject.alternateNames"
+              styleClass="p-datatable-sm"
+              responsiveLayout="scroll"
+              scrollHeight="250px"
+            >
+              <ng-template pTemplate="body" let-name>
+                <tr>
+                  <td>
+                    <yh-text [secondary]="true" [small]="true" [medium]="true"
+                      >{{ name.firstName }} {{ name.lastName }}</yh-text
+                    >
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- <div
+            *ngIf="isAlternateNamesExpanded"
+            class="scroll-section"
+            [style]="{ width: '100%', height: '200px' }"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-card
+                [flat]="true"
+                padSize="small"
+                *ngFor="let name of subject.alternateNames"
+              >
+                <yh-text [secondary]="true" [small]="true" [medium]="true"
+                  >{{ name.firstName }} {{ name.lastName }}</yh-text
+                >
+              </yh-card>
+            </div>
+          </div> -->
+        </div>
+      </yh-card>
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <yh-toggle-button
+              [icon]="isPhoneExpanded ? phoneCollapseIcon : phoneExpandedIcon"
+              (click)="isPhoneExpanded = !isPhoneExpanded"
+            ></yh-toggle-button>
+            <yh-text [bold]="true">Phone Numbers</yh-text>
+          </div>
+          <div
+            *ngIf="isPhoneExpanded"
+            class="scroll-section"
+            [style]="{ width: '100%', height: '200px' }"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-card
+                [flat]="true"
+                padSize="small"
+                *ngFor="let phone of subject.phoneNumbers"
+              >
+                <yh-text [secondary]="true" [small]="true" [medium]="true"
+                  >{{
+                    (phone.phone | phone) +
+                      (phone.extension ? " ext." + phone.extension : "")
+                  }}
+                  / {{ phone.type }}</yh-text
+                >
+              </yh-card>
+            </div>
+          </div>
+        </div>
+      </yh-card>
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <yh-toggle-button
+              [icon]="
+                isAddressesExpanded
+                  ? addressesCollapseIcon
+                  : addressesExpandedIcon
+              "
+              (click)="isAddressesExpanded = !isAddressesExpanded"
+            ></yh-toggle-button>
+            <yh-text [bold]="true">Addresses</yh-text>
+          </div>
+          <div
+            *ngIf="isAddressesExpanded"
+            class="scroll-section"
+            [style]="{ width: '100%', height: '200px' }"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-card
+                [flat]="true"
+                padSize="small"
+                *ngFor="let address of subject?.addresses"
+              >
+                <div fxLayout="column" fxLayoutGap="3px">
+                  <yh-text [medium]="true" [small]="true">{{
+                    address.address
+                  }}</yh-text>
+                  <yh-text [secondary]="true" [small]="true" [medium]="true"
+                    >{{ address.city }} {{ address.state }}
+                    {{ address.zipCode }}</yh-text
+                  >
+                  <yh-text [secondary]="true" [small]="true" [medium]="true">{{
+                    address.country
+                  }}</yh-text>
+                </div>
+              </yh-card>
+            </div>
+          </div>
+        </div>
+      </yh-card>
+      <yh-card [flat]="true" padSize="small">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <yh-toggle-button
+              [icon]="
+                isIdentificationExpanded
+                  ? identificationCollapseIcon
+                  : identificationExpandedIcon
+              "
+              (click)="isIdentificationExpanded = !isIdentificationExpanded"
+            ></yh-toggle-button>
+            <yh-text [bold]="true">Forms of Identification</yh-text>
+          </div>
+
+          <div
+            *ngIf="isIdentificationExpanded"
+            class="scroll-section"
+            [style]="{ width: '100%', height: '200px' }"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-card
+                [flat]="true"
+                padSize="small"
+                *ngFor="let identification of subject?.identifications"
+              >
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="10px"
+                  fxLayoutAlign="space-between center"
+                >
+                  <div fxLayout="column" fxLayoutGap="3px">
+                    <yh-text [small]="true" [medium]="true">{{
+                      identification.typeOther
+                        ? identification.typeOther
+                        : identification.type
+                    }}</yh-text>
+
+                    <yh-text [small]="true" [medium]="true" [secondary]="true"
+                      >{{ identification.state }},
+                      {{ identification.country }}</yh-text
+                    >
+
+                    <yh-text
+                      [small]="true"
+                      [medium]="true"
+                      [secondary]="true"
+                      >{{ identification.number }}</yh-text
+                    >
+                  </div>
+                </div>
+              </yh-card>
+            </div>
+          </div>
+        </div>
+      </yh-card>
+      <p-accordion>
+        <!-- <p-accordionTab header="Occupation Information">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-display-value label="Occupation/Type" [inline]="true"
+                >Value</yh-display-value
+              >
+              <yh-display-value label="NAICS Code" [inline]="true"
+                >Value</yh-display-value
+              >
+            </div>
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Alternate Names">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <yh-text
+              *ngFor="let name of subject.alternateNames"
+              [secondary]="true"
+              >{{ name }}</yh-text
+            >
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Email Addresses">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <yh-text
+              *ngFor="let email of subject.emailAddresses"
+              [secondary]="true"
+              >{{ email }}</yh-text
+            >
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Phone Numbers">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <yh-text
+              *ngFor="let phone of subject.phoneNumbers"
+              [secondary]="true"
+              >{{
+                (phone.phone | phone) +
+                  (phone.extension ? " ext." + phone.extension : "")
+              }}
+              / {{ phone.type }}</yh-text
+            >
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Websites">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <yh-text *ngFor="let name of subject.websites" [secondary]="true">{{
+              name
+            }}</yh-text>
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Addresses">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <ng-template
+              ngFor
+              let-index
+              let-address
+              [ngForOf]="subject?.addresses"
+            >
+              <yh-subject-address-item [address]="address">
+              </yh-subject-address-item>
+              <yh-divider></yh-divider>
+            </ng-template>
+          </div>
+        </p-accordionTab> -->
+        <!-- <p-accordionTab header="Forms of Identification">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <ng-template
+              ngFor
+              let-index
+              let-identity
+              [ngForOf]="subject?.identifications"
+            >
+              <div fxLayout="column" fxLayoutGap="10px">
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="25px"
+                  fxLayoutAlign="start center"
+                >
+                  <yh-subject-identification-item
+                    [identification]="identity"
+                    fxFlex="1 1 100%"
+                  ></yh-subject-identification-item>
+                </div>
+                <yh-divider></yh-divider>
+              </div>
+            </ng-template>
+          </div>
+        </p-accordionTab> -->
+      </p-accordion>
+    </div>
+  </div>
+</div>
+
+<!-- 
+(completeMethod)="handleSubjectFilter($event)"
+(onSelect)="handleSubjectSelected($event)" -->

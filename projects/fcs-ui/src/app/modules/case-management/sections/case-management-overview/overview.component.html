@@ -1,0 +1,77 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Overview">
+    <yh-actions>
+      <yh-split-button label="Edit" [options]="actions"></yh-split-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content
+    fxLayout="column"
+    fxLayoutAlign="start"
+    fxFlex="1 1 auto"
+    fxLayoutGap="25px"
+  >
+    <p-messages severity="warn">
+      <ng-template pTemplate>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <fa-icon [icon]="warnIcon"></fa-icon>
+          <div>This is a restricted case.</div>
+        </div>
+      </ng-template>
+    </p-messages>
+    <yh-card>
+      <yh-card-header-template>
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <fa-icon
+            [icon]="highPriorityIcon"
+            class="high-priority-icon"
+            [class.is-high-priority]="true"
+          ></fa-icon>
+          <yh-title [level]="3" [title]="'Sergio Rodes'"></yh-title>
+        </div>
+      </yh-card-header-template>
+      <div class="overview-details" fxLayout="row wrap" fxLayoutGap="25px">
+        <yh-display-value label="Case #">12345</yh-display-value>
+        <yh-display-value label="Internal #">123456</yh-display-value>
+        <yh-display-value label="Type">Fraud</yh-display-value>
+        <yh-display-value label="Sub-Type">Check Fraud</yh-display-value>
+        <yh-display-value label="Status">Open</yh-display-value>
+        <yh-display-value label="Assigned To">Aaron Hardy</yh-display-value>
+        <yh-display-value label="Created By">John Wood</yh-display-value>
+        <yh-display-value label="Source">Alert</yh-display-value>
+        <yh-display-value label="Releated Cases">12345</yh-display-value>
+      </div>
+    </yh-card>
+    <yh-card title="Description">
+      <yh-text [secondary]="true"
+        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </yh-text>
+    </yh-card>
+    <yh-card title="Tasks">
+      <p-table [value]="tasks" styleClass="p-datatable-striped">
+        <ng-template pTemplate="body" let-task>
+          <tr>
+            <td style="width: 50px">
+              <p-tableCheckbox [value]="task"></p-tableCheckbox>
+            </td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.assignedTo }}</td>
+            <td style="width: 100px">
+              <yh-text [secondary]="true">{{
+                task.dueOn | date: "shortDate"
+              }}</yh-text>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </yh-card>
+  </yh-general-layout-content>
+  <yh-general-layout-content-sidebar>
+    <yh-overview-details></yh-overview-details>
+  </yh-general-layout-content-sidebar>
+</yh-general-layout>

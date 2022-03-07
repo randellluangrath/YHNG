@@ -1,0 +1,172 @@
+<p-table
+  [value]="transactions"
+  [scrollable]="true"
+  scrollDirection="both"
+  scrollHeight="flex"
+  [paginator]="true"
+  dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [rows]="10"
+  styleClass="p-datatable-sm p-datatable-striped"
+>
+  <ng-template pTemplate="caption">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="15px"
+        [formGroup]="fgFilters"
+      >
+        <yh-text-field
+          fxFlex="200px"
+          [control]="fcFreeText"
+          placeholder="Search Transactions..."
+          [search]="true"
+        ></yh-text-field>
+        <yh-dropdown-field
+          fxFlex="200px"
+          [control]="fcMedium"
+          [options]="mediumOptions"
+          placeholder="Select Medium..."
+        ></yh-dropdown-field>
+        <yh-select-button
+          [control]="fcType"
+          [options]="transactionTypeOptions"
+        ></yh-select-button>
+      </div>
+      <yh-button>Export Data</yh-button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr class="transaction-headers">
+      <th [style]="{ width: '100px' }" pFrozenColumn alignFrozen="left">
+        <yh-button
+          [iconButton]="true"
+          [text]="true"
+          [bordered]="false"
+          [icon]="'fas fa-bookmark'"
+          [danger]="flagAllTransactions"
+          [secondary]="!flagAllTransactions"
+          size="small"
+          (click)="toggleFlaggedItems()"
+        ></yh-button>
+      </th>
+      <th
+        [style]="{ width: '100px' }"
+        pFrozenColumn
+        alignFrozen="left"
+        pFrozenColumn
+      >
+        <yh-text [strong]="true">Date</yh-text>
+      </th>
+      <th
+        [style]="{ width: '200px' }"
+        pFrozenColumn
+        alignFrozen="left"
+        pFrozenColumn
+      >
+        <yh-text [strong]="true">Account</yh-text>
+      </th>
+
+      <th style="width: 100px"><yh-text [strong]="true"> Medium</yh-text></th>
+      <th style="width: 100px"><yh-text [strong]="true"> Debit</yh-text></th>
+      <th style="width: 100px"><yh-text [strong]="true"> Credit</yh-text></th>
+
+      <th style="width: 100px"><yh-text [strong]="true"> Cash In</yh-text></th>
+      <th style="width: 100px"><yh-text [strong]="true"> Cash Out</yh-text></th>
+      <th style="width: 1000px">
+        <yh-text [strong]="true"> Description</yh-text>
+      </th>
+      <th style="width: 125px">
+        <yh-text [strong]="true"> Trans. Code</yh-text>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-transaction let-columns="columns">
+    <tr class="transaction-row" [class.is-flagged]="transaction.flagged">
+      <td [style]="{ width: '100px' }" pFrozenColumn alignFrozen="left">
+        <yh-button
+          *ngIf="!transaction.flagged"
+          [iconButton]="true"
+          [text]="true"
+          [secondary]="true"
+          [icon]="'fal fa-bookmark'"
+          size="small"
+          (click)="transaction.flagged = !transaction.flagged"
+        ></yh-button>
+        <yh-button
+          *ngIf="transaction.flagged"
+          [iconButton]="true"
+          [danger]="true"
+          [text]="true"
+          [icon]="'fas fa-bookmark'"
+          size="small"
+          (click)="transaction.flagged = !transaction.flagged"
+        ></yh-button>
+      </td>
+      <td [style]="{ width: '100px' }" pFrozenColumn alignFrozen="left">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.created | date: "shortDate"
+        }}</yh-text>
+      </td>
+      <td [style]="{ width: '200px' }" pFrozenColumn alignFrozen="left">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.account
+        }}</yh-text>
+      </td>
+      <td style="width: 100px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.medium
+        }}</yh-text>
+      </td>
+      <td style="width: 100px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.debit | currency
+        }}</yh-text>
+      </td>
+      <td style="width: 100px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.credit | currency
+        }}</yh-text>
+      </td>
+      <td style="width: 100px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.debit | currency
+        }}</yh-text>
+      </td>
+      <td style="width: 100px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.credit | currency
+        }}</yh-text>
+      </td>
+
+      <td style="width: 1000px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.description
+        }}</yh-text>
+      </td>
+      <td style="width: 125px">
+        <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+          transaction.code
+        }}</yh-text>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <tr class="transaction-headers">
+      <td pFrozenColumn alignFrozen="left" [style]="{ width: '100px' }">
+        Totals
+      </td>
+      <td pFrozenColumn alignFrozen="left" [style]="{ width: '100px' }"></td>
+      <td pFrozenColumn alignFrozen="left" [style]="{ width: '200px' }"></td>
+      <td [style]="{ width: '100px' }"></td>
+      <td [style]="{ width: '100px' }">$56,202</td>
+      <td [style]="{ width: '100px' }">$51,020</td>
+      <td [style]="{ width: '100px' }">$56,202</td>
+      <td [style]="{ width: '100px' }">$51,020</td>
+      <td [style]="{ width: '1000px' }"></td>
+      <td [style]="{ width: '100px' }"></td>
+    </tr>
+  </ng-template>
+</p-table>

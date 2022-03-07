@@ -1,0 +1,54 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgMerge">
+  <yh-dropdown-field
+    label="CIP Reconciliation"
+    [control]="fcCip"
+  ></yh-dropdown-field>
+  <yh-dropdown-field
+    label="Risk Rating"
+    [control]="fcRanking"
+  ></yh-dropdown-field>
+
+  <div fxLayout="column" fxLayoutGap="10px">
+    <yh-text
+      >Select the client that you want to survive. All other clients will be
+      merged into that selected client.</yh-text
+    >
+    <yh-divider></yh-divider>
+    <yh-text-field
+      placeholder="Search by Name or Client Id"
+      [search]="true"
+      [control]="fcSearch"
+    ></yh-text-field>
+  </div>
+  <p-table [value]="clients">
+    <ng-template pTemplate="header">
+      <tr>
+        <th width="50px"></th>
+        <th width="100px">Id</th>
+        <th>Name</th>
+        <th width="100px">TIN</th>
+        <th width="125px">External Id</th>
+        <th width="100px">Date</th>
+        <th width="50px"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client let-index>
+      <tr>
+        <td><p-tableRadioButton [value]="client"></p-tableRadioButton></td>
+        <td>{{ client.id }}</td>
+        <td>{{ client.title }}</td>
+        <td>{{ client.tin }}</td>
+        <td>{{ client.externalId }}</td>
+        <td>{{ client.clientAsOf | date: "shortDate" }}</td>
+        <td>
+          <yh-button
+            [iconButton]="true"
+            [secondary]="true"
+            [bordered]="true"
+            icon="pi pi-times"
+          ></yh-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

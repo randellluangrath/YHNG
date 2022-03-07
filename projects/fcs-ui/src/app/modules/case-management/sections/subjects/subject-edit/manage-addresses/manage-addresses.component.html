@@ -1,0 +1,59 @@
+<div fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      [bordered]="true"
+      [secondary]="true"
+      icon="pi pi-plus"
+      (click)="showForm($event)"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div>
+    <yh-text
+      style="margin-top: 15px; display: block"
+      *ngIf="subject?.addresses.length === 0"
+      [secondary]="true"
+      >No addresses have been added.</yh-text
+    >
+  </div>
+  <div fxLayout="column" fxLayoutGap="25px">
+    <ng-template ngFor let-index let-address [ngForOf]="subject?.addresses">
+      <div
+        class="item-row"
+        fxLayout="row"
+        fxLayoutGap="25px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <yh-subject-address-item [address]="address">
+          </yh-subject-address-item>
+          <yh-text *ngIf="trashed.has(address)" [warning]="true"
+            >Marked for deletion</yh-text
+          >
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [secondary]="true"
+            icon="pi pi-pencil"
+          ></yh-button>
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [secondary]="true"
+            icon="pi pi-trash"
+          ></yh-button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <yh-overlay-panel [dismissable]="false">
+    <yh-subject-address-edit
+      (onSave)="saveAddress($event)"
+      (onCancel)="cancelAddress()"
+    ></yh-subject-address-edit>
+  </yh-overlay-panel>
+</div>

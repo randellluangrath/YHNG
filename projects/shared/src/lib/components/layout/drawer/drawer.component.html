@@ -1,0 +1,28 @@
+<p-sidebar
+  [visible]="visible"
+  [showCloseIcon]="showCloseIcon"
+  [dismissible]="dismissible"
+  [closeOnEscape]="closeOnEscape"
+  [position]="position"
+  [style]="fullscreen ? {} : { width: width }"
+  styleClass="yh-drawer"
+  [fullScreen]="fullscreen"
+  appendTo="body"
+>
+  <div class="drawer">
+    <div class="drawer-header">
+      <yh-drawer-header
+        [title]="title"
+        [enableActions]="enableActions"
+        [showCloseIcon]="showCloseIcon"
+        (onClose)="handleOnHide()"
+      ></yh-drawer-header>
+    </div>
+    <div class="drawer-content" [class.is-padded]="pad">
+      <ng-content> </ng-content>
+    </div>
+    <div class="drawer-footer">
+      <ng-content select="yh-drawer-footer"> </ng-content>
+    </div>
+  </div>
+</p-sidebar>

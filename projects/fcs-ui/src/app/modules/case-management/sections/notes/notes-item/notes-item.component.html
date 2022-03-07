@@ -1,0 +1,45 @@
+<yh-card [selectable]="true" [selected]="note.isSelected">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <yh-text [secondary]="true"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.</yh-text
+    >
+    <div
+      fxLayout="row"
+      fxLayoutGap="15px"
+      fxLayoutAlign="flex-start center"
+      fxFlexAlign="flex-start"
+    >
+      <yh-text
+        [secondary]="true"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        title="Created"
+      >
+        <fa-icon [icon]="userIcon"></fa-icon><span>jwood</span></yh-text
+      >
+      <yh-text
+        [secondary]="true"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        title="Created"
+      >
+        <fa-icon [icon]="dateIcon"></fa-icon><span>10/10/2021</span></yh-text
+      >
+      <yh-text
+        [secondary]="true"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        title="Created"
+      >
+        <fa-icon [icon]="attachmentIcon"></fa-icon
+        ><span>1 Attachment</span></yh-text
+      >
+    </div>
+  </div>
+</yh-card>

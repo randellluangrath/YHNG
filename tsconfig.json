@@ -1,0 +1,37 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "paths": {
+      "shared": ["dist/shared/shared", "dist/shared"],
+      "@yellowhammer/shared": ["projects/shared/src/public-api.ts"],
+      "@fcs/app": ["projects/fcs-ui/src/app"],
+      "@fcs/app/*": ["projects/fcs-ui/src/app/*"],
+      "@fcs/shared": ["projects/fcs-ui/src/app/@shared"],
+      "@fcs/core": ["projects/fcs-ui/src/app/@core"],
+      "@fcs/core/*": ["projects/fcs-ui/src/app/@core/"],
+      "@fcs/env": ["projects/fcs-ui/src/environments"]
+    },
+    "target": "es2015",
+    "module": "es2020",
+    "lib": ["es2018", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

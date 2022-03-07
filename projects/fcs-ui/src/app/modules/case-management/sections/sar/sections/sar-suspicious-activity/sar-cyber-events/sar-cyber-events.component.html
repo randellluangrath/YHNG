@@ -1,0 +1,60 @@
+<yh-card [flat]="true">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <yh-text [strong]="true">Cyber Events</yh-text>
+      <yh-button
+        [iconButton]="true"
+        [text]="true"
+        [bordered]="true"
+        [secondary]="true"
+        icon="pi pi-plus"
+        (click)="showFormPanel($event)"
+      ></yh-button>
+    </div>
+
+    <yh-text *ngIf="sar.cyberEvents.length === 0" [secondary]="true"
+      >No Cyber Events have been added.</yh-text
+    >
+    <div class="stripe">
+      <div
+        class="item-row"
+        fxLayout="row"
+        fxLayoutGap="25px"
+        fxLayoutAlign="space-between center"
+        *ngFor="let item of sar.cyberEvents"
+      >
+        <div fxLayout="column" fxLayoutGap="5px">
+          <yh-sar-cyber-event-item [event]="item"></yh-sar-cyber-event-item>
+          <yh-text *ngIf="trashed.has(item)" [warning]="true"
+            >Marked for deletion</yh-text
+          >
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+          <yh-button
+            [iconButton]="true"
+            [text]="true"
+            [secondary]="true"
+            [bordered]="true"
+            icon="pi pi-pencil"
+          ></yh-button>
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [icon]="trashed.has(item) ? 'pi pi-undo' : 'pi pi-trash'"
+            [text]="true"
+            [secondary]="true"
+            (click)="markForDelete(item)"
+          ></yh-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</yh-card>
+
+<yh-overlay-panel [dismissable]="false">
+  <yh-sar-cyber-event-edit
+    (onSave)="saveItem($event)"
+    (onCancel)="cancelItem()"
+  ></yh-sar-cyber-event-edit>
+</yh-overlay-panel>

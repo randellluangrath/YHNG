@@ -1,0 +1,11 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.day-of-month {
+  @include bold-font-weight();
+  color: get-theme-color(brand);
+  font-size: 3rem;
+  &.is-today {
+    color: get-theme-color(brand, secondary);
+  }
+}

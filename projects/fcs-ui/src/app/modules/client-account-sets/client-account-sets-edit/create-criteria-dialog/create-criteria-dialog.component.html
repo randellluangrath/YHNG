@@ -1,0 +1,89 @@
+<div class="create-criteria-dialog-overlay">
+  <div class="create-criteria-dialog" fxLayout="column">
+    <header fxLayout="row" fxLayoutAlign="space-between center">
+      <yh-title [level]="3" [title]="'Create Criteria'"></yh-title>
+      <yh-button
+        [iconButton]="true"
+        [text]="true"
+        [secondary]="true"
+        icon="pi pi-times"
+      ></yh-button>
+    </header>
+    <div class="content" fxFlex="1 1 auto" fxLayout="row">
+      <div
+        class="left-panel"
+        fxFlex="0 0 300px"
+        fxLayout="column"
+        fxLayoutGap="15px"
+        [formGroup]="fgCriteria"
+      >
+        <yh-checkbox
+          label="Risk Category"
+          [control]="fcRiskCategory"
+        ></yh-checkbox>
+        <yh-checkbox label="Account ID" [control]="fcAccountId"></yh-checkbox>
+        <yh-checkbox label="Term (days)" [control]="fcTerm"></yh-checkbox>
+        <yh-checkbox label="NAICS" [control]="fcNaics"></yh-checkbox>
+        <yh-checkbox label="TIN" [control]="fcTin"></yh-checkbox>
+        <yh-checkbox label="TIN Type" [control]="fcTinType"></yh-checkbox>
+        <yh-checkbox label="Class Code" [control]="fcClassCode"></yh-checkbox>
+        <yh-checkbox label="Birth Date" [control]="fcBirthDate"></yh-checkbox>
+        <yh-checkbox
+          label="Insider Code"
+          [control]="fcInsiderCode"
+        ></yh-checkbox>
+        <yh-checkbox label="Type" [control]="fcType"></yh-checkbox>
+        <yh-checkbox label="Officer" [control]="fcOfficer"></yh-checkbox>
+        <yh-checkbox
+          label="Beneficial Ownership Type"
+          [control]="fcOwnershipType"
+        ></yh-checkbox>
+        <yh-checkbox
+          label="Due Diligence Questions"
+          [control]="fcDueDiligence"
+        ></yh-checkbox>
+        <yh-checkbox label="Risk Level" [control]="fcRiskLevel"></yh-checkbox>
+      </div>
+      <div
+        fxFlex="1 1 auto"
+        class="right-panel"
+        fxLayout="column"
+        [formGroup]="fgView"
+      >
+        <div fxFlex="1 1 75px" class="toggle-wrapper">
+          <yh-select-button
+            [options]="options"
+            [control]="fcView"
+          ></yh-select-button>
+        </div>
+        <div fxFlex="0 1 auto" class="criteria-content-wrapper">
+          <div *ngIf="fcView.value === 'C'">
+            <p-messages [(value)]="msgs" [closable]="false"></p-messages>
+            <!-- <yh-account-id-criteria></yh-account-id-criteria> -->
+            <!-- <yh-type-criteria></yh-type-criteria> -->
+            <!-- <yh-class-code></yh-class-code> -->
+            <yh-nacis-code></yh-nacis-code>
+          </div>
+          <div *ngIf="fcView.value === 'M'">
+            <div fxLayout="column" fxFlex="100%" fxLayoutGap="15px">
+              <div class="filter-wrapper" [formGroup]="fgFilter">
+                <yh-text-field
+                  [control]="fcFilterTerm"
+                  [search]="true"
+                  placeholder="Search Results..."
+                ></yh-text-field>
+              </div>
+              <div class="results-wrapper">
+                <yh-client-account-matches-list></yh-client-account-matches-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <yh-button>Save</yh-button>
+      <yh-button [ghost]="true" [warning]="true">Cancel</yh-button>
+    </footer>
+  </div>
+</div>

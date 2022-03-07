@@ -1,0 +1,12 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.switch-to-user-wrapper {
+  > div {
+    padding: 15px;
+    @include border-radius;
+    &:nth-child(even) {
+      background-color: get-theme-color(background);
+    }
+  }
+}

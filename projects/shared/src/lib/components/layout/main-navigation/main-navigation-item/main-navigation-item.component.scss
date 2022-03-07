@@ -1,0 +1,71 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.parent-navigation-wrapper {
+  .child-navigation-wrapper {
+    display: none;
+  }
+
+  &.is-selected {
+    .child-navigation-wrapper {
+      background: darken(get-theme-color(brand, primary-dark), 5);
+      display: block;
+      padding: 10px 0;
+    }
+  }
+}
+
+.parent-link,
+.child-link {
+  display: flex;
+  flex: 1 1 auto;
+  color: get-theme-color(basic, white);
+  padding: 10px 25px;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  @include semibold-font-weight;
+  transform: all 0s ease-in-out;
+  animation-delay: -2s;
+
+  &:hover,
+  &.is-selected {
+    background: darken(get-theme-color(brand, primary-dark), 5);
+    &:after {
+      @include pseudo;
+      @include border(0, 2px, 0, 0, get-theme-color(brand, secondary));
+      height: 100%;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &.is-collapsed {
+    place-content: center;
+    .title {
+      transform: all 0s ease-in-out;
+      display: none;
+    }
+    fa-icon {
+      margin-right: 0;
+      width: auto;
+    }
+  }
+
+  .title {
+    color: get-theme-color(basic, white);
+  }
+
+  fa-icon {
+    margin-right: 10px;
+    width: 20px;
+  }
+}
+
+.child-link {
+  padding-left: 55px;
+  font-size: 0.9em;
+  &.is-selected {
+    color: get-theme-color(brand, secondary);
+  }
+}

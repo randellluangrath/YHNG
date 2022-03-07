@@ -1,0 +1,99 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Contact Details"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+      <!-- <yh-avatar size="xlarge" label="BM"></yh-avatar> -->
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+        <yh-text [bold]="true">{{ contact.name }}</yh-text>
+        <yh-text [secondary]="true" [small]="true" [strong]="true">{{
+          contact.type
+        }}</yh-text>
+      </div>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div>
+        <yh-text [bold]="true">Contact</yh-text>
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <yh-display-value label="Title" [inline]="true"
+          >Detective</yh-display-value
+        >
+        <yh-display-value label="Agency /Org." [inline]="true"
+          >Miami Metro</yh-display-value
+        >
+        <yh-display-value label="Phone" [inline]="true">{{
+          contact.phoneNumbers[0].phone
+        }}</yh-display-value>
+        <yh-display-value label="Fax" [inline]="true"
+          >(123) 123-1234</yh-display-value
+        >
+        <yh-display-value label="Email" [inline]="true">{{
+          contact.emailAddresses[0]
+        }}</yh-display-value>
+      </div>
+    </div>
+    <yh-divider></yh-divider>
+    <p-accordion>
+      <p-accordionTab header="Email Addresses">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text
+            *ngFor="let email of contact.emailAddresses"
+            [secondary]="true"
+            >{{ email }}</yh-text
+          >
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Phone Numbers">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text *ngFor="let phone of contact.phoneNumbers" [secondary]="true"
+            >{{
+              (phone.phone | phone) +
+                (phone.extension ? " ext." + phone.extension : "")
+            }}
+            / {{ phone.type }}</yh-text
+          >
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Websites">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text *ngFor="let name of contact.websites" [secondary]="true">{{
+            name
+          }}</yh-text>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Addresses">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <ng-template
+            ngFor
+            let-index
+            let-address
+            [ngForOf]="contact?.addresses"
+          >
+            <yh-subject-address-item [address]="address">
+            </yh-subject-address-item>
+            <yh-divider></yh-divider>
+          </ng-template>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+    <yh-divider></yh-divider>
+    <yh-text [secondary]="true"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.</yh-text
+    >
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button [information]="true">Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true">Delete</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

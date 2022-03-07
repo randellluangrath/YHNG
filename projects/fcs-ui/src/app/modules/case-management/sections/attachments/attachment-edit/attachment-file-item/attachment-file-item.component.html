@@ -1,0 +1,47 @@
+<div
+  [formGroup]="fgFile"
+  fxLayout="row"
+  fxLayoutGap="10px"
+  fxLayoutAlign="start center"
+>
+  <div>
+    <yh-file-type-icon
+      [bordered]="false"
+      [filled]="true"
+      [small]="true"
+      [type]="getFileType()"
+    ></yh-file-type-icon>
+  </div>
+  <div fxLayout="column" fxLayoutGap="1px" fxFlex="1 1 auto">
+    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+      <yh-text-field
+        [control]="fcName"
+        placeholder="File Name"
+        fxFlex="1 1 auto"
+      ></yh-text-field>
+      <yh-button
+        [bordered]="true"
+        [iconButton]="true"
+        [icon]="'pi pi-' + (markForDelete ? 'undo' : 'trash')"
+        (click)="toggleMarkForDeletion()"
+      ></yh-button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="5px">
+      <yh-text [small]="true" [secondary]="true" [strong]="true">{{
+        file.file.name
+      }}</yh-text>
+
+      <yh-text
+        *ngIf="markForDelete"
+        [small]="true"
+        [secondary]="true"
+        [strong]="true"
+        [warning]="true"
+        >This file is marked for deletion.</yh-text
+      >
+      <yh-text [small]="true" [secondary]="true" [strong]="true" [danger]="true"
+        >This filename isn't unique.</yh-text
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+// Constants
+$white: #fff;
+$black: #000;
+$grey: #93a1b8;
+$background-color: #f8f8f8; // #f5f9fc;
+$border-color: #e6e6e6;
+$heading-color: #0f3f62;
+
+$state-info: #2196f3;
+$state-success: #90cc62;
+$state-pending: #6554a5;
+$state-warn: #f8b63a;
+$state-danger: #e54956;
+
+$brand-primary: #3878ab;
+$brand-primary-dark: #092a63;
+$brand-secondary: #f8b63a;
+
+$default-border-radius: 3px;
+$default-border-radius-extended: 10px;
+$default-opacity-factor: 0.035;
+$default-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, $default-opacity-factor);
+
+$default-font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+
+$default-font-size: 14px;
+$heading-scale: 2;
+
+$targetSideNavWidth: 500px;
+
+$yh-colors: (
+  basic: (
+    white: $white,
+    black: $black,
+  ),
+  borders: (
+    base: $border-color,
+    light: lighten($border-color, 10%),
+    dark: darken($border-color, 10%),
+  ),
+  headings: (
+    base: $heading-color,
+    light: lighten($heading-color, 10%),
+    dark: darken($heading-color, 10%),
+  ),
+  text: (
+    base: $grey,
+    light: lighten($grey, 10%),
+    dark: darken($grey, 10%),
+  ),
+  background: (
+    base: $background-color,
+    light: lighten($background-color, 1.5%),
+    medium: darken($background-color, 1.5%),
+    dark: darken($background-color, 3%),
+    white: $white,
+  ),
+  state: (
+    base: $state-info,
+    info: $state-info,
+    success: $state-success,
+    pending: $state-pending,
+    warn: $state-warn,
+    danger: $state-danger,
+    secondary: $grey,
+  ),
+  brand: (
+    base: $brand-primary-dark,
+    primary: $brand-primary-dark,
+    secondary: $brand-secondary,
+    primary-dark: $brand-primary-dark,
+    primary-light: lighten($brand-primary, 15%),
+    secondary-dark: darken($brand-secondary, 15%),
+    secondary-light: lighten($brand-secondary, 15%),
+  ),
+);
+
+$font-weight: (
+  regular: 400,
+  semibold: 600,
+  bold: 800,
+);
+
+$yh-component-widths: (
+  navigation: (
+    minimized: 75px,
+    maximized: 300px,
+  ),
+);
+
+$yh-component-heights: (
+  headers: 75px,
+);
+
+$breakpoints: (
+  phone: 400px,
+  phone-wide: 480px,
+  phablet: 560px,
+  tablet-small: 640px,
+  tablet: 768px,
+  tablet-wide: 1024px,
+  desktop: 1248px,
+  desktop-wide: 1440px,
+);

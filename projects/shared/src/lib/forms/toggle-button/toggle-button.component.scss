@@ -1,0 +1,22 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.toggle-button-wrapper {
+  display: flex;
+  border-radius: 50%;
+  color: get-theme-color(state, secondary);
+  width: 35px;
+  height: 35px;
+  place-content: center;
+  place-items: center;
+
+  &:hover {
+    background: rgba(get-theme-color(state, secondary), 0.1);
+    cursor: pointer;
+  }
+
+  &.is-active {
+    background: rgba(get-theme-color(state), 0.1);
+    color: get-theme-color(state);
+  }
+}

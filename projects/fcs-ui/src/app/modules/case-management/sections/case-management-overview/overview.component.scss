@@ -1,0 +1,14 @@
+@import "theme-functions";
+@import "theme-mixins";
+.overview-details {
+  yh-display-value {
+    margin-bottom: 25px;
+  }
+}
+
+.high-priority-icon {
+  color: get-theme-color(state, secondary);
+  &.is-high-priority {
+    color: get-theme-color(state, warn);
+  }
+}

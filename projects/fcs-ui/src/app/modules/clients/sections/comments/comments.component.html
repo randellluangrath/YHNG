@@ -1,0 +1,50 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Comments">
+    <yh-actions
+      ><yh-button (click)="showCommentForm = true"
+        >Add Comment</yh-button
+      ></yh-actions
+    >
+  </yh-general-layout-header>
+  <yh-general-layout-content>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-card *ngIf="showCommentForm">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgComment">
+            <yh-text [strong]="true">Add Comment</yh-text>
+            <yh-textarea-field
+              [control]="fcComment"
+              [enableCharacterCounter]="true"
+              [small]="true"
+              placeholder="Comment..."
+            ></yh-textarea-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+            <yh-button
+              class="edit-note-button"
+              [iconButton]="true"
+              [bordered]="true"
+              [secondary]="true"
+              size="small"
+              icon="pi pi-save"
+              (click)="showCommentForm = false"
+            ></yh-button>
+            <yh-button
+              class="close-note-button"
+              [iconButton]="true"
+              [bordered]="true"
+              [secondary]="true"
+              size="small"
+              icon="pi pi-times"
+              (click)="showCommentForm = false"
+            ></yh-button>
+          </div>
+        </div>
+      </yh-card>
+      <yh-comment-item
+        *ngFor="let comment of comments"
+        [comment]="comment"
+      ></yh-comment-item>
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>

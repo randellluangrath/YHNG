@@ -1,0 +1,116 @@
+<yh-general-layout>
+  <yh-general-layout-header>
+    <yh-general-layout-header-template>
+      <div fxLayout="row" fxLayoutGap="10px" [formGroup]="fgFilters">
+        <yh-text-field
+          placeholder="Search Analysis"
+          [search]="true"
+          [control]="fcFreeText"
+          fxFlex="0 0 200px"
+        ></yh-text-field>
+      </div>
+    </yh-general-layout-header-template>
+    <yh-actions style="width: 100%"> <yh-button>Add New</yh-button></yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content>
+    <div class="flex-table-wrapper">
+      <yh-card *ngIf="scenarios.length === 0" style="margin: 50px">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px"
+          >
+            <yh-title [level]="2" title="Add Risk Analysis"></yh-title>
+            <yh-text [secondary]="true"
+              >No &lt;entity&gt;'s match your current filters. Please check your
+              filters and search criteria or add a new &lt;entity&gt; by
+              clicking <yh-text [strong]="true">Add New</yh-text>.</yh-text
+            >
+          </div>
+          <yh-button>Add New</yh-button>
+        </div>
+      </yh-card>
+      <p-table
+        *ngIf="scenarios.length > 0"
+        [value]="scenarios"
+        [lazy]="true"
+        [loading]="loading"
+        selectionMode="single"
+        (onRowSelect)="onRowSelect($event)"
+        styleClass="p-datatable-lg"
+        [scrollable]="true"
+        scrollHeight="flex"
+      >
+        <ng-template pTemplate="header">
+          <tr class="table-header">
+            <th
+              pSortableColumn="type"
+              style="flex: 0 0 75px; padding-left: 55px"
+            ></th>
+            <th pSortableColumn="type" style="flex: 0 0 125px">Type</th>
+            <th pSortableColumn="name" style="flex: 1 0 300px">Name</th>
+            <th pSortableColumn="schedule" style="flex: 0 0 125px">Schedule</th>
+            <th pSortableColumn="updated" style="flex: 0 0 150px">Updated</th>
+            <th style="flex: 0 0 75px"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-scenario let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="scenario">
+            <td
+              style="flex: 0 0 75px; padding-left: 55px; font-size: 0.75em"
+              [class.is-disabled]="rowIndex % 2 == 0"
+            >
+              <yh-text
+                [small]="true"
+                [secondary]="rowIndex % 2 == 0"
+                [success]="rowIndex % 2 == 1"
+                pTooltip="Disabled"
+                ><fa-icon [icon]="indicatorIcon"></fa-icon
+              ></yh-text>
+            </td>
+            <td style="flex: 0 0 125px">
+              <yh-text [secondary]="true"> {{ scenario.type }}</yh-text>
+            </td>
+            <td style="flex: 1 0 300px">
+              <yh-text> {{ scenario.name }}</yh-text>
+            </td>
+
+            <td style="flex: 0 0 125px">
+              <yh-text [secondary]="true"> {{ scenario.schedule }}</yh-text>
+            </td>
+            <td style="flex: 0 0 150px">
+              <yh-text [secondary]="true">{{
+                scenario.updated | date: "shortDate"
+              }}</yh-text>
+            </td>
+            <td style="flex: 0 0 75px">
+              <yh-button
+                [iconButton]="true"
+                icon="pi pi-ellipsis-h"
+                [bordered]="true"
+                [secondary]="true"
+                (click)="toggleOptionsMenu($event)"
+              ></yh-button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td class="empty-message" colspan="8" style="place-content: center">
+              <yh-text [secondary]="true"
+                >No Risk Analysis records found - please check your filters and
+                try again or&nbsp;<a>​click here</a>&nbsp;to add a new Risk
+                Analysis.</yh-text
+              >
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>
+
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

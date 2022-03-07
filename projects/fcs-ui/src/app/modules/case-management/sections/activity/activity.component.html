@@ -1,0 +1,25 @@
+<yh-general-layout [pad]="false">
+  <yh-general-layout-header title="Activity">
+    <yh-actions>
+      <p-tabMenu
+        class="alert-details-tabs"
+        [model]="items"
+        [activeItem]="activeItem"
+      ></p-tabMenu>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="activity-content">
+    <div fxLayout="column" fxFlex="100%">
+      <yh-activity-evidence
+        *ngIf="_viewState == ViewState.Evidence"
+      ></yh-activity-evidence>
+      <yh-activity-transactions
+        *ngIf="_viewState == ViewState.Transactions"
+      ></yh-activity-transactions>
+      <yh-activity-statistics
+        fxFlex="100%"
+        *ngIf="_viewState == ViewState.Statistics"
+      ></yh-activity-statistics>
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>

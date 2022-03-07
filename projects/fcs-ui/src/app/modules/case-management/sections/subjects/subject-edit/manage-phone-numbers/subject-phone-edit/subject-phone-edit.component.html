@@ -1,0 +1,54 @@
+<div
+  [formGroup]="fgPhoneNumbers"
+  fxLayout="column"
+  fxLayoutGap="15px"
+  fxLayoutAlign="start start"
+>
+  <yh-title [level]="3" title="Add Phone Number"></yh-title>
+  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <yh-select-button
+      style="display: none"
+      [options]="typeOptions"
+      [required]="true"
+      [control]="fcType"
+    ></yh-select-button>
+
+    <yh-phone-field
+      *ngIf="fcType.value === 'Domestic'"
+      label="Phone"
+      [control]="fcPhone"
+      [required]="true"
+    >
+    </yh-phone-field>
+    <yh-text-field
+      label="Phone"
+      *ngIf="fcType.value === 'International'"
+      [required]="true"
+      [control]="fcPhone"
+      placeholder="Phone"
+    ></yh-text-field>
+    <yh-text-field
+      label="Extension"
+      [control]="fcExtension"
+      placeholder="Ext."
+    ></yh-text-field>
+    <yh-dropdown-field
+      label="Type"
+      [control]="fcPhoneType"
+      [required]="true"
+      placeholder="Phone Type..."
+      [options]="phoneTypeOptions"
+    ></yh-dropdown-field>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="5px"
+    style="width: 100%"
+  >
+    <yh-button (click)="savePhone()">Add</yh-button>
+    <yh-button (click)="cancelPhone()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </div>
+</div>

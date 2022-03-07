@@ -1,0 +1,244 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <yh-title [level]="2" [title]="'Suspicious Activity'"></yh-title>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxFlex="auto">
+    <div class="section-form-wrapper">
+      <div [formGroup]="fgActivity" fxLayout="column" fxLayoutGap="25px">
+        <yh-card>
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">General</yh-text>
+            <yh-dropdown-field
+              label="Is there an amount involved in this report?"
+              placeholder="Select Answer..."
+              [control]="fcAmountInvolved"
+              [options]="amountInvolvedOptions"
+              [style.width]="'300px'"
+            ></yh-dropdown-field>
+            <yh-currency-field
+              label="Amount"
+              [required]="true"
+              [control]="fcDollarAmount"
+              placeholder="$0.00"
+            ></yh-currency-field>
+            <yh-select-button
+              label="Timeframe of Suspicious Activity"
+              [required]="true"
+              [control]="fcDateOption"
+              [options]="rangeOptions"
+            ></yh-select-button>
+            <yh-date-field
+              label="Date of Activity"
+              [required]="true"
+              [range]="fcDateOption.value == 'Range'"
+              [control]="fcDateOfActivity"
+              [style.width]="'300px'"
+            ></yh-date-field>
+            <yh-text-field label="Commodity Type" [control]="fcCommodityType">
+              <yh-form-field-description
+                >Comma-separated values</yh-form-field-description
+              >
+            </yh-text-field>
+            <yh-text-field
+              label="Product/Instrument description"
+              [control]="fcProductInstrumentDescription"
+              ><yh-form-field-description
+                >Comma-separated values</yh-form-field-description
+              ></yh-text-field
+            >
+            <yh-text-field
+              label="Market where traded"
+              [control]="fcMarketWhereTraded"
+              ><yh-form-field-description
+                >Comma-separated values</yh-form-field-description
+              ></yh-text-field
+            >
+            <yh-text-field label="CUSIP number" [control]="fcCusipNumber"
+              ><yh-form-field-description
+                >Comma-separated values</yh-form-field-description
+              ></yh-text-field
+            >
+          </div>
+        </yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Structuring</yh-text>
+            <yh-checkbox-group
+              formArrayName="faStructuring"
+              [formGroup]="fgActivity"
+              [options]="structuringOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcStructuringOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field>
+          </div>
+        </yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Terrorist Financing</yh-text>
+            <yh-checkbox-group
+              formArrayName="faTerroristFinancing"
+              [formGroup]="fgActivity"
+              [options]="terroristFinancingOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcTerroristFinancingOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Fraud</yh-text>
+            <yh-checkbox-group
+              formArrayName="faFraud"
+              [formGroup]="fgActivity"
+              [options]="fraudOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcFraudOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Gaming Activities</yh-text>
+            <yh-checkbox-group
+              formArrayName="faGamingActivities"
+              [formGroup]="fgActivity"
+              [options]="gamingActivitiesOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcGamingActivitiesOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Identification/Documentation</yh-text>
+            <yh-checkbox-group
+              formArrayName="faIdentification"
+              [formGroup]="fgActivity"
+              [options]="identificationOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcIdentificationOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Other Suspicious Activities</yh-text>
+            <yh-checkbox-group
+              formArrayName="faOtherActivities"
+              [formGroup]="fgActivity"
+              [options]="otherSuspiciousActivityOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcOtherActivitiesOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Insurance</yh-text>
+            <yh-checkbox-group
+              formArrayName="faInsurance"
+              [formGroup]="fgActivity"
+              [options]="insuranceOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcInsuranceOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true" *inView (inViewChanged)="isInView($event)">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Securities / Futures / Options</yh-text>
+            <yh-checkbox-group
+              formArrayName="faSecurities"
+              [formGroup]="fgActivity"
+              [options]="securitiesOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcSecuritiesOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Mortgage Fraud</yh-text>
+            <yh-checkbox-group
+              formArrayName="faMortgageFraud"
+              [formGroup]="fgActivity"
+              [options]="mortgageFraudOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcMortgageFraudOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true">Cyber Event</yh-text>
+            <yh-checkbox-group
+              formArrayName="faCyberEvent"
+              [formGroup]="fgActivity"
+              [options]="cyberEventOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcCyberEventOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true"
+              >Were any of the following product type(s) involved in the
+              suspicious activity?</yh-text
+            >
+            <yh-checkbox-group
+              formArrayName="faProductTypes"
+              [formGroup]="fgActivity"
+              [options]="productTypeOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcProductTypesOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-card [flat]="true">
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-text [strong]="true"
+              >Were any of the following instrument type(s)/payment mechanism(s)
+              involved in the suspicious activity</yh-text
+            >
+            <yh-checkbox-group
+              formArrayName="faInstrumentTypes"
+              [formGroup]="fgActivity"
+              [options]="instrucmentTypesOptions"
+            ></yh-checkbox-group>
+            <yh-text-field
+              label="Other"
+              [control]="fcInstrumentTypesOther"
+              [style.width]="otherInputWidth"
+            ></yh-text-field></div
+        ></yh-card>
+        <yh-sar-ip-addresses [sar]="sar"></yh-sar-ip-addresses>
+        <yh-sar-cyber-events [sar]="sar"></yh-sar-cyber-events>
+      </div>
+    </div>
+  </div>
+</div>

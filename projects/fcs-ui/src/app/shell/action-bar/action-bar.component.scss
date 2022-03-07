@@ -1,0 +1,11 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.actions-bar {
+  color: get-theme-color(brand, primary-dark);
+  font-size: 1.25em;
+  fa-icon {
+    &:hover {
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Attachments">
+    <yh-actions>
+      <yh-button (click)="handleAddNew()">Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content
+    class="content"
+    [formGroup]="fgFilters"
+    fxLayout="column"
+    fxLayoutGap="25px"
+  >
+    <div fxLayout="row" fxLayoutGap="10px">
+      <yh-text-field
+        fxFlex="1 1 200px"
+        placeholder="Filter Attachments"
+        [control]="fcFreeText"
+        [search]="true"
+      ></yh-text-field>
+      <yh-dropdown-field
+        fxFlex="1 1 200px"
+        placeholder="Select Category..."
+        [control]="fcCategory"
+      ></yh-dropdown-field>
+    </div>
+    <yh-attachment-group-item
+      *ngFor="let item of data"
+      [group]="item"
+      (edit)="editItem($event)"
+      (delete)="deleteItem($event)"
+    ></yh-attachment-group-item>
+  </yh-general-layout-content>
+  <!-- <yh-general-layout-sidebar *ngIf="showAttachmentForm || selectedAttachment">
+    <yh-attachment-edit
+      *ngIf="showAttachmentForm"
+      (close)="handleFormClose($event)"
+    ></yh-attachment-edit>
+    <yh-attachment-details
+      *ngIf="selectedAttachment"
+      [group]="selectedAttachment"
+      (close)="handleDetailClose($event)"
+    ></yh-attachment-details>
+  </yh-general-layout-sidebar> -->
+</yh-general-layout>
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  title="Add Attachment"
+  width="800px"
+  (hide)="handleDrawerCancel()"
+>
+  <yh-attachment-edit></yh-attachment-edit>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleDrawerCancel()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

@@ -1,0 +1,62 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgScheduling">
+  <yh-select-button
+    label="Using"
+    [control]="fcType"
+    [required]="true"
+    [options]="schedulingOptions"
+  ></yh-select-button>
+  <yh-divider></yh-divider>
+  <div
+    *ngIf="fcType.value === Duration.Days"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start center"
+  >
+    <yh-text [strong]="true">Day</yh-text>
+    <yh-number-field
+      placeholder="Day..."
+      [required]="true"
+      [control]="fcDays"
+      fxFlex="100px"
+    ></yh-number-field>
+    <yh-text [strong]="true">of every </yh-text>
+    <yh-number-field
+      placeholder="Months..."
+      [required]="true"
+      [control]="fcMonths"
+      fxFlex="100px"
+    ></yh-number-field>
+    <yh-text [strong]="true">month(s)</yh-text>
+  </div>
+
+  <div
+    *ngIf="fcType.value === Duration.Weekdays"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start center"
+  >
+    <yh-text [strong]="true">The</yh-text>
+    <yh-dropdown-field
+      placeholder="Duration..."
+      [required]="true"
+      [control]="fcMonths"
+      [options]="[]"
+      fxFlex="150px"
+    ></yh-dropdown-field>
+    <yh-dropdown-field
+      placeholder="Day of Week..."
+      [required]="true"
+      [control]="fcDayOfWeek"
+      [options]="[]"
+      fxFlex="150px"
+    ></yh-dropdown-field>
+    <yh-text [strong]="true">of every</yh-text>
+    <yh-number-field
+      placeholder="Months..."
+      [required]="true"
+      [control]="fcMonthsWithWeeks"
+      fxFlex="100px"
+    ></yh-number-field>
+    <yh-text [strong]="true">month(s)</yh-text>
+  </div>
+</div>

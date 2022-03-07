@@ -1,0 +1,17 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+p-table {
+  @include border(1px, 1px, 1px, 1px);
+}
+.add-new-row {
+  @include border(0, 0, 1px, 0);
+  background: get-theme-color(basic, white);
+  td {
+    padding: 15px;
+  }
+}
+
+.info-icon {
+  color: get-theme-color(state);
+}

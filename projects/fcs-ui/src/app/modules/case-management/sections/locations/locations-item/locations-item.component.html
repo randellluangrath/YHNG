@@ -1,0 +1,32 @@
+<yh-card [selectable]="true" [selected]="selected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between start"
+      fxLayoutAlign.lg="start start"
+      fxLayoutGap="15px"
+    >
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutAlign.lg="start start"
+        fxLayoutGap="5px"
+      >
+        <yh-title
+          [level]="3"
+          [title]="location.branchNumber + ' - ' + location.name"
+        ></yh-title>
+        <yh-text [secondary]="true" [small]="true" [strong]="false">{{
+          location.region
+        }}</yh-text>
+      </div>
+    </div>
+
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <yh-text [small]="true" [secondary]="true"
+        >{{ location.phone | phone }} x 12</yh-text
+      >
+    </div>
+  </div>
+</yh-card>

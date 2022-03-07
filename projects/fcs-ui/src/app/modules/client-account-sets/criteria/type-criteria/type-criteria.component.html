@@ -1,0 +1,14 @@
+<yh-card [formGroup]="fgCriteria">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <yh-text [bold]="true">Type</yh-text>
+
+    <div>
+      <yh-radio-group-field
+        label="Include clients that are"
+        [required]="true"
+        [control]="fcType"
+        [options]="options"
+      ></yh-radio-group-field>
+    </div>
+  </div>
+</yh-card>

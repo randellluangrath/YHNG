@@ -1,0 +1,7 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.score-column {
+  background: get-theme-color(background);
+  padding: 10px;
+}

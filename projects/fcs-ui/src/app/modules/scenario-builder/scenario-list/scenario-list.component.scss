@@ -1,0 +1,10 @@
+.is-rule-row {
+  yh-button {
+    visibility: hidden;
+  }
+  &:hover {
+    yh-button {
+      visibility: visible;
+    }
+  }
+}

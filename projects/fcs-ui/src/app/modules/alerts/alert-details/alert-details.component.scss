@@ -1,0 +1,35 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.alert-information {
+  overflow: hidden;
+  height: 100%;
+}
+.alert-information-content {
+  background: get-theme-color(background);
+  height: 100%;
+  overflow-y: auto;
+  @include scrollbar-defaults();
+}
+
+.alert-tabs-wrapper {
+  @include header-defaults();
+  padding-bottom: 0;
+  padding-left: 0;
+  p-tabMenu {
+    position: relative;
+    top: 1px;
+  }
+}
+
+.alert-details-wrapper {
+  @include header-defaults();
+
+  background: get-theme-color(brand, primary-dark);
+  yh-text {
+    color: white;
+  }
+  .alert-name {
+    color: get-theme-color(state, warn);
+  }
+}

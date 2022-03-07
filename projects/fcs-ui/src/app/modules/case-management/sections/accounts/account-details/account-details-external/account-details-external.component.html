@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <yh-display-value label="Institution TIN" [inline]="true"
+      >123456</yh-display-value
+    >
+    <yh-display-value label="Non-US Financial Institution" [inline]="true"
+      >Yes</yh-display-value
+    >
+    <yh-display-value label="Closed" [inline]="true">Yes</yh-display-value>
+
+    <yh-display-value label="Added By" [inline]="true">{{
+      account.addedBy
+    }}</yh-display-value>
+    <yh-display-value label="Added On" [inline]="true">{{
+      account.addedOnDate | localDate
+    }}</yh-display-value>
+    <yh-display-value label="Updated By" [inline]="true">{{
+      account.addedBy
+    }}</yh-display-value>
+    <yh-display-value label="Updated On" [inline]="true">{{
+      account.addedOnDate | localDate
+    }}</yh-display-value>
+  </div>
+</div>

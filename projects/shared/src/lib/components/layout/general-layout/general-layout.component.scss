@@ -1,0 +1,89 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.general-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+
+  &-navigation {
+    flex: 0 0 300px;
+  }
+
+  &-sidebar {
+    background: get-theme-color(basic, white);
+    flex: 0 0 400px;
+  }
+
+  &-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    &-header {
+      @include header-defaults;
+      @include border(0, 1px, 1px, 0);
+      padding: 15px 50px;
+      flex: 0 0 auto;
+      .yh-typography-title {
+        margin-bottom: 0;
+      }
+
+      gap: 10px;
+    }
+    &-content {
+      display: flex;
+      overflow-y: auto;
+      flex: 1 1 auto;
+
+      @include scrollbar-defaults();
+
+      &.has-sidebar {
+        overflow: hidden;
+        .content,
+        .sidebar {
+          overflow-y: auto;
+          @include scrollbars(
+            5px,
+            get-theme-color(brand, secondary),
+            darken(get-theme-color(brand, primary-dark), 5)
+          );
+        }
+      }
+
+      &-wrapper {
+        flex: 1 1 auto;
+        width: 100%;
+        &.pad {
+          padding: 50px 50px 100px 50px;
+        }
+      }
+
+      .sidebar {
+        flex: 0 0 400px;
+        .yh-general-layout-content-sidebar {
+          background: get-theme-color(basic, white);
+          @include border(0, 0, 0, 1px);
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &.has-sidebar {
+    .general-layout-main-header {
+    }
+  }
+
+  &.has-sidebar-left {
+    flex-direction: row-reverse;
+    .general-layout-sidebar {
+      @include border(0, 1px, 0, 0);
+    }
+  }
+}

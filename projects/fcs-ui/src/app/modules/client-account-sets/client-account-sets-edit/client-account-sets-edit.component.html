@@ -1,0 +1,131 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Personal">
+    <yh-actions>
+      <yh-split-button label="Save" [options]="actions"></yh-split-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content
+    class="sets-content"
+    fxLayout="column"
+    fxLayoutGap="20px"
+  >
+    <yh-card>
+      <div fxLayout="row" fxLayoutGap="10px" [formGroup]="fgSet">
+        <yh-text-field
+          fxFlex="1 1 300px"
+          label="Name"
+          [required]="true"
+          placeholder="Name"
+          [control]="fcName"
+        ></yh-text-field>
+      </div>
+    </yh-card>
+    <yh-card [pad]="false">
+      <p-tabMenu
+        [model]="items"
+        [activeItem]="activeItem"
+        [styleClass]="'client-account-sets-edit-tabs'"
+      ></p-tabMenu>
+      <div
+        *ngIf="_viewState === ViewState.Criteria"
+        class="criteria-wrapper"
+        fxLayout="column"
+        fxLayoutGap="15px"
+      >
+        <div fxLayout="row" fxLayoutAlign="end end">
+          <yh-button
+            [iconButton]="true"
+            icon="pi pi-plus"
+            [secondary]="true"
+            [text]="true"
+          ></yh-button>
+        </div>
+        <ng-template ngFor let-index let-criteria [ngForOf]="criteria">
+          <yh-client-account-sets-criteria-item></yh-client-account-sets-criteria-item>
+          <!-- <yh-divider [title]="'or'"></yh-divider> -->
+        </ng-template>
+      </div>
+      <div
+        *ngIf="_viewState === ViewState.Manual"
+        class="criteria-wrapper"
+        fxLayout="column"
+        fxLayoutGap="15px"
+      >
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <yh-card fxFlex="48%" [flat]="true">
+            <div fxLayout="column" fxLayoutGap="15px">
+              <div fxLayout="column" fxLayoutGap="5px">
+                <yh-text [bold]="true">Included</yh-text>
+                <yh-text [secondary]="true" [small]="true"
+                  >Users who should be included regardless of criteria</yh-text
+                >
+              </div>
+              <yh-autocomplete-field
+                [control]="fcClientName"
+                placeholder="Add Client by Name..."
+              ></yh-autocomplete-field>
+              <div class="stripe">
+                <div
+                  *ngFor="let name of names"
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                >
+                  <div fxLayout="column" fxLayoutGap="3px">
+                    <yh-text [strong]="true">{{ name }}</yh-text>
+                    <yh-text [secondary]="true" [small]="true"
+                      >1234556 - 33333</yh-text
+                    >
+                  </div>
+                  <yh-button
+                    [iconButton]="true"
+                    icon="fal fa-trash-alt"
+                    [secondary]="true"
+                    [bordered]="true"
+                  ></yh-button>
+                </div>
+              </div>
+            </div>
+          </yh-card>
+          <yh-card fxFlex="48%" [flat]="true">
+            <div fxLayout="column" fxLayoutGap="15px">
+              <div fxLayout="column" fxLayoutGap="5px">
+                <yh-text [bold]="true">Excluded</yh-text>
+                <yh-text [secondary]="true" [small]="true"
+                  >Users who should be excluded regardless of criteria</yh-text
+                >
+              </div>
+              <yh-autocomplete-field
+                [control]="fcClientName"
+                placeholder="Add Client by Name..."
+              ></yh-autocomplete-field>
+              <div class="stripe">
+                <div
+                  *ngFor="let name of names"
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                >
+                  <div fxLayout="column" fxLayoutGap="3px">
+                    <yh-text [strong]="true">{{ name }}</yh-text>
+                    <yh-text [secondary]="true" [small]="true"
+                      >1234556 - 33333</yh-text
+                    >
+                  </div>
+                  <yh-button
+                    [iconButton]="true"
+                    icon="fal fa-trash-alt"
+                    [secondary]="true"
+                    [bordered]="true"
+                  ></yh-button>
+                </div>
+              </div>
+            </div>
+          </yh-card>
+        </div></div
+    ></yh-card>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar
+    ><yh-client-account-matches></yh-client-account-matches>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+
+<yh-create-criteria-dialog></yh-create-criteria-dialog>

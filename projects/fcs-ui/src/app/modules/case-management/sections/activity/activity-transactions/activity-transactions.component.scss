@@ -1,0 +1,15 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.activity-table-wrapper {
+  background: get-theme-color(basic, white);
+  height: calc(100vh - 150px);
+  @include border(1px, 1px, 1px, 1px);
+}
+
+.is-flagged {
+  &:not(.p-highlight) {
+    > td {
+    }
+  }
+}

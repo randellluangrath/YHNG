@@ -1,0 +1,59 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Subjects">
+    <yh-actions>
+      <yh-button (click)="handleAddNew()">Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content
+    class="tasks-content"
+    fxLayout="column"
+    fxLayoutGap="20px"
+  >
+    <div fxLayout="row" fxLayoutGap="10px" [formGroup]="fgFilters">
+      <yh-text-field
+        fxFlex="1 1 300px"
+        placeholder="Search by Name"
+        [control]="fcFreeText"
+        [search]="true"
+      ></yh-text-field>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <yh-subject-item
+        [fxFlex]="'32%'"
+        [fxFlex.gt-lg]="'32%'"
+        [fxFlex.md]="'100%'"
+        [fxFlex.lt-md]="'100%'"
+        *ngFor="let subject of subjects"
+        [subject]="subject"
+        (onSelected)="selectSubject($event)"
+      ></yh-subject-item>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar *ngIf="selectedSubject">
+    <yh-subject-details [subject]="selectedSubject"></yh-subject-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+
+<yh-drawer
+  [visible]="showAddNewDrawer"
+  [closeOnEscape]="true"
+  [title]="'Add Subject'"
+  [pad]="false"
+  width="1200px"
+  (hide)="handleOnHide()"
+>
+  <yh-subject-lookup
+    *ngIf="!showEditScreen"
+    (selected)="handleSubjectSelected($event)"
+  ></yh-subject-lookup>
+  <!-- <yh-subject-edit></yh-subject-edit> -->
+  <yh-drawer-footer>
+    <!-- <yh-button *ngIf="!showEditScreen">Add Selected</yh-button> -->
+    <yh-button>Create New</yh-button>
+    <yh-button>Use Selected</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleDrawerCancel()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

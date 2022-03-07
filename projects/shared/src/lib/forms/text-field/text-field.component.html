@@ -1,0 +1,27 @@
+<yh-form-field [label]="label" [required]="required">
+  <input
+    *ngIf="!search"
+    type="text"
+    pInputText
+    [formControl]="control"
+    [placeholder]="placeholder"
+  />
+
+  <span
+    class="p-input-icon-left"
+    [class.p-input-icon-right]="control.value?.length > 0"
+    *ngIf="search"
+  >
+    <i class="pi pi-search"></i>
+    <input
+      type="text"
+      pInputText
+      [formControl]="control"
+      [placeholder]="placeholder"
+    />
+    <i class="pi pi-times" *ngIf="control.value?.length > 0"></i>
+  </span>
+  <ng-content select="yh-form-field-description"></ng-content>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

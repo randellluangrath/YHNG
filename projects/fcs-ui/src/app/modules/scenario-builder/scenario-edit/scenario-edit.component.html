@@ -1,0 +1,333 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header [title]="'Edit Scenario'">
+    <yh-actions style="width: 100%"
+      ><yh-button>Save</yh-button
+      ><yh-button [warning]="true" [ghost]="true">Cancel</yh-button></yh-actions
+    >
+  </yh-general-layout-header>
+  <yh-general-layout-content [formGroup]="fgScenario">
+    <div
+      fxLayout="column"
+      fxLayoutGap="10px"
+      fxLayoutAlign="space-between start"
+      [style.width]="'100%'"
+    >
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start start"
+        fxLayoutGap="10px"
+        [style.width]="'100%'"
+      >
+        <yh-card fxFlex="auto">
+          <div fxLayout="column" fxLayoutGap="20px">
+            <yh-title [level]="3" [title]="'Details'"></yh-title>
+            <div fxLayout="column" fxLayoutGap="15px">
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start start"
+                fxLayoutGap="10px"
+              >
+                <yh-text-field
+                  [control]="fcName"
+                  label="Name"
+                  [required]="true"
+                  [style.width]="'300px'"
+                ></yh-text-field>
+                <yh-select-button
+                  label="Status"
+                  [required]="true"
+                  [control]="fcEnabled"
+                  [options]="statusOptions"
+                ></yh-select-button>
+              </div>
+
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start start"
+                fxLayoutGap="10px"
+              >
+                <yh-select-button
+                  label="Type"
+                  [required]="true"
+                  [control]="fcType"
+                  [options]="typeOptions"
+                ></yh-select-button>
+                <yh-dropdown-field
+                  label="Scheduling"
+                  [required]="true"
+                  [control]="fcScheduling"
+                  [options]="[]"
+                  [style.width]="'300px'"
+                ></yh-dropdown-field>
+              </div>
+              <div fxLayout="column" fxLayoutGap="10px">
+                <yh-multiselect-field
+                  label="Tags"
+                  [control]="fcTags"
+                  [options]="tagOptions"
+                  [required]="true"
+                  [style.width]="'100%'"
+                ></yh-multiselect-field>
+              </div>
+            </div>
+          </div>
+        </yh-card>
+      </div>
+      <yh-card [style.width]="'100%'">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <yh-title [level]="3" [title]="'Configuration'"></yh-title>
+          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <yh-select-button
+              label="Client or Account"
+              [required]="true"
+              [control]="fcClientOrAccount"
+              [options]="clientOrAccountOptions"
+            ></yh-select-button>
+            <yh-multiselect-field
+              label="Activity  Type"
+              [control]="fcScenarioActivityType"
+              [options]="activityTypesOptions"
+              [required]="true"
+              [style.width]="'610px'"
+            ></yh-multiselect-field>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <yh-dropdown-field
+              label="Monitoring  Type"
+              [control]="fcMonitoring"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'300px'"
+            ></yh-dropdown-field>
+            <yh-dropdown-field
+              label="Monitoring  Subtype"
+              [control]="fcMonitoring"
+              [options]="[]"
+              [style.width]="'300px'"
+            ></yh-dropdown-field>
+          </div>
+          <div fxLayout="column" fxLayoutGap="20px" [formGroup]="fgParameters">
+            <yh-divider
+              [title]="'Parameters'"
+              placement="left"
+              background="white"
+            ></yh-divider>
+            <yh-text [secondary]="true"
+              >Use the fields below to configure the Scenario
+              Statement.</yh-text
+            >
+            <div fxLayout="row wrap" fxLayoutGap="15px">
+              <yh-dropdown-field
+                label="Activity Type"
+                [control]="fcActivityType"
+                [options]="activityTypeOptions"
+                [required]="true"
+                [style.width]="'200px'"
+              ></yh-dropdown-field>
+
+              <yh-currency-field
+                label="Threshold($)"
+                [control]="fcThreshold"
+                [required]="true"
+              ></yh-currency-field>
+              <yh-number-field
+                label="Review Period (days)"
+                [control]="fcReviewPeriod"
+                [required]="true"
+                [style.width]="'150px'"
+              ></yh-number-field>
+              <yh-currency-field
+                label="Daily Low Amount ($)"
+                [control]="fcDailyLow"
+                [required]="true"
+              ></yh-currency-field>
+            </div>
+            <yh-divider
+              [title]="'Scenario Statement'"
+              placement="left"
+              background="white"
+            ></yh-divider>
+            <yh-text [secondary]="true"
+              >Alert when Cash Out Amount exceeds $10,000.00 over a 5 day review
+              period where daily cash aggregates are between $3,000 and
+              $10,000</yh-text
+            >
+          </div>
+        </div>
+      </yh-card>
+      <yh-card [style.width]="'100%'">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <yh-title [level]="3" [title]="'Activity Type'"></yh-title>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <yh-dropdown-field
+              label="Account Type"
+              [control]="fcAccountType"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'200px'"
+            ></yh-dropdown-field>
+          </div>
+          <yh-divider
+            [title]="'Activity A'"
+            placement="left"
+            background="white"
+          ></yh-divider>
+          <yh-card [flat]="true" padSize="small">
+            <div
+              fxLayout="column"
+              fxLayoutGap="20px"
+              [formGroup]="fgParameters"
+            >
+              <div fxLayout="row wrap" fxLayoutGap="15px">
+                <yh-dropdown-field
+                  label="Activity Type"
+                  [control]="fcActivityType"
+                  [options]="activityTypeOptions"
+                  [required]="true"
+                  [style.width]="'200px'"
+                ></yh-dropdown-field>
+
+                <yh-currency-field
+                  label="Threshold($)"
+                  [control]="fcThreshold"
+                  [required]="true"
+                ></yh-currency-field>
+                <yh-number-field
+                  label="Review Period (days)"
+                  [control]="fcReviewPeriod"
+                  [required]="true"
+                  [style.width]="'150px'"
+                ></yh-number-field>
+                <yh-currency-field
+                  label="Daily Low Amount ($)"
+                  [control]="fcDailyLow"
+                  [required]="true"
+                ></yh-currency-field>
+              </div>
+            </div>
+          </yh-card>
+          <yh-divider
+            [title]="'Activity B'"
+            placement="left"
+            background="white"
+          ></yh-divider>
+          <yh-card [flat]="true" padSize="small">
+            <div
+              fxLayout="column"
+              fxLayoutGap="20px"
+              [formGroup]="fgParameters"
+            >
+              <div fxLayout="row wrap" fxLayoutGap="15px">
+                <yh-dropdown-field
+                  label="Activity Type"
+                  [control]="fcActivityType"
+                  [options]="activityTypeOptions"
+                  [required]="true"
+                  [style.width]="'200px'"
+                ></yh-dropdown-field>
+
+                <yh-currency-field
+                  label="Threshold($)"
+                  [control]="fcThreshold"
+                  [required]="true"
+                ></yh-currency-field>
+                <yh-number-field
+                  label="Review Period (days)"
+                  [control]="fcReviewPeriod"
+                  [required]="true"
+                  [style.width]="'150px'"
+                ></yh-number-field>
+                <yh-currency-field
+                  label="Daily Low Amount ($)"
+                  [control]="fcDailyLow"
+                  [required]="true"
+                ></yh-currency-field>
+              </div>
+            </div>
+          </yh-card>
+          <yh-divider
+            [title]="'Activity C'"
+            placement="left"
+            background="white"
+          ></yh-divider>
+          <yh-card [flat]="true" padSize="small">
+            <div
+              fxLayout="column"
+              fxLayoutGap="20px"
+              [formGroup]="fgParameters"
+            >
+              <div fxLayout="row wrap" fxLayoutGap="15px">
+                <yh-dropdown-field
+                  label="Activity Type"
+                  [control]="fcActivityType"
+                  [options]="activityTypeOptions"
+                  [required]="true"
+                  [style.width]="'200px'"
+                ></yh-dropdown-field>
+
+                <yh-currency-field
+                  label="Threshold($)"
+                  [control]="fcThreshold"
+                  [required]="true"
+                ></yh-currency-field>
+                <yh-number-field
+                  label="Review Period (days)"
+                  [control]="fcReviewPeriod"
+                  [required]="true"
+                  [style.width]="'150px'"
+                ></yh-number-field>
+                <yh-currency-field
+                  label="Daily Low Amount ($)"
+                  [control]="fcDailyLow"
+                  [required]="true"
+                ></yh-currency-field>
+              </div>
+            </div>
+          </yh-card>
+        </div>
+      </yh-card>
+      <yh-card [style.width]="'100%'">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <yh-title [level]="3" [title]="'Sets'"></yh-title>
+          <div fxLayout="column" fxLayoutGap="15px">
+            <yh-multiselect-field
+              label="Included Client Sets"
+              [control]="fcClientSets"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'100%'"
+            ></yh-multiselect-field>
+            <yh-multiselect-field
+              label="Excluded Client Sets"
+              [control]="fcExcludedClientSets"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'100%'"
+            ></yh-multiselect-field>
+            <yh-multiselect-field
+              label="Account Sets"
+              [control]="fcAccountSets"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'100%'"
+            ></yh-multiselect-field>
+            <yh-multiselect-field
+              label="Excluded Account Sets"
+              [control]="fcExcludedAccountSets"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'100%'"
+            ></yh-multiselect-field>
+            <yh-multiselect-field
+              label="Relationships"
+              [control]="fcRelationships"
+              [options]="[]"
+              [required]="true"
+              [style.width]="'100%'"
+            ></yh-multiselect-field>
+          </div>
+        </div>
+      </yh-card>
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>

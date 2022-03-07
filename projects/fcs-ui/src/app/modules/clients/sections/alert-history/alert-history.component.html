@@ -1,0 +1,164 @@
+<div style="height: calc(100vh - 150px)">
+  <p-table
+    [value]="alerts"
+    dataKey="id"
+    [scrollable]="true"
+    (onRowSelect)="handleRowSelected($event)"
+    (onRowUnselect)="handleRowUnselected($event)"
+    [paginator]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [rows]="10"
+    scrollHeight="flex"
+    scrollDirection="both"
+  >
+    <ng-template pTemplate="caption">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          fxLayoutGap="15px"
+          [formGroup]="fgFilter"
+          style="padding-left: 25px; width: 100%"
+        >
+          <yh-text-field
+            [search]="true"
+            [control]="fcTerm"
+            placeholder="Search by Id"
+          ></yh-text-field>
+          <yh-button (click)="showFilters = true">Filter Alerts</yh-button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th
+          style="padding-left: 50px; width: 100px"
+          pFrozenColumn
+          alignFrozen="left"
+        ></th>
+        <th style="width: 100px" pFrozenColumn alignFrozen="left">Id</th>
+        <th style="width: 125px" pFrozenColumn alignFrozen="left">Date</th>
+        <th style="width: 125px">Score</th>
+        <th style="width: 125px">Status</th>
+        <th style="width: 125px">Type</th>
+
+        <th style="width: 300px">Scenario</th>
+        <th style="width: 250px">Scenario Sub Type</th>
+        <!-- <th style="width: 125px">Violations</th> -->
+        <th style="width: 125px">Amount</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-alert let-expanded="expanded">
+      <tr [pSelectableRow]="alert">
+        <td
+          style="padding-left: 50px; width: 100px"
+          pFrozenColumn
+          alignFrozen="left"
+        >
+          <yh-button
+            type="button"
+            [iconButton]="true"
+            [pRowToggler]="alert"
+            [text]="true"
+            [secondary]="true"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+          ></yh-button>
+        </td>
+        <td style="width: 100px" pFrozenColumn alignFrozen="left">
+          <yh-text [secondary]="true">{{ alert.id }}</yh-text>
+        </td>
+        <td style="width: 125px" pFrozenColumn alignFrozen="left">
+          <yh-text [secondary]="true">{{
+            alert.timestamp | date: "shortDate"
+          }}</yh-text>
+        </td>
+        <td style="width: 125px">
+          <yh-space>
+            <yh-space-item>
+              <yh-risk-indicator
+                [low]="alert.isLow()"
+                [medium]="alert.isMedium()"
+                [high]="alert.isHigh()"
+              ></yh-risk-indicator
+            ></yh-space-item>
+            <yh-space-item>
+              <yh-text [secondary]="true">
+                {{ alert.riskScore }}</yh-text
+              ></yh-space-item
+            >
+          </yh-space>
+        </td>
+        <td style="width: 125px">
+          <!-- <yh-text
+              style="font-size: 0.75em; margin-right: 10px"
+              [success]="alert.status === AlertStatus.Open"
+              [danger]="alert.status === AlertStatus.Closed"
+              [pending]="alert.status === AlertStatus.Pending"
+              ><fa-icon [icon]="circleIcon"></fa-icon
+            ></yh-text> -->
+          <container-element [ngSwitch]="alert.status">
+            <yh-text *ngSwitchCase="AlertStatus.Open" [secondary]="true"
+              >Open</yh-text
+            >
+            <yh-text *ngSwitchCase="AlertStatus.Closed" [secondary]="true"
+              >Closed</yh-text
+            >
+            <yh-text *ngSwitchCase="AlertStatus.Pending" [secondary]="true"
+              >Pending</yh-text
+            >
+          </container-element>
+        </td>
+        <td style="width: 125px">
+          <yh-text [secondary]="true">{{
+            alert.type == AlertType.BSA ? "BSA" : "Fraud"
+          }}</yh-text>
+        </td>
+
+        <td style="width: 300px">
+          <yh-text [secondary]="true">{{ alert.scenario }}</yh-text>
+        </td>
+        <td style="width: 250px">
+          <yh-text [secondary]="true">{{ alert.subType }}</yh-text>
+        </td>
+        <!-- <td style="width: 125px">
+            <yh-text [secondary]="true">Violations</yh-text>
+          </td> -->
+        <td style="width: 125px">
+          <yh-text [secondary]="true">{{ alert.amount | currency }}</yh-text>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-product>
+      <tr>
+        <td colspan="10" style="flex: 1">
+          <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%">
+            <yh-card [flat]="true">
+              <div fxLayout="column" fxLayoutGap="15px" class="stripe">
+                <yh-text [strong]="true">Violations</yh-text>
+                <div *ngFor="let violation of scenarios">
+                  <yh-text [secondary]="true">{{ violation }}</yh-text>
+                </div>
+              </div>
+            </yh-card>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<yh-drawer
+  [visible]="showFilters"
+  [closeOnEscape]="true"
+  [showCloseIcon]="true"
+  [title]="'Filter Alert History'"
+  width="400px"
+  (hide)="closeFilters()"
+>
+  <yh-edd-scheduler></yh-edd-scheduler>
+  <yh-drawer-footer>
+    <yh-button (click)="closeFilters()">Filter</yh-button>
+    <yh-button [ghost]="true" (click)="closeFilters()"> Clear </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

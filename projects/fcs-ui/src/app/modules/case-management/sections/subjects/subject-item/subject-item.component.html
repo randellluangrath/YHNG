@@ -1,0 +1,54 @@
+<yh-card [selectable]="true" [selected]="subject.isSelected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="start start"
+      fxLayoutAlign.lg="start start"
+      fxLayoutGap="15px"
+    >
+      <!-- <yh-avatar size="xlarge" [label]="getSubjectInitials()"></yh-avatar> -->
+
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutAlign.lg="start start"
+        fxLayoutGap="15px"
+      >
+        <div
+          fxLayout="column"
+          fxLayoutAlign="start start"
+          fxLayoutAlign.lg="start start"
+          fxLayoutGap="5px"
+        >
+          <yh-title [level]="3" [title]="getSubjectName()"></yh-title>
+          <yh-text [secondary]="true" [small]="true" [strong]="true"
+            >{{ subject.type }}
+            <span *ngIf="subject.type === 'Individual'"
+              >- Born {{ subject.dateOfBirth | date: "shortDate" }}</span
+            ></yh-text
+          >
+        </div>
+        <yh-text [secondary]="true" [small]="true" [strong]="true"></yh-text>
+      </div>
+    </div>
+
+    <yh-divider></yh-divider>
+    <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="1 1 100%">
+      <yh-text
+        [secondary]="true"
+        [strong]="true"
+        [small]="true"
+        *ngIf="subject.type === 'Individual'"
+        >aka. {{ subject?.alternateNames[0].firstName }}
+        {{ subject?.alternateNames[0].lastName }}</yh-text
+      >
+      <yh-text
+        [secondary]="true"
+        [strong]="true"
+        [small]="true"
+        *ngIf="subject.type === 'Entity'"
+        >dba. {{ subject?.alternateNames[0].entity }}</yh-text
+      >
+    </div>
+  </div>
+</yh-card>

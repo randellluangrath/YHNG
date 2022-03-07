@@ -1,0 +1,8 @@
+<div class="content" fxLayout="column" fxLayoutGap="10px">
+  <yh-card *ngFor="let name of matches" padSize="small">
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ name }}</yh-text>
+      <yh-text [secondary]="true" [small]="true">123456 - ABCDE</yh-text>
+    </div>
+  </yh-card>
+</div>

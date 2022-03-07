@@ -1,0 +1,27 @@
+<div
+  *ngIf="{ viewState: viewState$ | async } as data"
+  class="sar-wizard-container"
+>
+  <div class="sar-wizard-navigation-container">
+    <yh-sar-wizard-navigation [sar]="sar"></yh-sar-wizard-navigation>
+  </div>
+  <div class="sar-wizard-section-container">
+    <div *ngIf="data.viewState == SarWizardView.Overview">
+      <yh-sar-general></yh-sar-general>
+    </div>
+    <div *ngIf="data.viewState == SarWizardView.Subjects">
+      <yh-sar-subjects></yh-sar-subjects>
+    </div>
+    <div *ngIf="data.viewState == SarWizardView.Contact">
+      <yh-sar-filing-institution></yh-sar-filing-institution>
+    </div>
+    <div *ngIf="data.viewState == SarWizardView.SuspiciousActivity">
+      <yh-sar-suspicious-activity [sar]="sar"></yh-sar-suspicious-activity>
+    </div>
+    <div *ngIf="data.viewState == SarWizardView.FinancialActivity">
+      <yh-sar-financial-institutions
+        [sar]="sar"
+      ></yh-sar-financial-institutions>
+    </div>
+  </div>
+</div>

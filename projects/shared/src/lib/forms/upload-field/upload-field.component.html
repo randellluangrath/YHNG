@@ -1,0 +1,50 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-fileUpload
+    mode="advanced"
+    [showCancelButton]="false"
+    [showUploadButton]="false"
+    [multiple]="multiple"
+    name="myfile[]"
+    (onSelect)="handleOnSelect($event)"
+    (uploadHandler)="myUploader($event)"
+    chooseLabel="Select File"
+  >
+    <ng-template pTemplate="content" let-files>
+      <div class="dropzone-target" (click)="selectFile()">
+        <yh-text [secondary]="true" [strong]="true">{{
+          dropzoneTitle
+        }}</yh-text>
+      </div>
+    </ng-template>
+    <ng-template let-file pTemplate="file"></ng-template>
+    <!-- <ng-template let-file pTemplate="file">
+      <div fxLayout="column" fxLayoutGap="0" style="margin-bottom: 10px">
+        <div
+          fxLayout="row"
+          fxLayoutGap="5px"
+          fxLayoutAlign="space-between center"
+        >
+          <a><yh-text [strong]="true">File Title</yh-text></a>
+          <yh-button [iconButton]="true" icon="pi pi-times"></yh-button>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="file.title"
+            placeholder="File Name"
+          />
+          <div>
+            <yh-text [small]="true" [secondary]="true" [strong]="true"
+              >File Name: </yh-text
+            ><yh-text [small]="true" [secondary]="true">{{
+              file.name
+            }}</yh-text>
+          </div>
+        </div>
+      </div>
+    </ng-template> -->
+  </p-fileUpload>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

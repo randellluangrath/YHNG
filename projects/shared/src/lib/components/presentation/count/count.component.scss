@@ -1,0 +1,8 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  display: flex;
+  gap: 5px;
+  color: get-theme-color(text);
+}

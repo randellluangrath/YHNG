@@ -1,0 +1,51 @@
+<header
+  *ngIf="headerTemplate; else headerElseBlock"
+  class="header-template"
+  [class.is-small]="padSize === 'small'"
+>
+  <ng-content select="yh-card-header-template"></ng-content>
+</header>
+<ng-template #headerElseBlock>
+  <header
+    *ngIf="title"
+    class="header"
+    [class.is-small]="padSize === 'small'"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="start center">
+      <yh-toggle-button
+        *ngIf="expandable"
+        [icon]="isExpanded ? collapseIcon : expandedIcon"
+        (click)="isExpanded = !isExpanded"
+      ></yh-toggle-button>
+      <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-title [level]="3" [title]="title"></yh-title>
+        <yh-text *ngIf="subtitle" [small]="true" [secondary]="true">{{
+          subtitle
+        }}</yh-text>
+      </div>
+    </div>
+    <ng-content select="yh-actions"></ng-content>
+  </header>
+</ng-template>
+
+<div
+  class="content"
+  [class.pad]="pad"
+  [class.is-large]="padSize === 'large'"
+  [class.is-small]="padSize === 'small'"
+  [class.is-hidden]="expandable && !isExpanded"
+>
+  <div *ngIf="cntentTemplate; else contentElseBlock">
+    <ng-content select="yh-card-content-template"></ng-content>
+  </div>
+  <ng-template #contentElseBlock>
+    <ng-content></ng-content>
+  </ng-template>
+</div>
+
+<footer *ngIf="footerTemplate" class="footer">
+  <ng-content select="yh-card-footer-template"></ng-content>
+</footer>

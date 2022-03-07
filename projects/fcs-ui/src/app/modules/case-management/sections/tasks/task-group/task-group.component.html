@@ -1,0 +1,30 @@
+<yh-card>
+  <div fxLayout="row" fxLayoutGap="25px">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutAlign="center flex-end">
+        <yh-text
+          *ngIf="isToday"
+          [secondary]="true"
+          [strong]="true"
+          [uppercase]="true"
+          [small]="true"
+          >Today</yh-text
+        >
+        <yh-text [strong]="true"> {{ dayOfWeek }} </yh-text>
+        <yh-text [secondary]="true" [strong]="true">{{ month }}</yh-text>
+        <span class="day-of-month" [class.is-today]="isToday">{{ day }}</span>
+      </div>
+      <yh-text [strong]="true" *ngIf="tasks.length > 0"
+        >{{ tasks.length }} Tasks</yh-text
+      >
+    </div>
+    <yh-divider [vertical]="true"></yh-divider>
+    <div fxFlex="1 1 auto" fxLayout="column" fxLayoutGap="10px">
+      <yh-task-item
+        *ngFor="let task of tasks"
+        [task]="task"
+        (onSelected)="handleTaskSelected($event)"
+      ></yh-task-item>
+    </div>
+  </div>
+</yh-card>

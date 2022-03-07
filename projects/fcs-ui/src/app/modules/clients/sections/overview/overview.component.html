@@ -1,0 +1,218 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header [title]="client.title">
+    <yh-actions></yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-card [title]="client.title">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div
+            class="overview-details"
+            fxLayout="column"
+            fxLayoutGap="10px"
+            fxFlex="48%"
+          >
+            <yh-display-value [inline]="true" label="CIF"
+              >12345</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="TIN"
+              >123456</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Created"
+              >10/10/2021</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Type"
+              >Check Fraud</yh-display-value
+            >
+            <yh-display-value
+              [inline]="true"
+              label="Insider Code"
+              pTooltip="Insider Code Description"
+              tooltipPosition="top"
+              >ABC</yh-display-value
+            >
+          </div>
+          <div
+            class="overview-details"
+            fxLayout="column"
+            fxLayoutGap="10px"
+            fxFlex="48%"
+          >
+            <yh-display-value [inline]="true" label="Class Code"
+              >A1B2</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Risk Category"
+              >High</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Maintenanced"
+              >10/10/2021</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Date of Birth"
+              >10/10/2021</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Date of Death"
+              >10/10/2021</yh-display-value
+            >
+            <!-- <yh-display-value [inline]="true" label="Beneficial Owner(s)"
+              >John Smith, Jane Smith</yh-display-value
+            >
+            <yh-display-value [inline]="true" label="Percent Ownership"
+              >15%</yh-display-value
+            > -->
+          </div>
+        </div>
+      </yh-card>
+      <yh-card
+        [expandable]="true"
+        [title]="'Occupation/Industry'"
+        [expanded]="false"
+      >
+        <div fxLayout="column" fxLayoutGap="15px">
+          <p-table
+            [value]="client.addresses"
+            [scrollable]="true"
+            scrollDirection="vertical"
+            scrollHeight="300px"
+            [paginator]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [rows]="10"
+            styleClass="p-datatable-striped p-datatable-sm"
+          >
+            <ng-template pTemplate="body" let-address let-columns="columns">
+              <tr>
+                <td [style.paddingLeft]="'25px'">
+                  <yh-text [secondary]="true">{{ address | address }}</yh-text>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </yh-card>
+      <yh-card [expandable]="true" [title]="'Addresses'" [expanded]="false">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <p-table
+            [value]="client.addresses"
+            [scrollable]="true"
+            scrollDirection="vertical"
+            scrollHeight="300px"
+            [paginator]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [rows]="10"
+            styleClass="p-datatable-striped p-datatable-sm"
+          >
+            <ng-template pTemplate="body" let-address let-columns="columns">
+              <tr>
+                <td [style.paddingLeft]="'25px'">
+                  <yh-text [secondary]="true">{{ address | address }}</yh-text>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </yh-card>
+      <yh-card [expandable]="true" [title]="'Phone Numbers'" [expanded]="false">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <p-table
+            [value]="client.phoneNumbers"
+            [scrollable]="true"
+            scrollDirection="vertical"
+            scrollHeight="300px"
+            [paginator]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [rows]="10"
+            styleClass="p-datatable-striped p-datatable-sm"
+          >
+            <ng-template pTemplate="body" let-phone let-columns="columns">
+              <tr>
+                <td [style.paddingLeft]="'25px'" [style.flex]="'0 0 150px'">
+                  <yh-text [secondary]="true">{{ phone.type }} </yh-text>
+                </td>
+                <td>
+                  <yh-text [secondary]="true"
+                    >{{ phone.phone }}
+                    <span *ngIf="phone.extension"
+                      >x{{ phone.extension }}</span
+                    ></yh-text
+                  >
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </yh-card>
+      <yh-card
+        [expandable]="true"
+        [title]="'Email Addresses'"
+        [expanded]="false"
+      >
+        <div fxLayout="column" fxLayoutGap="15px">
+          <p-table
+            [value]="client.emails"
+            [scrollable]="true"
+            scrollDirection="vertical"
+            scrollHeight="300px"
+            [paginator]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [rows]="10"
+            styleClass="p-datatable-striped p-datatable-sm"
+          >
+            <ng-template pTemplate="body" let-email let-columns="columns">
+              <tr>
+                <td [style.paddingLeft]="'25px'">
+                  <yh-text [secondary]="true">{{ email }} </yh-text>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </yh-card>
+      <yh-card
+        [expandable]="true"
+        [title]="'Identification'"
+        [expanded]="false"
+      >
+        <div fxLayout="column" fxLayoutGap="15px">
+          <p-table
+            [value]="client.identifications"
+            [scrollable]="true"
+            scrollDirection="vertical"
+            scrollHeight="300px"
+            [paginator]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [rows]="10"
+            styleClass="p-datatable-striped p-datatable-sm"
+          >
+            <ng-template pTemplate="body" let-id let-columns="columns">
+              <tr>
+                <td [style.paddingLeft]="'25px'" [style.flex]="'0 0 150px'">
+                  <yh-text [secondary]="true">{{ id.type }} </yh-text>
+                </td>
+                <td [style.flex]="'0 0 100px'">
+                  <yh-text [secondary]="true">{{ id.number }} </yh-text>
+                </td>
+                <td>
+                  <yh-text [secondary]="true"
+                    >{{ id.state }}, {{ id.country }}
+                  </yh-text>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </yh-card>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar
+    ><yh-overview-details [client]="client"></yh-overview-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>

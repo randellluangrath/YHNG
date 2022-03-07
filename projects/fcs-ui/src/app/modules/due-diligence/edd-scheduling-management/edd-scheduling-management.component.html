@@ -1,0 +1,58 @@
+<yh-general-layout [pad]="false">
+  <yh-general-layout-header [title]="'EDD Schedule Management'">
+    <yh-actions>
+      <yh-button>Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content">
+    <p-table
+      [value]="schedules"
+      [lazy]="true"
+      [scrollable]="true"
+      scrollHeight="flex"
+    >
+      <ng-template pTemplate="header">
+        <tr class="table-header">
+          <th style="flex: 0 0 125px; padding-left: 50px">Level</th>
+          <th style="flex: 1 0 125px">Months</th>
+          <th style="flex: 0 0 125px"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-schedule>
+        <tr>
+          <td style="flex: 0 0 125px; padding-left: 50px">
+            <yh-text [secondary]="true">{{ schedule.level }}</yh-text>
+          </td>
+          <td style="flex: 1 0 125px">
+            <yh-text [secondary]="true">{{ schedule.months }}</yh-text>
+          </td>
+          <td style="flex: 0 0 125px">
+            <yh-button
+              [iconButton]="true"
+              icon="pi pi-pencil"
+              [secondary]="true"
+              [bordered]="true"
+              [text]="true"
+            ></yh-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </yh-general-layout-content>
+</yh-general-layout>
+<!-- <yh-drawer
+    [visible]="showDrawer"
+    [closeOnEscape]="true"
+    [title]="'Add New Question'"
+    width="800px"
+    (hide)="handleOnHide()"
+  >
+    <yh-due-diligence-edit></yh-due-diligence-edit>
+    <yh-drawer-footer>
+      <yh-button>Add</yh-button>
+      <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+        Cancel
+      </yh-button>
+    </yh-drawer-footer>
+  </yh-drawer> -->

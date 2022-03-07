@@ -1,0 +1,26 @@
+<yh-card [selectable]="true" [selected]="selected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-text [bold]="true">{{ case.caseName }}</yh-text>
+        <!-- <yh-text [secondary]="true" [small]="true" [medium]="true">{{
+          case.caseId
+        }}</yh-text> -->
+      </div>
+      <yh-text [secondary]="true" [small]="true" [medium]="true">{{
+        case.openDate | date: "shortDate"
+      }}</yh-text>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text [secondary]="true" [small]="true" [medium]="false"
+          >{{ case.caseType.typeName }} - SubType Goes Here</yh-text
+        >
+        <yh-text [secondary]="true" [small]="true" [medium]="false">{{
+          case.caseStatus.name
+        }}</yh-text>
+      </div>
+    </div>
+  </div>
+</yh-card>

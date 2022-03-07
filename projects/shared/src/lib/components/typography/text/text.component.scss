@@ -1,0 +1,68 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  letter-spacing: -0.5px;
+  color: get-theme-color(brand, primary-dark);
+  font-weight: 400;
+  &.uppercase {
+    text-transform: uppercase;
+  }
+  &.lowercase {
+    text-transform: lowercase;
+  }
+  &.strong {
+    @include medium-bold-font-weight;
+  }
+
+  &.medium {
+    @include semibold-font-weight;
+  }
+  &.bold {
+    @include bold-font-weight;
+  }
+  &.small {
+    font-size: 0.8em;
+  }
+
+  &.secondary {
+    color: get-theme-color(text);
+  }
+  &.information {
+    color: get-theme-color(state, info);
+  }
+  &.success {
+    color: get-theme-color(state, success);
+  }
+  &.pending {
+    color: get-theme-color(state, pending);
+  }
+  &.warning {
+    color: get-theme-color(state, warn);
+  }
+  &.danger {
+    color: get-theme-color(state, danger);
+  }
+
+  &.prevent-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &.center {
+    text-align: center;
+  }
+
+  &.compliment {
+    color: rgba(get-theme-color(basic, black), 0.6);
+    &.information {
+      color: darken(get-theme-color(state, info), 30);
+    }
+    &.danger {
+      color: darken(get-theme-color(state, danger), 20);
+    }
+    &.warning {
+      color: darken(get-theme-color(state, warn), 20);
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="parent-navigation-wrapper" routerLinkActive="is-selected">
+  <a
+    class="parent-link"
+    [class.is-collapsed]="!expanded"
+    [routerLink]="item.location"
+    routerLinkActive="is-selected"
+    [routerLinkActiveOptions]="{ exact: true }"
+    ><fa-icon [icon]="item.icon"></fa-icon
+    ><span class="title"><ng-content></ng-content></span
+  ></a>
+  <!-- <div
+    *ngIf="item?.children?.length > 0"
+    class="child-navigation-wrapper"
+    [style.display]="expanded ? 'block' : 'none'"
+  >
+    <a
+      *ngFor="let childItem of item.children"
+      class="child-link"
+      [class.is-collapsed]="!expanded"
+      [routerLink]="childItem.location"
+      routerLinkActive="is-selected"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ><span class="title">{{ childItem.title }}</span></a
+    >
+  </div> -->
+</div>

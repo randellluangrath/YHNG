@@ -1,0 +1,37 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="Task Details" (close)="handleClose()">
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <yh-title [title]="task.name" [level]="3"></yh-title>
+    </div>
+    <yh-display-value-container [horizontal]="true">
+      <yh-display-value label="Assigned To" [inline]="true">{{
+        task.assignedTo
+      }}</yh-display-value>
+      <yh-display-value label="Due" [inline]="true">{{
+        task.dueOn | date: "shortDate"
+      }}</yh-display-value>
+      <yh-display-value label="Status" [inline]="true">{{
+        task.state
+      }}</yh-display-value>
+      <yh-display-value label="Case" [inline]="true">{{
+        task.caseId
+      }}</yh-display-value>
+      <yh-display-value label="Created By" [inline]="true">{{
+        task.createdBy
+      }}</yh-display-value>
+      <yh-display-value label="Created" [inline]="true">{{
+        task.created | date: "shortDate"
+      }}</yh-display-value>
+    </yh-display-value-container>
+    <yh-divider></yh-divider>
+
+    <yh-text [secondary]="true">{{ task.note }}</yh-text>
+  </div>
+
+  <yh-sidebar-layout-footer>
+    <yh-button>Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true">Delete</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

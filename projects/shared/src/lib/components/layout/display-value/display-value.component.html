@@ -1,0 +1,11 @@
+<div
+  [fxLayout]="inline ? 'row' : 'column'"
+  [fxLayoutAlign]="inline ? 'space-between center' : 'start start'"
+  fxLayoutGap="5px"
+>
+  <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+  <yh-text *ngIf="label" [secondary]="true" [medium]="true" [small]="true">{{
+    label
+  }}</yh-text>
+  <yh-text [medium]="true" [small]="true"><ng-content></ng-content></yh-text>
+</div>

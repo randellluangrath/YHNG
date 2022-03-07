@@ -1,0 +1,13 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.score-wrapper {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: get-theme-color(background);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  place-content: center center;
+}

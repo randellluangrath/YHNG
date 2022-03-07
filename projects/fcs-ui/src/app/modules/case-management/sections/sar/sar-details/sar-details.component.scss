@@ -1,0 +1,6 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include full-height();
+}

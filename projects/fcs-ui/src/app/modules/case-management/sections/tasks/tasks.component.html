@@ -1,0 +1,51 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Tasks">
+    <yh-actions>
+      <yh-button (click)="handleAddNew()">Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content
+    class="tasks-content"
+    [formGroup]="fgFilters"
+    fxLayout="column"
+    fxLayoutGap="20px"
+  >
+    <div fxLayout="row" fxLayoutGap="20px">
+      <yh-dropdown-field
+        placeholder="Sort By"
+        [control]="fcFreeText"
+        fxFlex="1 1 200px"
+      ></yh-dropdown-field>
+    </div>
+    <yh-task-item
+      *ngFor="let task of tasks"
+      [task]="task"
+      (onSelected)="handleTaskSelected($event)"
+    ></yh-task-item>
+  </yh-general-layout-content>
+</yh-general-layout>
+
+<yh-drawer
+  [visible]="showTaskForm"
+  [closeOnEscape]="true"
+  [title]="'Add Task'"
+  [pad]="true"
+  width="800px"
+  (hide)="handleDrawerCancel()"
+>
+  <yh-task-edit
+    *ngIf="showTaskForm"
+    (onClose)="handleFormClose()"
+  ></yh-task-edit>
+  <yh-task-details
+    *ngIf="selectedTask"
+    [task]="selectedTask"
+    (onClose)="handleDetailClose()"
+  ></yh-task-details>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleDrawerCancel()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

@@ -1,0 +1,86 @@
+<yh-card class="comment-card" [flat]="true" fxFlex="100%" padSize="small">
+  <div
+    fxLayout="row"
+    fxLayoutGap="5px"
+    fxLayoutAlign="space-between center"
+    *ngIf="!editMode"
+  >
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+      <yh-avatar
+        size="xsmall"
+        [label]="comment.createdBy[0] + comment.createdBy[1].toUpperCase()"
+      ></yh-avatar>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [secondary]="false">{{ comment.comment }}</yh-text>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="5px">
+      <yh-button
+        class="edit-note-button"
+        [iconButton]="true"
+        [secondary]="true"
+        [bordered]="true"
+        size="small"
+        icon="pi pi-pencil"
+        (click)="editNote()"
+      ></yh-button>
+      <yh-button
+        class="edit-note-button"
+        [iconButton]="true"
+        [secondary]="true"
+        [bordered]="true"
+        size="small"
+        icon="pi pi-trash"
+      ></yh-button>
+    </div>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutGap="5px"
+    fxLayoutAlign="space-between center"
+    *ngIf="editMode"
+    [formGroup]="fgNote"
+    style="width: 100%"
+  >
+    <div
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="space-between start"
+      style="width: 100%"
+    >
+      <yh-text-field
+        placeholder="Add a comment..."
+        [control]="fcNote"
+        fxFlex="1 1 90%"
+      ></yh-text-field>
+
+      <div
+        fxFlex="10%"
+        fxLayout="row"
+        fxLayoutGap="10px"
+        fxLayoutAlign="end center"
+      >
+        <yh-button
+          class="edit-note-button"
+          [iconButton]="true"
+          [secondary]="true"
+          [bordered]="true"
+          [text]="true"
+          size="small"
+          icon="pi pi-save"
+          (click)="editNote()"
+        ></yh-button>
+        <yh-button
+          class="edit-note-button"
+          [iconButton]="true"
+          [secondary]="true"
+          [bordered]="true"
+          [danger]="true"
+          [text]="true"
+          size="small"
+          icon="pi pi-times"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+</yh-card>

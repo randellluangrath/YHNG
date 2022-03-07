@@ -1,0 +1,236 @@
+@import "theme-variables";
+@import "theme-functions";
+@import "theme-mixins";
+
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+body {
+  background: get-theme-color(background);
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+a {
+  color: get-theme-color(state, info);
+}
+.yh-widget {
+  background: get-theme-color(basic, white);
+  @include box-shadow;
+  @include border-radius;
+  &-header,
+  header {
+    @include header-defaults;
+  }
+  &-content {
+    padding: 25px;
+  }
+}
+
+.yh-drawer {
+  &.p-sidebar {
+    .p-sidebar-header {
+      display: none;
+    }
+    .p-sidebar-content {
+      padding: 0;
+    }
+  }
+}
+
+.field-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .field-control-label {
+  }
+  .field-control {
+    width: 100%;
+    input {
+      width: inherit;
+    }
+  }
+}
+
+yh-form-field {
+  yh-form-field-error,
+  yh-form-field-warning {
+    display: block;
+    margin-top: 2px;
+  }
+}
+
+.simple-table {
+  border-collapse: collapse;
+  thead {
+    tr {
+      @include border(1px, 1px, 1px, 1px);
+      th {
+        text-align: left;
+        padding: 15px 10px;
+      }
+    }
+  }
+  tbody {
+    @include border(1px, 1px, 1px, 1px);
+    tr {
+      @include border(0, 0, 1px, 0);
+      td {
+        padding: 15px 10px;
+      }
+    }
+  }
+}
+
+/**
+State classes
+**/
+.warning {
+  color: get-theme-color(state, warn);
+}
+
+/**
+Targeting the Virtual scroller to be able to get it to extend the full height of the container
+**/
+yh-due-diligence-questions {
+  p-virtualscroller {
+    height: 100%;
+    .p-virtualscroller {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .p-virtualscroller-content {
+        background: get-theme-color(background);
+        height: 100%;
+
+        .p-virtualscroller-list {
+          height: 100%;
+
+          .cdk-virtual-scroll-viewport {
+            height: 100%;
+            .cdk-virtual-scroll-content-wrapper {
+              padding: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+Angular2-Tree
+**/
+
+tree-node-wrapper {
+  .node-wrapper {
+    align-items: center;
+  }
+}
+.node-drop-slot {
+  &.is-dragging-over {
+    @include header-defaults();
+    background: darken(get-theme-color(background), 10);
+    @include border-radius();
+  }
+}
+.node-content-wrapper {
+  width: 100%;
+  &:hover {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  &.node-content-wrapper-focused,
+  &.node-content-wrapper-active {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+}
+
+yh-due-diligence-questions {
+  tree-viewport {
+    -webkit-tap-highlight-color: transparent;
+    overflow: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    max-height: 500px;
+  }
+  tree-node-expander {
+    display: none;
+  }
+}
+
+yh-task-item {
+  .fa-circle {
+    font-size: 0.55em;
+  }
+}
+
+/**
+Expanded States
+**/
+
+.is-in-progress {
+  color: get-theme-color(state) !important;
+}
+
+.is-on-hold {
+  color: get-theme-color(state, warn) !important;
+}
+
+.is-completed {
+  color: get-theme-color(state, success) !important;
+}
+
+.is-error {
+  color: get-theme-color(state, danger) !important;
+}
+
+.stripe {
+  > div {
+    padding: 15px;
+    &:nth-child(odd) {
+      background: get-theme-color(background);
+    }
+  }
+}
+
+/**
+Override for Tabs in the yh-actions
+**/
+
+.yh-general-layout-header {
+  > div {
+    height: 75px;
+    display: flex;
+    place-items: center;
+    yh-actions {
+      height: inherit;
+      p-tabmenu {
+        height: inherit;
+        .p-tabmenu {
+          height: inherit;
+          .p-tabmenu-nav {
+            height: inherit;
+            .p-tabmenuitem {
+              height: inherit;
+              .p-menuitem-link {
+                height: inherit;
+                border-width: 0 0 2px 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "primeng-overrides";

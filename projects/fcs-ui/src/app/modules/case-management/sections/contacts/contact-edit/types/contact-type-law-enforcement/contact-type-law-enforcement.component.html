@@ -1,0 +1,9 @@
+<div [formGroup]="fgIdentity" fxLayout="column" fxLayoutGap="10px">
+  <yh-text-field label="Agency" [control]="fcAgency"></yh-text-field>
+  <yh-text-field
+    label="Name"
+    [required]="true"
+    [control]="fcName"
+  ></yh-text-field>
+  <yh-date-field label="Date" [control]="fcDate"> </yh-date-field>
+</div>

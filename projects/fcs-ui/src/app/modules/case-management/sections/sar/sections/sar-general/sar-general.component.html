@@ -1,0 +1,52 @@
+<div
+  fxLayout="column"
+  fxLayoutGap="15px"
+  [formGroup]="fgGeneral"
+  [style.width]="'100%'"
+>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <yh-title [level]="2" [title]="'Suspicious Activity Report'"></yh-title>
+  </div>
+  <yh-divider></yh-divider>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">General</yh-text>
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div
+          fxLayout="column"
+          fxLayoutGap="5px"
+          style="width: 100%"
+          fxFlex="48%"
+        >
+          <yh-text-field
+            label="Filing Name"
+            [control]="fcName"
+            [required]="true"
+          >
+          </yh-text-field>
+        </div>
+
+        <yh-text-field
+          label="Prior Report BSA Identification Number (BSA ID)"
+          [control]="fcPriorReportIdentificationNumber"
+          [required]="true"
+          fxFlex="48%"
+        >
+        </yh-text-field>
+      </div>
+      <yh-multiselect-field
+        label="Type of Filing"
+        [control]="fcTypeOfBilling"
+        [required]="true"
+        [options]="[]"
+      >
+      </yh-multiselect-field>
+      <yh-textarea-field
+        label="Filing Institution Note to FinCEN"
+        [control]="fcNote"
+        [required]="true"
+      >
+      </yh-textarea-field>
+    </div>
+  </yh-card>
+</div>

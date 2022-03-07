@@ -1,0 +1,137 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+@mixin color-hex-string($hex) {
+  &:after {
+    content: "#{$hex}";
+    display: block;
+    position: absolute;
+    bottom: -25px;
+    color: get-theme-color(text);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: get-theme-color(basic, white);
+  padding: 50px;
+  gap: 25px;
+  overflow-y: scroll;
+  height: 100%;
+}
+.cube {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.background {
+  background-color: get-theme-color(background);
+  @include color-hex-string(get-theme-color(background));
+
+  &.light {
+    background-color: get-theme-color(background, light);
+    @include color-hex-string(get-theme-color(background, light));
+  }
+  &.medium {
+    background-color: get-theme-color(background, medium);
+    @include color-hex-string(get-theme-color(background, medium));
+  }
+  &.dark {
+    background-color: get-theme-color(background, dark);
+    @include color-hex-string(get-theme-color(background, dark));
+  }
+}
+
+.border {
+  background-color: get-theme-color(borders);
+  @include color-hex-string(get-theme-color(borders));
+  &.light {
+    background-color: get-theme-color(borders, light);
+    @include color-hex-string(get-theme-color(borders, light));
+  }
+  &.dark {
+    background-color: get-theme-color(borders, dark);
+    @include color-hex-string(get-theme-color(borders, dark));
+  }
+}
+
+.text {
+  background-color: get-theme-color(text);
+  @include color-hex-string(get-theme-color(text));
+  &.light {
+    background-color: get-theme-color(text, light);
+    @include color-hex-string(get-theme-color(text, light));
+  }
+  &.dark {
+    background-color: get-theme-color(text, dark);
+    @include color-hex-string(get-theme-color(text, dark));
+  }
+}
+
+.headers {
+  background-color: get-theme-color(headings);
+  @include color-hex-string(get-theme-color(headings));
+  &.light {
+    background-color: get-theme-color(headings, light);
+    @include color-hex-string(get-theme-color(headings, light));
+  }
+  &.dark {
+    background-color: get-theme-color(headings, dark);
+    @include color-hex-string(get-theme-color(headings, dark));
+  }
+}
+
+.state {
+  &.info {
+    background-color: get-theme-color(state, info);
+    @include color-hex-string(get-theme-color(state, info));
+  }
+
+  &.success {
+    background-color: get-theme-color(state, success);
+    @include color-hex-string(get-theme-color(state, success));
+  }
+  &.pending {
+    background-color: get-theme-color(state, pending);
+    @include color-hex-string(get-theme-color(state, pending));
+  }
+  &.warn {
+    background-color: get-theme-color(state, warn);
+    @include color-hex-string(get-theme-color(state, warn));
+  }
+  &.danger {
+    background-color: get-theme-color(state, danger);
+    @include color-hex-string(get-theme-color(state, danger));
+  }
+  &.secondary {
+    background-color: get-theme-color(state, secondary);
+    @include color-hex-string(get-theme-color(state, secondary));
+  }
+}
+
+.brand {
+  &.primary {
+    background-color: get-theme-color(brand, primary);
+    @include color-hex-string(get-theme-color(brand, primary));
+  }
+  &.primary-light {
+    background-color: get-theme-color(brand, primary-light);
+    @include color-hex-string(get-theme-color(brand, primary-light));
+  }
+  &.primary-dark {
+    background-color: get-theme-color(brand, primary);
+    @include color-hex-string(get-theme-color(brand, primary));
+  }
+  &.secondary {
+    background-color: get-theme-color(brand, secondary);
+    @include color-hex-string(get-theme-color(brand, secondary));
+  }
+  &.secondary-light {
+    background-color: get-theme-color(brand, secondary-light);
+    @include color-hex-string(get-theme-color(brand, secondary-light));
+  }
+}

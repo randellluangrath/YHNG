@@ -1,0 +1,50 @@
+<div fxLayout="row" class="lookup-container">
+  <div
+    class="lookup-column"
+    fxLayout="column"
+    [formGroup]="fgLookup"
+    fxFlex="50%"
+  >
+    <div fxLayout="column" fxLayoutGap="10px">
+      <yh-dropdown-field
+        label="Financial Institution"
+        [control]="fcInstitution"
+        [required]="true"
+        [options]="[]"
+        placeholder="Select Financial Institution..."
+      ></yh-dropdown-field>
+      <yh-dropdown-field
+        label="Region"
+        [control]="fcRegions"
+        [options]="[]"
+        placeholder="Select Region..."
+      ></yh-dropdown-field>
+      <yh-dropdown-field
+        label="Branch"
+        [control]="fcBranches"
+        [options]="[]"
+        placeholder="Select Branche..."
+      ></yh-dropdown-field>
+    </div>
+  </div>
+
+  <div
+    fxFlex="50%"
+    class="lookup-results-wrapper"
+    fxLayout="column"
+    fxLayoutGap="10px"
+  >
+    <yh-card
+      *ngFor="let location of locations"
+      padSize="small"
+      [selectable]="true"
+    >
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-text [strong]="true">{{ location.name }}</yh-text>
+        <yh-text [secondary]="true" [small]="true" [medium]="true"
+          >{{ location.region }} - {{ location.branchNumber }}</yh-text
+        >
+      </div>
+    </yh-card>
+  </div>
+</div>

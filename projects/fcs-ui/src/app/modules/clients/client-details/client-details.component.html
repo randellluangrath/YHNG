@@ -1,0 +1,30 @@
+<div fxLayout="column" fxFlex="1 1 100%" fxLayoutGap="25px">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <yh-card fxFlex="1 1 48%" [title]="client.title">
+      <yh-display-value label="Type" [inline]="true"
+        >Individual</yh-display-value
+      >
+      <yh-display-value label="TIN" [inline]="true">123456</yh-display-value>
+      <yh-display-value label="TIN Type" [inline]="true">T</yh-display-value>
+      <yh-display-value label="Birthdate" [inline]="true">T</yh-display-value>
+      <yh-display-value label="Client Date" [inline]="true">T</yh-display-value>
+      <yh-display-value label="Branch" [inline]="true">T</yh-display-value>
+      <yh-display-value label="Officer" [inline]="true">T</yh-display-value>
+      <yh-display-value label="NAICS" [inline]="true">T</yh-display-value>
+      <yh-display-value label="Relationship" [inline]="true"
+        >T</yh-display-value
+      >
+    </yh-card>
+  </div>
+  <p-contextMenu #cm [model]="items" [global]="true"></p-contextMenu>
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="1 1 auto">
+    <p-tree
+      [value]="files"
+      selectionMode="single"
+      [(selection)]="selectedFiles"
+      [contextMenu]="cm"
+      (onNodeSelect)="nodeSelect($event)"
+      (onNodeUnselect)="nodeUnselect($event)"
+    ></p-tree>
+  </div>
+</div>

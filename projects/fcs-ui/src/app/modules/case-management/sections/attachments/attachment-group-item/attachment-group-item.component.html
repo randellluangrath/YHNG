@@ -1,0 +1,71 @@
+<yh-card>
+  <div fxLayout="column" fxFlex="1 1 100%" fxLayoutGap="15px">
+    <div class="note-wrapper" fxLayout="column" fxLayoutGap="15px">
+      <div
+        fxLayout="row"
+        fxFlex="1 1 100%"
+        fxLayoutGap="15px"
+        fxLayoutAlign="space-between start"
+      >
+        <div class="note-wrapper" fxLayout="column" fxLayoutGap="5px">
+          <yh-title [level]="4" [title]="'Branch 34 Evidence'"></yh-title>
+          <yh-text [secondary]="true" [small]="true" [strong]="true"
+            >Added by John Wood on 10/10/2021.</yh-text
+          >
+        </div>
+        <yh-button
+          [iconButton]="true"
+          icon="pi pi-ellipsis-h"
+          (click)="menu.toggle($event)"
+        ></yh-button>
+      </div>
+
+      <yh-text [secondary]="true" style="max-width: 500px">{{
+        group.note
+      }}</yh-text>
+    </div>
+    <yh-divider></yh-divider>
+    <div
+      *ngFor="let attachment of group.attachments"
+      fxLayout="column"
+      fxFlex="1 1 100%"
+      fxLayoutGap="15px"
+      class="attachment-item"
+    >
+      <div
+        fxLayout="row"
+        fxLayoutGap="15px"
+        fxLayoutAlign="space-between center"
+        fxFlex="1 1 auto"
+      >
+        <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+          <yh-file-type-icon
+            [type]="attachment.type"
+            [bordered]="false"
+            [filled]="true"
+            [small]="true"
+          ></yh-file-type-icon>
+          <div fxLayout="column" fxLayoutGap="5px">
+            <yh-title [level]="4" [title]="attachment.name"></yh-title>
+            <yh-text [secondary]="true" [small]="true" [strong]="true"
+              >Added by John Wood on 10/10/2021. 10MB</yh-text
+            >
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px">
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            icon="pi pi-download"
+          ></yh-button>
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            icon="pi pi-trash"
+          ></yh-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</yh-card>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

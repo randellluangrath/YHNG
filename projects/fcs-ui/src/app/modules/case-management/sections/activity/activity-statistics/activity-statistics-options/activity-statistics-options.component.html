@@ -1,0 +1,94 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgFilters">
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Time Period</yh-text>
+
+      <yh-select-button
+        label="Interval"
+        [required]="true"
+        [control]="fcMedium"
+        [options]="timePeriodOptions"
+        placeholder="Select Time Period..."
+      ></yh-select-button>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <yh-date-field
+          fxFlex="175px"
+          label="Starting From"
+          [required]="true"
+          [control]="fcDateRangeFrom"
+          [disabledDays]="[1, 2, 3, 4, 5]"
+        ></yh-date-field>
+        <yh-dropdown-field
+          label="Go Back"
+          placeholder="Months..."
+          [control]="fcHistoricalPeriod"
+          [options]="historicalPeriodOptions"
+          [required]="true"
+          fxFlex="175px"
+        ></yh-dropdown-field>
+        <yh-number-field
+          label="Other Months"
+          [required]="fcHistoricalPeriodOther.enabled"
+          [control]="fcHistoricalPeriodOther"
+        ></yh-number-field>
+        <!-- <yh-dropdown-field
+          label="To Year"
+          [options]="[]"
+          [required]="true"
+          fxFlex="172px"
+        ></yh-dropdown-field> -->
+      </div>
+    </div>
+  </yh-card>
+  <!-- <yh-card [flat]="true"
+    ><div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Amount Range</yh-text>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <yh-currency-field
+          label="Amount From"
+          [control]="fcAmountFrom"
+          placeholder="$0.00"
+        ></yh-currency-field>
+        <yh-currency-field
+          label="Amount To"
+          [control]="fcAmountTo"
+          placeholder="$0.00"
+        ></yh-currency-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true"
+    ><div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Volume Range</yh-text>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <yh-number-field
+          label="Volume From"
+          [control]="fcVolumeFrom"
+          placeholder="0"
+        ></yh-number-field>
+        <yh-number-field
+          label="Volume To"
+          [control]="fcVolumeTo"
+          placeholder="0"
+        ></yh-number-field>
+      </div>
+    </div>
+  </yh-card> -->
+
+  <!-- <yh-card>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Series Options</yh-text>
+      <yh-select-button
+        label="Transaction Type"
+        [required]="true"
+        [options]="transactionTypeOptions"
+        [control]="fcCashInOut"
+      ></yh-select-button>
+      <yh-multiselect-field
+        label="Plot Activity"
+        [control]="fcPlot"
+        [options]="activityTypeOptions"
+        [required]="true"
+      ></yh-multiselect-field></div
+  ></yh-card> -->
+</div>

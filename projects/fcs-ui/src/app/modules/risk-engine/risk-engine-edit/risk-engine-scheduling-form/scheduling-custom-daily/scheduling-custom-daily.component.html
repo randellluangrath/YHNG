@@ -1,0 +1,16 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgScheduling">
+  <yh-select-button
+    label="Using"
+    [control]="fcType"
+    [required]="true"
+    [options]="schedulingOptions"
+  ></yh-select-button>
+  <yh-divider *ngIf="fcType.value === Duration.Days"></yh-divider>
+  <yh-number-field
+    *ngIf="fcType.value === Duration.Days"
+    label="Number of Days"
+    placeholder="Days..."
+    [required]="true"
+    [control]="fcDays"
+  ></yh-number-field>
+</div>

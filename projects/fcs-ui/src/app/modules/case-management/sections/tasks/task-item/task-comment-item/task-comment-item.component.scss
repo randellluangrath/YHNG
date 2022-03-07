@@ -1,0 +1,11 @@
+.comment-card {
+  .edit-note-button {
+    visibility: hidden;
+  }
+
+  &:hover {
+    .edit-note-button {
+      visibility: visible;
+    }
+  }
+}

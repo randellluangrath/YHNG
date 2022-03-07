@@ -1,0 +1,23 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.critieria-list-wrapper {
+  background: get-theme-color(background, light);
+  @include border(1px, 0, 0, 0);
+  padding: 25px;
+}
+
+.criteria-header {
+  padding: 15px 25px 0 25px;
+}
+
+yh-card {
+  .card-actions {
+    visibility: hidden;
+  }
+  &:hover {
+    .card-actions {
+      visibility: visible;
+    }
+  }
+}

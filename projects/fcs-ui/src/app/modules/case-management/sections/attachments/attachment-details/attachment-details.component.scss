@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include full-height();
+}
+.content {
+  @include flex-content();
+}

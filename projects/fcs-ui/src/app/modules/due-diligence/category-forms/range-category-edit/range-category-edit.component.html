@@ -1,0 +1,74 @@
+<div fxLayout="column" fxLayoutGap="5px" [formGroup]="fgAnswers">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <yh-text [strong]="true">Answer Scoring</yh-text>
+    <yh-button
+      [iconButton]="true"
+      icon="pi pi-plus"
+      [secondary]="true"
+      [bordered]="true"
+      (click)="addItem()"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxLayoutGap="0px">
+    <div
+      formArrayName="faAnswers"
+      *ngFor="let item of fgAnswers.get('faAnswers')['controls']; let i = index"
+      class="item-row"
+    >
+      <div
+        [formGroupName]="i"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxFlex="1 1 32%">
+          <yh-text-field
+            placeholder="Answer..."
+            [control]="item.get('fcLower')"
+          ></yh-text-field>
+        </div>
+        <div fxFlex="1 1 32%">
+          <yh-number-field
+            [placeholder]="
+              item.get('fcNoUpper').value ? 'Unbound' : 'Answer...'
+            "
+            [control]="item.get('fcUpper')"
+            [addOn]="
+              i > 0 && fgAnswers.get('faAnswers')['controls'].length - 1 == i
+            "
+            [addOnControl]="item.get('fcNoUpper')"
+          ></yh-number-field>
+        </div>
+        <div fxFlex="1 1 32%" class="score-column">
+          <yh-number-field
+            [min]="0"
+            [max]="100"
+            placeholder="Score..."
+            [control]="item.get('fcScore')"
+          ></yh-number-field>
+        </div>
+
+        <yh-button
+          [disabled]="faAnswers?.length === 1"
+          (click)="removeItem(i)"
+          [iconButton]="true"
+          [secondary]="true"
+          [bordered]="true"
+          icon="pi pi-trash"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span></span>
+    <yh-button
+      [iconButton]="true"
+      icon="pi pi-plus"
+      [secondary]="true"
+      [bordered]="true"
+      (click)="addItem()"
+    ></yh-button>
+  </div>
+</div>

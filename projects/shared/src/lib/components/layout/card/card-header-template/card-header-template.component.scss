@@ -1,0 +1,10 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include header-defaults;
+  &.is-small {
+    height: 50px;
+    padding: 0 15px;
+  }
+}

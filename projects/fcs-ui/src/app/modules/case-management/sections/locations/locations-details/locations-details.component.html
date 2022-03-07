@@ -1,0 +1,43 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Location Details"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <yh-title [level]="3" [title]="location.name"></yh-title>
+          <yh-text [secondary]="true" [small]="true" [strong]="false">{{
+            location.address | address
+          }}</yh-text>
+        </div>
+      </div>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Location</yh-text>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <yh-display-value label="Branch" [inline]="true">{{
+          location.branchNumber
+        }}</yh-display-value>
+        <yh-display-value label="Region" [inline]="true">{{
+          location.region
+        }}</yh-display-value>
+        <yh-display-value label="Phone" [inline]="true">{{
+          location.phone | phone
+        }}</yh-display-value>
+        <yh-display-value label="Added" [inline]="true"
+          >10/10/2021</yh-display-value
+        >
+        <yh-display-value label="Added By" [inline]="true"
+          >John W.</yh-display-value
+        >
+      </div>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button [danger]="true" [ghost]="true">Remove</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

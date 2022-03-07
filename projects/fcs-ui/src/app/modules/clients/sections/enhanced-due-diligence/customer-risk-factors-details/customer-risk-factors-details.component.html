@@ -1,0 +1,22 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    [title]="'Customer Risk Factors'"
+    [canClose]="false"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="15px">
+    <yh-card *ngFor="let factor of factors" [flat]="true" padSize="small">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-text [strong]="true">{{ factor.title }}</yh-text>
+          <yh-text [secondary]="true" [medium]="true" [small]="true">{{
+            factor.subtitle
+          }}</yh-text>
+        </div>
+        <yh-text [medium]="true" [danger]="true">{{
+          factor.abbreviation
+        }}</yh-text>
+      </div>
+    </yh-card>
+  </div>
+</yh-sidebar-layout>

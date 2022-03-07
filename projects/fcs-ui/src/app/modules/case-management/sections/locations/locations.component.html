@@ -1,0 +1,57 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Locations">
+    <yh-actions>
+      <yh-button (click)="showLocationsLookup = true">Add Location</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="contacts-content">
+    <yh-card *ngIf="locations?.length === 0">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <yh-title [level]="2" title="Add Location"></yh-title>
+          <yh-text [secondary]="true"
+            >No Locations have been added to this case. Begin by adding
+            one.</yh-text
+          >
+        </div>
+        <yh-button (click)="handleAddNew()">Add Location</yh-button>
+      </div>
+    </yh-card>
+    <div *ngIf="locations.length > 0">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <yh-locations-item
+          [fxFlex]="'32%'"
+          [fxFlex.gt-lg]="'32%'"
+          [fxFlex.md]="'100%'"
+          [fxFlex.lt-md]="'100%'"
+          *ngFor="let location of locations"
+          [location]="location"
+          [selected]="location === selectedLocation"
+          (click)="selectItem(location)"
+        ></yh-locations-item>
+      </div>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar *ngIf="selectedLocation">
+    <yh-locations-details [location]="selectedLocation"></yh-locations-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+<yh-drawer
+  [visible]="showLocationsLookup"
+  [closeOnEscape]="true"
+  [title]="'Add Location'"
+  [pad]="true"
+  width="800px"
+  (hide)="handleOnHide()"
+>
+  <yh-locations-edit></yh-locations-edit>
+  <!-- <yh-location-lookup></yh-location-lookup> -->
+  <yh-drawer-footer>
+    <yh-button [ghost]="true">Back</yh-button>
+    <yh-button>Save</yh-button>
+    <!-- <yh-button>Add Selected</yh-button> -->
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

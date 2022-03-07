@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutGap="3px">
+  <yh-text
+    class="field-control-label"
+    [strong]="true"
+    [small]="false"
+    [secondary]="disabled"
+    >{{ label }}
+    <yh-required-marker
+      [style.visibility]="required ? 'visible' : 'hidden'"
+      [style.opacity]="disabled ? 0.3 : 1"
+    ></yh-required-marker>
+  </yh-text>
+</div>

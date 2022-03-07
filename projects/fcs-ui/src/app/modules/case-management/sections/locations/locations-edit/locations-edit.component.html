@@ -1,0 +1,114 @@
+<div [formGroup]="fgExternalLocation" fxLayout="column" fxLayoutGap="15px">
+  <yh-text-field
+    label="Financial Institution Name"
+    [control]="fcName"
+    [required]="true"
+  >
+  </yh-text-field>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <yh-text-field label="TIN" [control]="fcTin"></yh-text-field>
+    <yh-checkbox
+      label="Unknown"
+      [control]="fcTinUnknown"
+      [small]="true"
+    ></yh-checkbox>
+  </div>
+  <yh-dropdown-field
+    label="TIN Type"
+    [control]="fcTinType"
+    [options]="[]"
+  ></yh-dropdown-field>
+
+  <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+    <yh-text-field label="Address" [control]="fcAddress"> </yh-text-field>
+    <yh-checkbox
+      label="Unknown"
+      [control]="fcAddressUnknown"
+      [small]="true"
+    ></yh-checkbox>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutGap="5px"
+    style="width: 100%"
+    fxLayoutAlign="space-between start"
+  >
+    <div fxFlex="0 0 49%">
+      <yh-text-field label="Address Line 2" [control]="fcAddressTwo">
+      </yh-text-field>
+    </div>
+    <div fxFlex="0 0 49%">
+      <yh-text-field label="Address Line 3" [control]="fcAddressThree">
+      </yh-text-field>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="5px"
+    style="width: 100%"
+    fxLayoutAlign="space-between start"
+  >
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48">
+      <yh-text-field label="City" [control]="fcCity"> </yh-text-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcCityUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 49%">
+      <yh-dropdown-field
+        label="State"
+        [options]="stateOptions"
+        [control]="fcState"
+      >
+      </yh-dropdown-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcStateUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+  </div>
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="5px"
+    style="width: 100%"
+    fxLayoutAlign="space-between start"
+  >
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 49%">
+      <yh-text-field label="Zip Code" [control]="fcZipCode"> </yh-text-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcZipCodeUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 49%">
+      <yh-dropdown-field
+        label="Country"
+        [options]="countryOptions"
+        [control]="fcCountry"
+      >
+      </yh-dropdown-field>
+      <yh-checkbox
+        label="Unknown"
+        [control]="fcCountryUnknown"
+        [small]="true"
+      ></yh-checkbox>
+    </div>
+  </div>
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="5px"
+    style="width: 100%"
+    fxLayoutAlign="space-between start"
+  >
+    <yh-phone-field
+      label="Phone"
+      [control]="fcPhone"
+      [required]="false"
+    ></yh-phone-field>
+  </div>
+</div>

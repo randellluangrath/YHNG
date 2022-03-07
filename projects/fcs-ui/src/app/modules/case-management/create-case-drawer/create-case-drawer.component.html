@@ -1,0 +1,122 @@
+<yh-drawer
+  [visible]="visible"
+  [closeOnEscape]="true"
+  [title]="'Create Case'"
+  width="600px"
+  (hide)="handleOnHide()"
+>
+  <div fxLayout="column" fxLayoutGap="25px">
+    <yh-card padSize="small" [flat]="true">
+      <yh-card-header-template size="small" fxFlex="100%">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+          <yh-text [bold]="true">Details</yh-text>
+          <yh-actions>
+            <yh-checkbox
+              label="High Priority"
+              [secondary]="true"
+              [control]="fcHighPriority"
+            ></yh-checkbox
+          ></yh-actions>
+        </div>
+      </yh-card-header-template>
+      <div [formGroup]="fgCase" fxLayout="column" fxLayoutGap="15px">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="10px"
+          >
+            <yh-text-field
+              fxFlex="49%"
+              label="Name"
+              [required]="true"
+              [control]="fcName"
+            ></yh-text-field>
+            <yh-dropdown-field
+              fxFlex="49%"
+              label="Status"
+              [required]="true"
+              [control]="fcStatus"
+            ></yh-dropdown-field>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="10px"
+          >
+            <yh-dropdown-field
+              label="Case Type"
+              [required]="true"
+              [control]="fcType"
+            ></yh-dropdown-field>
+            <yh-dropdown-field
+              label="Case Sub-Type"
+              [required]="true"
+              [control]="fcSubType"
+            ></yh-dropdown-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <yh-dropdown-field
+              fxFlex="49%"
+              label="Assigned To"
+              [control]="fcAssignee"
+            ></yh-dropdown-field>
+            <yh-date-field label="Due On" [control]="fcDue"></yh-date-field>
+          </div>
+
+          <yh-textarea-field
+            label="Description"
+            [control]="fcDescription"
+            [small]="true"
+          ></yh-textarea-field>
+        </div>
+      </div>
+    </yh-card>
+    <yh-card padSize="small" [flat]="true">
+      <yh-card-header-template size="small" fxFlex="100%">
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <fa-icon [icon]="accountIcon"></fa-icon>
+          <yh-text [bold]="true">Acme Inc</yh-text>
+        </div>
+      </yh-card-header-template>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [secondary]="true" [small]="true" [medium]="true"
+          >Select one or more suggested Accounts below to include</yh-text
+        >
+        <div fxLayout="column" fxLayoutGap="15px">
+          <yh-card
+            padSize="small"
+            [flat]="true"
+            *ngFor="let subject of subjects"
+            [selectable]="true"
+          >
+            <div
+              fxLayout="row"
+              fxLayoutGap="5px"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                fxLayout="row"
+                fxLayoutGap="5px"
+                fxLayoutAlign="start center"
+              >
+                <!-- <yh-checkbox [control]="fcSubject"></yh-checkbox> -->
+                <fa-icon [icon]="subjectIcon"></fa-icon>
+                <yh-text [medium]="true">{{
+                  subject.firstName + " " + subject.lastName
+                }}</yh-text>
+              </div>
+              <!-- <yh-tag>Suggested</yh-tag> -->
+            </div>
+          </yh-card>
+        </div>
+      </div>
+    </yh-card>
+  </div>
+  <yh-drawer-footer>
+    <yh-split-button label="Create" [options]="saveOptions"></yh-split-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

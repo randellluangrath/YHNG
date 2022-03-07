@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3px">
+  <div fxLayout="column">
+    <yh-text [strong]="true">{{ account.name }}</yh-text>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <yh-text [secondary]="true" [small]="true">{{
+      account.accountNumber
+    }}</yh-text>
+    <yh-text [secondary]="true" [small]="true">{{ account.branch }}</yh-text>
+    <yh-text [secondary]="true" [small]="true">{{ account.tin }}</yh-text>
+  </div>
+</div>

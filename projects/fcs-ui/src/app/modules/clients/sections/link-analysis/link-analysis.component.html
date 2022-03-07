@@ -1,0 +1,482 @@
+<yh-general-layout [pad]="false">
+  <yh-general-layout-header title="Link Analysis">
+    <yh-actions><yh-button>Actions</yh-button></yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content>
+    <div class="content-wrapper" fxLayout="column">
+      <!-- <div class="toolbar">
+        <yh-text>Toolbar</yh-text>
+      </div> -->
+      <div class="panzoom-container" fxFlex="50%">
+        <div class="panzoom">
+          <pan-zoom [config]="panZoomConfig">
+            <div style="position: relative">
+              <p-organizationChart
+                [value]="data"
+                selectionMode="single"
+                (onNodeSelect)="onNodeSelect($event)"
+              >
+                <ng-template let-node pTemplate="person">
+                  <div class="node-header p-corner-top">
+                    <yh-text [bold]="true" [small]="true">{{
+                      node.label
+                    }}</yh-text>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text
+                        [secondary]="true"
+                        [small]="true"
+                        [medium]="true"
+                        >{{ node.data.name }}</yh-text
+                      >
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="accounts">
+                  <div class="node-header p-corner-top">
+                    <fa-icon [icon]="accountIcon"></fa-icon>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text [bold]="true" [small]="true">{{
+                        node.label
+                      }}</yh-text>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="account">
+                  <div class="node-header p-corner-top">
+                    <yh-text [bold]="true" [small]="true">{{
+                      node.data.number
+                    }}</yh-text>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text
+                        [secondary]="true"
+                        [small]="true"
+                        [medium]="true"
+                        [preventWrap]="true"
+                        >{{ node.data.name }}</yh-text
+                      >
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="cases">
+                  <div class="node-header p-corner-top">
+                    <fa-icon [icon]="casesIcon"></fa-icon>
+                  </div>
+                  <div class="node-content" #node>
+                    <div>
+                      <yh-text [bold]="true" [small]="true">{{
+                        node.label
+                      }}</yh-text>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="case">
+                  <div class="node-header p-corner-top">
+                    <yh-text [bold]="true" [small]="true">{{
+                      node.data.number
+                    }}</yh-text>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text
+                        [secondary]="true"
+                        [small]="true"
+                        [medium]="true"
+                        [preventWrap]="true"
+                        >{{ node.data.name }}</yh-text
+                      >
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="customers">
+                  <div class="node-header p-corner-top">
+                    <fa-icon [icon]="customerIcon"></fa-icon>
+                  </div>
+                  <div class="node-content" #node>
+                    <div>
+                      <yh-text [bold]="true" [small]="true">{{
+                        node.label
+                      }}</yh-text>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="customer">
+                  <div class="node-header p-corner-top">
+                    <yh-text [bold]="true" [small]="true">{{
+                      node.data.number
+                    }}</yh-text>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text
+                        [secondary]="true"
+                        [small]="true"
+                        [medium]="true"
+                        [preventWrap]="true"
+                        >{{ node.data.name }}</yh-text
+                      >
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="alerts">
+                  <div class="node-header p-corner-top">
+                    <fa-icon [icon]="alertsIcon"></fa-icon>
+                  </div>
+                  <div class="node-content" #node>
+                    <div>
+                      <yh-text [bold]="true" [small]="true">{{
+                        node.label
+                      }}</yh-text>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-node pTemplate="alert">
+                  <div class="node-header p-corner-top">
+                    <yh-text [bold]="true" [small]="true">{{
+                      node.data.number
+                    }}</yh-text>
+                  </div>
+                  <div class="node-content">
+                    <div>
+                      <yh-text
+                        [secondary]="true"
+                        [small]="true"
+                        [medium]="true"
+                        [preventWrap]="true"
+                        >{{ node.data.name }}</yh-text
+                      >
+                    </div>
+                  </div>
+                </ng-template>
+              </p-organizationChart>
+            </div>
+          </pan-zoom>
+        </div>
+      </div>
+      <div class="transaction-container" fxFlex="auto">
+        <p-table
+          [value]="transactions"
+          [scrollable]="true"
+          scrollDirection="both"
+          scrollHeight="flex"
+          [paginator]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[10, 25, 50]"
+          [rows]="10"
+          styleClass="p-datatable-sm"
+        >
+          <!-- <ng-template pTemplate="caption">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="15px"
+                style="padding: 0 35px"
+                [formGroup]="fgFilters"
+              >
+                <yh-text-field
+                  fxFlex="200px"
+                  [control]="fcFreeText"
+                  placeholder="Search Transactions..."
+                  [search]="true"
+                ></yh-text-field>
+                <yh-dropdown-field
+                  fxFlex="200px"
+                  [control]="fcMedium"
+                  [options]="mediumOptions"
+                  placeholder="Select Medium..."
+                ></yh-dropdown-field>
+                <yh-date-field
+                  fxFlex="250px"
+                  [control]="fcDateRange"
+                  [range]="true"
+                  [months]="2"
+                ></yh-date-field>
+                <yh-select-button
+                  [control]="fcType"
+                  [options]="transactionTypeOptions"
+                ></yh-select-button>
+              </div>
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start start"
+                fxLayoutGap="10px"
+              >
+                <yh-toggle-button [icon]="exportIconLight"></yh-toggle-button>
+                <yh-button
+                  [iconButton]="true"
+                  icon="fal fa-cog"
+                  [text]="true"
+                  [secondary]="true"
+                  (click)="toggleFilters()"
+                ></yh-button>
+              </div>
+            </div>
+          </ng-template> -->
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <!-- <th
+                style="width: 100px; padding-left: 50px"
+                alignFrozen="left"
+                pFrozenColumn
+                [frozen]="true"
+              ></th> -->
+              <th
+                style="width: 100px; padding-left: 50px"
+                alignFrozen="left"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true"> Date</yh-text>
+              </th>
+              <th
+                style="width: 200px"
+                alignFrozen="left"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true"> Account</yh-text>
+              </th>
+
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Type</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Batch</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Sequence</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Effective</yh-text>
+              </th>
+              <th style="width: 652px">
+                <yh-text [strong]="true"> Description</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Debit</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Credit</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Cash In</yh-text>
+              </th>
+              <th style="width: 100px">
+                <yh-text [strong]="true"> Cash Out</yh-text>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-transaction let-columns="columns">
+            <tr
+              [class.is-flagged]="transaction.flagged"
+              [pSelectableRow]="transaction"
+            >
+              <!-- <td style="width: 100px; padding-left: 50px" pFrozenColumn>
+                <yh-button
+                  [iconButton]="true"
+                  [text]="true"
+                  [bordered]="false"
+                  icon="fas fa-bookmark"
+                  [danger]="transaction.flagged"
+                  [secondary]="!transaction.flagged"
+                  (click)="transaction.flagged = !transaction.flagged"
+                  size="small"
+                ></yh-button>
+              </td> -->
+              <td style="width: 100px; padding-left: 50px" pFrozenColumn>
+                <yh-text [danger]="transaction.flagged">{{
+                  transaction.created | date: "shortDate"
+                }}</yh-text>
+              </td>
+              <td style="width: 200px" pFrozenColumn>
+                <yh-text [danger]="transaction.flagged">{{
+                  transaction.account
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true"
+                  >Wire</yh-text
+                >
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.batch
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.sequence
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.effective | date: "shortDate"
+                }}</yh-text>
+              </td>
+              <td style="width: 652px">
+                <yh-text
+                  [danger]="transaction.flagged"
+                  [secondary]="true"
+                  [preventWrap]="true"
+                  >{{ transaction.description }}</yh-text
+                >
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.debit | currency
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.credit | currency
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.debit | currency
+                }}</yh-text>
+              </td>
+              <td style="width: 100px">
+                <yh-text [danger]="transaction.flagged" [secondary]="true">{{
+                  transaction.credit | currency
+                }}</yh-text>
+              </td>
+            </tr>
+          </ng-template>
+          <!-- <ng-template pTemplate="paginatorright">
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [strong]="true" [secondary]="true"
+                >Debit Total:
+                <yh-text>{{
+                  getSelectedTransactionsTotal() | currency
+                }}</yh-text></yh-text
+              >
+              <yh-text [strong]="true" [secondary]="true"
+                >Credit Total:
+                <yh-text>{{
+                  getSelectedTransactionsTotal() | currency
+                }}</yh-text></yh-text
+              >
+              <yh-text [strong]="true" [secondary]="true"
+                >Cash In Total:
+                <yh-text>{{
+                  getSelectedTransactionsTotal() | currency
+                }}</yh-text></yh-text
+              >
+              <yh-text [strong]="true" [secondary]="true"
+                >Cash Out Total:
+                <yh-text>{{
+                  getSelectedTransactionsTotal() | currency
+                }}</yh-text></yh-text
+              >
+            </div>
+          </ng-template> -->
+        </p-table>
+      </div>
+    </div>
+    <!--   <p-treeTable
+          [value]="relationships"
+          [columns]="cols"
+          selectionMode="checkbox"
+          [scrollable]="true"
+          scrollHeight="flex"
+          styleClass="p-treetable-sm link-analysis-tree"
+        >
+       <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns">
+                {{ col.header }}
+              </th>
+              <th width="250"></th>
+            </tr>
+          </ng-template> 
+          <ng-template
+            pTemplate="body"
+            let-rowNode
+            let-rowData="rowData"
+            let-columns="columns"
+          >
+            <tr>
+              <td *ngFor="let col of columns; let i = index">
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="10px"
+                  fxLayoutAlign="start center"
+                >
+                  <p-treeTableToggler
+                    [rowNode]="rowNode"
+                    *ngIf="i == 0"
+                  ></p-treeTableToggler>
+
+                  <div *ngIf="i == 0" fxLayout="row" fxLayoutGap="5px">
+                    <yh-text [secondary]="true">
+                      <span [attr.class]="rowData.icon"></span
+                    ></yh-text>
+                    <yh-text>{{ rowData.label }}</yh-text>
+                  </div>
+                </div>
+                <div *ngIf="i == 1" fxLayout="row" fxLayoutGap="5px">
+                  <div [ngSwitch]="rowData.type">
+                    <yh-text [secondary]="true" *ngSwitchDefault
+                      >Unknown</yh-text
+                    >
+                    <yh-text
+                      [secondary]="true"
+                      *ngSwitchCase="RelationshipType.Account"
+                      >Account</yh-text
+                    >
+                    <yh-text
+                      [secondary]="true"
+                      *ngSwitchCase="RelationshipType.Alias"
+                      ><span *ngIf="rowData.primary">Primary </span
+                      >Alias</yh-text
+                    >
+                    <yh-text
+                      [secondary]="true"
+                      *ngSwitchCase="RelationshipType.Client"
+                      >Client</yh-text
+                    >
+                  </div>
+                </div>
+
+                <yh-text [secondary]="true" *ngIf="i == 2">{{
+                  rowData.secondaryType
+                }}</yh-text>
+              </td>
+              <td width="250" style="text-align: right">
+                <yh-button
+                  [iconButton]="true"
+                  [secondary]="true"
+                  [bordered]="true"
+                  icon="fas fa-ellipsis-h"
+                  (click)="toggleOptionsMenu(rowData, $event)"
+                ></yh-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-treeTable> -->
+  </yh-general-layout-content>
+</yh-general-layout>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  [title]="'Unmerge Clients'"
+  width="800px"
+  (hide)="handleOnHide()"
+>
+  <yh-unmerge-clients></yh-unmerge-clients>
+  <yh-drawer-footer>
+    <yh-button>Unmerge</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleDrawerCancel()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

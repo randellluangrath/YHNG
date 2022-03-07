@@ -1,0 +1,26 @@
+<yh-card [selectable]="true" [selected]="attachment.isSelected">
+  <div fxLayout="column" fxFlex="1 1 100%" fxLayoutGap="25px">
+    <div
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="space-between center"
+    ></div>
+    <div
+      fxLayout="column"
+      fxLayoutGap="25px"
+      fxLayoutAlign="start center"
+      fxFlex="1 1 auto"
+    >
+      <yh-file-type-icon [type]="attachment.type"></yh-file-type-icon>
+      <yh-title [level]="4" [title]="attachment.name"></yh-title>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between center">
+      <span fxLayout="column" fxLayoutGap="5px">
+        <yh-text [strong]="true">File Size</yh-text>
+        <yh-text [secondary]="true">10MB</yh-text>
+      </span>
+      <fa-icon [icon]="noteIcon"></fa-icon>
+    </div>
+  </div>
+</yh-card>

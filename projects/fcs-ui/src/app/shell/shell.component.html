@@ -1,0 +1,19 @@
+<div
+  class="yh-shell-wrapper"
+  [class.has-expanded-menu]="isExpanded"
+  [class.has-collapsed-menu]="!isExpanded"
+  [class.is-mobile]="data.isSmall"
+  *ngIf="{ isSmall: isScreenSmall$ | async } as data"
+>
+  <yh-shell-main-navigation
+    (onExpanded)="handleExpansion($event)"
+  ></yh-shell-main-navigation>
+  <div class="main-content-wrapper">
+    <div fxLayout="column" fxLayoutAlign="start" style="height: 100%">
+      <app-header></app-header>
+      <div class="main-content" fxFlex="1 1 auto" style="overflow: hidden">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

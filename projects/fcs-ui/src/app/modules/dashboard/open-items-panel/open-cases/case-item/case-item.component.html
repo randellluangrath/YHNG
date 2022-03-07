@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ case.name }}</yh-text>
+      <yh-text [secondary]="true" [small]="true" [medium]="true"
+        >Due {{ case.due | localDate }}</yh-text
+      >
+    </div>
+  </div>
+  <div class="score-wrapper">
+    <yh-text [warning]="case.highPriority"
+      ><fa-icon
+        [icon]="
+          case.highPriority
+            ? highImportanceIconFilled
+            : highImportanceIconOutlined
+        "
+      ></fa-icon
+    ></yh-text>
+  </div>
+</div>

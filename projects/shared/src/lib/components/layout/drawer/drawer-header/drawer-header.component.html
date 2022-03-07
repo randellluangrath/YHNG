@@ -1,0 +1,16 @@
+<yh-title [title]="title" [level]="2"></yh-title>
+<yh-button
+  *ngIf="showCloseIcon && !enableActions"
+  [iconButton]="true"
+  [secondary]="true"
+  [text]="true"
+  icon="pi pi-times"
+  (click)="handleClose()"
+></yh-button>
+
+<div *ngIf="enableActions" fxLayout="row" fxLayoutGap="5px">
+  <yh-button>Save</yh-button>
+  <yh-button [ghost]="true" [warning]="true" (click)="handleClose()">
+    Cancel
+  </yh-button>
+</div>

@@ -1,0 +1,46 @@
+<yh-card [flat]="true" padSize="small">
+  <div fxLayout="column" [fxLayoutGap]="showCommentsForm ? '10px' : '3px'">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <yh-text [secondary]="false" [small]="true" [strong]="true">
+        {{ note.createdBy }} on {{ note.created | localDate }}
+      </yh-text>
+
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <yh-button
+          *ngIf="showCommentsForm"
+          [icon]="'fal fa-times'"
+          [iconButton]="true"
+          [warning]="true"
+          [text]="true"
+          (click)="showCommentsForm = !showCommentsForm"
+        ></yh-button>
+        <yh-button
+          *ngIf="!showCommentsForm"
+          [icon]="showCommentsForm ? 'fal fa-save' : 'fal fa-pencil'"
+          [iconButton]="true"
+          [secondary]="!showCommentsForm"
+          [text]="true"
+          (click)="showCommentsForm = !showCommentsForm"
+        ></yh-button>
+        <yh-button
+          [icon]="'fal fa-save'"
+          [iconButton]="true"
+          [information]="true"
+          [text]="true"
+          *ngIf="showCommentsForm"
+          (click)="showCommentsForm = !showCommentsForm"
+        ></yh-button>
+      </div>
+    </div>
+    <yh-textarea-field
+      [control]="fcComment"
+      placeholder="Comment"
+      [max]="150"
+      [small]="true"
+      *ngIf="showCommentsForm"
+    ></yh-textarea-field>
+    <yh-text *ngIf="!showCommentsForm" [secondary]="true">
+      {{ note.note }}
+    </yh-text>
+  </div>
+</yh-card>

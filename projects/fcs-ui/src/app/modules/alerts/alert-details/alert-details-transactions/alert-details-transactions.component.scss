@@ -1,0 +1,30 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.is-flagged {
+  &:not(.p-highlight) {
+    > td {
+    }
+  }
+}
+
+/**
+PrimeNG seems to have a positioning bug when table
+that wants to use Frozen Columns lives in a Drawer.
+I have to manually set these.
+**/
+.transaction-row,
+.transaction-headers {
+  td,
+  th {
+    &:nth-child(1) {
+      left: 0 !important;
+    }
+    &:nth-child(2) {
+      left: 100px !important;
+    }
+    &:nth-child(3) {
+      left: 200px !important;
+    }
+  }
+}

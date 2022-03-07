@@ -1,0 +1,158 @@
+<div fxLayout="column" fxLayoutGap="25px">
+  <div fxLayout="row" fxLayoutGap="25px">
+    <yh-card title="Watch List 12345" fxFlex="1 1 48%">
+      <yh-display-value label="Title" [inline]="true"
+        >Michael L Caruso</yh-display-value
+      >
+      <yh-display-value label="Type" [inline]="true"
+        >Individual</yh-display-value
+      >
+      <yh-display-value label="Date" [inline]="true"
+        >10/10/2010 @ 12:43am</yh-display-value
+      >
+      <yh-display-value label="List" [inline]="true">314(a)</yh-display-value>
+    </yh-card>
+    <yh-card title="Potential Match" fxFlex="1 1 48%">
+      <div fxLayout="column" fxLayoutGap="5px">
+        <yh-text [strong]="true">Matched On</yh-text
+        ><yh-text [secondary]="true">Name, Date of Birth, Address</yh-text>
+      </div>
+    </yh-card>
+  </div>
+  <table class="simple-table">
+    <thead>
+      <tr>
+        <th>
+          <yh-text [strong]="true">Field</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">Customer</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">Potential Match</yh-text>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><yh-text [strong]="true">Type</yh-text></td>
+        <td><yh-text [secondary]="true">Individual</yh-text></td>
+        <td><yh-text [secondary]="true">Individual</yh-text></td>
+      </tr>
+      <tr class="matched">
+        <td><yh-text [strong]="true">Last Name</yh-text></td>
+        <td><yh-text [secondary]="true">Caruso</yh-text></td>
+        <td><yh-text [secondary]="true">CARO QUINTERO</yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">First Name</yh-text></td>
+        <td><yh-text [secondary]="true">Michael</yh-text></td>
+        <td><yh-text [secondary]="true">Michael Angel</yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Title</yh-text></td>
+        <td><yh-text [secondary]="true"></yh-text></td>
+        <td><yh-text [secondary]="true"></yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Date of Birth</yh-text></td>
+        <td><yh-text [secondary]="true">08/16/1972</yh-text></td>
+        <td><yh-text [secondary]="true">08/16/1972</yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Place of Birth</yh-text></td>
+        <td><yh-text [secondary]="true">US</yh-text></td>
+        <td>
+          <yh-text [secondary]="true">Anaco, Anzoategui, Venezuela</yh-text>
+        </td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Nationality</yh-text></td>
+        <td><yh-text [secondary]="true">US</yh-text></td>
+        <td><yh-text [secondary]="true">Venezuela</yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Citizenship</yh-text></td>
+        <td><yh-text [secondary]="true">US</yh-text></td>
+        <td><yh-text [secondary]="true"></yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">Aliases</yh-text></td>
+        <td><yh-text [secondary]="true">Mike Smith</yh-text></td>
+        <td><yh-text [secondary]="true"></yh-text></td>
+      </tr>
+      <tr>
+        <td><yh-text [strong]="true">IDs</yh-text></td>
+        <td><yh-text [secondary]="true">Mike Smith</yh-text></td>
+        <td><yh-text [secondary]="true"></yh-text></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="simple-table">
+    <thead>
+      <tr>
+        <th>
+          <yh-text [strong]="true">Address</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">City</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">State/Province</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">Postal Code</yh-text>
+        </th>
+        <th>
+          <yh-text [strong]="true">Country</yh-text>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="matched">
+        <td>
+          <yh-text [secondary]="true"
+            >Calle Ayacucho Cruce con Calle Apure</yh-text
+          >
+        </td>
+        <td><yh-text [secondary]="true">Anaco</yh-text></td>
+        <td><yh-text [secondary]="true">Anzoategui</yh-text></td>
+        <td><yh-text [secondary]="true">6003</yh-text></td>
+        <td><yh-text [secondary]="true">Venezuela</yh-text></td>
+      </tr>
+      <tr>
+        <td>
+          <yh-text [secondary]="true"
+            >Calle Ayacucho Cruce con Calle Apure</yh-text
+          >
+        </td>
+        <td><yh-text [secondary]="true">Anaco</yh-text></td>
+        <td><yh-text [secondary]="true">Anzoategui</yh-text></td>
+        <td><yh-text [secondary]="true">6003</yh-text></td>
+        <td><yh-text [secondary]="true">Venezuela</yh-text></td>
+      </tr>
+      <tr>
+        <td>
+          <yh-text [secondary]="true"
+            >Calle Ayacucho Cruce con Calle Apure</yh-text
+          >
+        </td>
+        <td><yh-text [secondary]="true">Anaco</yh-text></td>
+        <td><yh-text [secondary]="true">Anzoategui</yh-text></td>
+        <td><yh-text [secondary]="true">6003</yh-text></td>
+        <td><yh-text [secondary]="true">Venezuela</yh-text></td>
+      </tr>
+      <tr>
+        <td>
+          <yh-text [secondary]="true"
+            >Calle Ayacucho Cruce con Calle Apure</yh-text
+          >
+        </td>
+        <td><yh-text [secondary]="true">Anaco</yh-text></td>
+        <td><yh-text [secondary]="true">Anzoategui</yh-text></td>
+        <td><yh-text [secondary]="true">6003</yh-text></td>
+        <td><yh-text [secondary]="true">Venezuela</yh-text></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

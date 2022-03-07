@@ -1,0 +1,10 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+yh-attachment-file-item {
+  display: block;
+  padding: 10px;
+  &:nth-child(even) {
+    background: get-theme-color(background);
+  }
+}

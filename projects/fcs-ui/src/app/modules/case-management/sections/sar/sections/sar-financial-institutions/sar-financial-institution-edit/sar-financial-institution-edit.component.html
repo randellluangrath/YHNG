@@ -1,0 +1,264 @@
+<div [formGroup]="fgInstitution" fxLayout="column" fxLayoutGap="15px">
+  <yh-card [flat]="true">
+    <yh-actions>
+      <!-- <yh-button
+        [iconButton]="true"
+        icon="pi pi-trash"
+        [text]="true"
+        [bordered]="true"
+        [secondary]="true"
+      ></yh-button> -->
+    </yh-actions>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">General</yh-text>
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div
+          fxLayout="column"
+          fxLayoutGap="5px"
+          style="width: 100%"
+          fxFlex="48%"
+        >
+          <yh-text-field label="Name" [control]="fcName" [required]="true">
+          </yh-text-field>
+          <yh-checkbox
+            label="Unknown"
+            [control]="fcNameUnknown"
+            [small]="true"
+          ></yh-checkbox>
+        </div>
+
+        <yh-text-field
+          label="Alternate Name"
+          [control]="fcName"
+          [required]="true"
+          fxFlex="48%"
+        >
+          <yh-form-field-description
+            >e.g., AKA - individual or trade name, DBA -
+            entity</yh-form-field-description
+          >
+        </yh-text-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-dropdown-field
+          label="Type"
+          [control]="fcType"
+          [required]="true"
+          [options]="[]"
+          fxFlex="48%"
+        >
+        </yh-dropdown-field>
+        <yh-text-field
+          label="Type Other"
+          [control]="fcTypeOther"
+          [required]="true"
+          fxFlex="48%"
+        >
+        </yh-text-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Identification</yh-text>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text-field
+          label="TIN"
+          [control]="fcTin"
+          [required]="true"
+          fxFlex="48%"
+        ></yh-text-field>
+        <yh-dropdown-field
+          label="TIN Type"
+          [control]="fcTinType"
+          [required]="true"
+          [options]="[]"
+          fxFlex="48%"
+        ></yh-dropdown-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-dropdown-field
+          label="Identification"
+          [control]="fcIdentificationType"
+          fxFlex="48%"
+        >
+        </yh-dropdown-field>
+        <yh-text-field
+          label="Number"
+          [control]="fcIndentificationNumber"
+          fxFlex="48%"
+        >
+        </yh-text-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text-field
+          label="Internal Control / File Number"
+          [control]="fcFileNumber"
+          fxFlex="48%"
+        ></yh-text-field>
+        <yh-currency-field
+          label="Loss to financial institution"
+          [control]="fcLoss"
+          placeholder="$0.00"
+          fxFlex="48%"
+        ></yh-currency-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [strong]="true">Role in transaction</yh-text>
+        <yh-checkbox-group
+          formArrayName="faRole"
+          [formGroup]="fgInstitution"
+          [options]="roleOptions"
+          [inline]="true"
+        ></yh-checkbox-group>
+      </div>
+      <yh-divider></yh-divider>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [strong]="true">Gaming Activities</yh-text>
+        <yh-checkbox-group
+          formArrayName="faTypeOfGaming"
+          [formGroup]="fgInstitution"
+          [options]="gamingActivitiesOptions"
+          [inline]="true"
+        ></yh-checkbox-group>
+        <yh-text-field
+          label="Other"
+          [control]="fcTypeOfGamingOther"
+        ></yh-text-field>
+      </div>
+      <yh-divider></yh-divider>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [strong]="true">Securities</yh-text>
+        <yh-checkbox-group
+          formArrayName="faTypeOfSecurities"
+          [formGroup]="fgInstitution"
+          [options]="securitiesOptions"
+        ></yh-checkbox-group>
+        <yh-text-field
+          label="Other"
+          [control]="fcTypeOfSecuritiesOther"
+        ></yh-text-field>
+      </div></div
+  ></yh-card>
+
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+        <yh-text-field label="Address" [control]="fcAddress" [required]="true">
+        </yh-text-field>
+        <yh-checkbox
+          label="Unknown"
+          [control]="fcAddressUnknown"
+          [small]="true"
+        ></yh-checkbox>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="5px" style="width: 100%">
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48">
+          <yh-text-field label="City" [control]="fcCity" [required]="true">
+          </yh-text-field>
+          <yh-checkbox
+            label="Unknown"
+            [control]="fcCityUnknown"
+            [small]="true"
+          ></yh-checkbox>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-dropdown-field
+            label="State"
+            [control]="fcState"
+            [required]="true"
+          >
+          </yh-dropdown-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="5px" style="width: 100%">
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-text-field
+            label="Zip Code"
+            [control]="fcZipCode"
+            [required]="true"
+          >
+          </yh-text-field>
+          <yh-checkbox
+            label="Unknown"
+            [control]="fcZipCodeUnknown"
+            [small]="true"
+          ></yh-checkbox>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-dropdown-field
+            label="Country"
+            [control]="fcCountry"
+            [required]="true"
+          >
+          </yh-dropdown-field>
+          <yh-checkbox
+            label="Unknown"
+            [control]="fcCountryUnknown"
+            [small]="true"
+          ></yh-checkbox>
+        </div>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text [strong]="true">Branches</yh-text>
+        <yh-button
+          [iconButton]="true"
+          [text]="true"
+          [bordered]="true"
+          [secondary]="true"
+          icon="pi pi-plus"
+          (click)="showFormPanel($event)"
+        ></yh-button>
+      </div>
+      <yh-divider></yh-divider>
+      <div class="stripe">
+        <div
+          class="item-row"
+          fxLayout="row"
+          fxLayoutGap="25px"
+          fxLayoutAlign="space-between center"
+          *ngFor="let item of institution?.branches"
+        >
+          <div fxLayout="column" fxLayoutGap="5px">
+            <yh-sar-branch-item [branch]="item"></yh-sar-branch-item>
+            <yh-text *ngIf="trashed.has(item)" [warning]="true"
+              >Marked for deletion</yh-text
+            >
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="10px">
+            <yh-button
+              [iconButton]="true"
+              [text]="true"
+              [secondary]="true"
+              [bordered]="true"
+              icon="pi pi-pencil"
+            ></yh-button>
+            <yh-button
+              [iconButton]="true"
+              [bordered]="true"
+              [icon]="trashed.has(item) ? 'pi pi-undo' : 'pi pi-trash'"
+              [text]="true"
+              [secondary]="true"
+              (click)="markForDelete(item)"
+            ></yh-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </yh-card>
+</div>
+<yh-overlay-panel [dismissable]="false">
+  <yh-sar-branch-edit
+    (onSave)="saveItem($event)"
+    (onCancel)="cancelItem()"
+  ></yh-sar-branch-edit>
+</yh-overlay-panel>

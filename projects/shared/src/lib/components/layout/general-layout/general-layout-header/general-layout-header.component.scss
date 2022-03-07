@@ -1,0 +1,12 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+  &.has-actions {
+    place-content: space-between;
+  }
+}

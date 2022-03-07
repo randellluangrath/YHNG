@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutGap="15px" [formGroup]="fgFilters">
+  <yh-dropdown-field
+    [control]="fcSubject"
+    [options]="[]"
+    [required]="true"
+    placeholder="Select Subject..."
+    fxFlex="200px"
+  ></yh-dropdown-field>
+  <yh-multiselect-field
+    [control]="fcAccounts"
+    [required]="true"
+    [options]="[]"
+    placeholder="Select Accounts..."
+    fxFlex="300px"
+  ></yh-multiselect-field>
+
+  <!-- <yh-select-button
+    [required]="true"
+    [options]="transactionTypeOptions"
+    [control]="fcCashInOut"
+  ></yh-select-button> -->
+  <yh-select-button
+    [required]="true"
+    [control]="fcType"
+    [options]="amountTypeOptions"
+  ></yh-select-button>
+</div>

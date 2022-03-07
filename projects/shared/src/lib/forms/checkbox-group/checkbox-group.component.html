@@ -1,0 +1,19 @@
+<yh-form-field [label]="label" [required]="required" [formGroup]="formGroup">
+  <div
+    [formArrayName]="formArrayName"
+    [fxLayout]="inline ? 'row wrap' : 'column'"
+    fxLayoutGap="15px"
+    checkChildren
+  >
+    <yh-checkbox
+      *ngFor="let option of options; let i = index"
+      [control]="getControl(i)"
+      [label]="option.label"
+      [secondary]="true"
+      [class.is-inline]="inline"
+      selectGroup
+    ></yh-checkbox>
+  </div>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

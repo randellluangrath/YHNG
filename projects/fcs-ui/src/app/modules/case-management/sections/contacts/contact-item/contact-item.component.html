@@ -1,0 +1,36 @@
+<yh-card [selectable]="true" [selected]="contact.isSelected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between start"
+      fxLayoutAlign.lg="start start"
+      fxLayoutGap="15px"
+    >
+      <!-- <yh-avatar size="xlarge" label="BM"></yh-avatar> -->
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutAlign.lg="start start"
+        fxLayoutGap="5px"
+      >
+        <yh-title [level]="3" [title]="contact.name"></yh-title>
+        <yh-text [secondary]="true" [small]="true" [strong]="false">{{
+          contact.type
+        }}</yh-text>
+      </div>
+    </div>
+
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <yh-text
+        pTooltip="this-is-a-super.long-email123456@gmail.com"
+        tooltipPosition="top"
+        [secondary]="true"
+        [small]="true"
+        [preventWrap]="true"
+        >this-is-a-super.long-email123456@gmail.com</yh-text
+      >
+      <yh-text [small]="true">{{ contact.phone | phone }} x 12</yh-text>
+    </div>
+  </div>
+</yh-card>

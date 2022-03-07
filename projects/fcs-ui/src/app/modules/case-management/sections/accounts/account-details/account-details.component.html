@@ -1,0 +1,87 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Account Details"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <yh-title [level]="3" [title]="account.name"></yh-title>
+          <yh-text [secondary]="true" [small]="true" [strong]="true">{{
+            account.accountId
+          }}</yh-text>
+        </div>
+      </div>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Account</yh-text>
+
+      <yh-account-details-internal
+        *ngIf="account.type == AccountType.Internal"
+        [account]="account"
+      ></yh-account-details-internal>
+
+      <yh-account-details-external
+        *ngIf="account.type == AccountType.External"
+        [account]="account"
+      ></yh-account-details-external>
+    </div>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text [bold]="true">Comments</yh-text>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+          <yh-button
+            *ngIf="showCommentsForm"
+            [icon]="'fal fa-times'"
+            [iconButton]="true"
+            [warning]="true"
+            [text]="true"
+            (click)="showCommentsForm = !showCommentsForm"
+          ></yh-button>
+          <yh-button
+            [icon]="showCommentsForm ? 'fal fa-save' : 'fal fa-pencil'"
+            [iconButton]="true"
+            [secondary]="!showCommentsForm"
+            [information]="showCommentsForm"
+            [text]="true"
+            (click)="showCommentsForm = !showCommentsForm"
+          ></yh-button>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <yh-card *ngIf="showCommentsForm" [flat]="true" padSize="small">
+          <yh-textarea-field
+            [control]="fcComment"
+            placeholder="Comment"
+            [max]="150"
+            [small]="true"
+          ></yh-textarea-field>
+        </yh-card>
+        <div
+          *ngFor="let note of account.notes"
+          fxLayout="column"
+          fxLayoutGap="10px"
+        >
+          <yh-account-details-comment
+            [note]="note"
+          ></yh-account-details-comment>
+        </div>
+      </div>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button
+      *ngIf="account.type == AccountType.External"
+      (click)="editAccount()"
+      >Edit</yh-button
+    >
+    <yh-button [danger]="true" [ghost]="true" (click)="confirmDelete($event)"
+      >Remove</yh-button
+    >
+    <p-confirmPopup styleClass="confirm-delete"></p-confirmPopup>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

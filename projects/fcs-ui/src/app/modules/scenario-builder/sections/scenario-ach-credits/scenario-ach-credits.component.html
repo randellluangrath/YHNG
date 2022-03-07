@@ -1,0 +1,66 @@
+<yh-card [title]="'ACH Credits'" [expandable]="true" [expanded]="false">
+  <p-treeTable
+    [value]="treeData"
+    [columns]="cols"
+    dataKey="name"
+    selectionMode="single"
+    [(selection)]="selectedNode"
+    [scrollable]="true"
+    scrollHeight="flex"
+    (onNodeSelect)="nodeSelect($event)"
+    (onNodeUnselect)="nodeUnselect($event)"
+  >
+    <ng-template
+      pTemplate="body"
+      let-rowNode
+      let-rowData="rowData"
+      let-columns="columns"
+    >
+      <tr [class.is-rule-row]="rowData.isRule" [ttSelectableRow]="rowNode">
+        <td *ngFor="let col of columns; let i = index">
+          <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+            <p-treeTableToggler
+              [rowNode]="rowNode"
+              *ngIf="i == 0"
+            ></p-treeTableToggler>
+            <yh-text
+              style="display: inline-block; margin-right: 10px"
+              [secondary]="rowData.isProperty"
+            >
+              {{ rowData[col.field] }}</yh-text
+            >
+          </div>
+        </td>
+        <td [style.width]="'150px'" [style.textAlign]="'right'">
+          <yh-button
+            *ngIf="rowData.isRule"
+            [iconButton]="true"
+            [text]="true"
+            [bordered]="true"
+            [secondary]="true"
+            icon="fal fa-pencil"
+          ></yh-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+</yh-card>
+
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  [title]="'Edit Rule'"
+  [fullscreen]="false"
+  [pad]="true"
+  [width]="'500px'"
+  [showCloseIcon]="true"
+  (hide)="handleOnHide()"
+>
+  <yh-edit-rule [name]="selectedNode?.data.name"></yh-edit-rule>
+  <yh-drawer-footer>
+    <yh-button (click)="handleOnHide()"> Save </yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

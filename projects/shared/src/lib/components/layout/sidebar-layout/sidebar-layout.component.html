@@ -1,0 +1,12 @@
+<ng-content
+  *ngIf="sidebarHeader != null"
+  select="yh-sidebar-layout-header"
+></ng-content>
+<div class="content" [class.is-padded]="pad">
+  <ng-content></ng-content>
+</div>
+
+<ng-content
+  *ngIf="sidebarFooter != null"
+  select="yh-sidebar-layout-footer"
+></ng-content>

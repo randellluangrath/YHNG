@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.attachment-item {
+  padding: 10px;
+  &:nth-child(even) {
+    background: get-theme-color(background);
+  }
+}

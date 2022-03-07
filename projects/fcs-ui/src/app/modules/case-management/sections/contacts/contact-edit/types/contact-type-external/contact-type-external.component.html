@@ -1,0 +1,23 @@
+<div [formGroup]="fgName" fxLayout="column" fxLayoutGap="10px">
+  <yh-text-field
+    label="First Name"
+    [required]="true"
+    [control]="fcFirstName"
+  ></yh-text-field>
+  <yh-text-field
+    label="Middle Initial"
+    [control]="fcMiddleInitials"
+  ></yh-text-field>
+  <yh-text-field
+    label="Last Name"
+    [required]="true"
+    [control]="fcLastName"
+  ></yh-text-field>
+  <yh-text-field label="Suffix" [control]="fcSuffix"></yh-text-field>
+  <yh-text-field label="Title" [control]="fcTitle"></yh-text-field>
+  <yh-text-field
+    label="Agency / Organization"
+    [required]="true"
+    [control]="fcAgency"
+  ></yh-text-field>
+</div>

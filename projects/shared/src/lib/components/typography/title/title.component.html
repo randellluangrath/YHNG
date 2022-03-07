@@ -1,0 +1,7 @@
+<h1 *ngIf="level == 1" [class.knockout]="knockout">{{ title }}</h1>
+<h2 *ngIf="level == 2" [class.knockout]="knockout">{{ title }}</h2>
+<h3 *ngIf="level == 3" [class.knockout]="knockout">{{ title }}</h3>
+<h4 *ngIf="level > 3" [class.knockout]="knockout">{{ title }}</h4>
+<yh-text *ngIf="subtitle" [small]="true" [secondary]="true" [medium]="true"
+  >{{ subtitle }}
+</yh-text>

@@ -1,0 +1,74 @@
+<p-treeTable
+  [value]="treeData"
+  [columns]="cols"
+  dataKey="code"
+  selectionMode="multiple"
+  [scrollable]="true"
+  scrollHeight="flex"
+  (onNodeSelect)="nodeSelect($event)"
+  (onNodeUnselect)="nodeUnselect($event)"
+>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length">No NAICS Codes found.</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="caption">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="15px"
+        [formGroup]="fgFilters"
+      >
+        <yh-text-field
+          fxFlex="200px"
+          [control]="fcFreeText"
+          placeholder="Search NAICS Codes..."
+          [search]="true"
+        ></yh-text-field>
+      </div>
+      <yh-text [strong]="true">3 codes selected</yh-text>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th width="250px">Code</th>
+      <th>Name</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-rowNode
+    let-rowData="rowData"
+    let-columns="columns"
+  >
+    <tr>
+      <td
+        *ngFor="let col of columns; let i = index"
+        [attr.width]="i == 0 ? '250px' : ''"
+      >
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <p-treeTableToggler
+            [rowNode]="rowNode"
+            *ngIf="i == 0"
+          ></p-treeTableToggler>
+          <!-- <p-treeTableCheckbox
+            [value]="rowNode"
+            *ngIf="i == 0"
+          ></p-treeTableCheckbox> -->
+          <p-checkbox
+            *ngIf="i == 0"
+            [binary]="true"
+            [ngModel]="isRowSelected(rowNode)"
+            (click)="toggleRowSelection(rowNode)"
+          >
+          </p-checkbox>
+          <yh-text style="display: inline-block; margin-right: 10px">
+            {{ rowData[col.field] }}</yh-text
+          >
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-treeTable>

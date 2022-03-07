@@ -1,0 +1,14 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.lookup-wrapper {
+  padding: 50px;
+}
+.naics-picklist-wrapper {
+  height: 100%;
+  .picklist {
+    background: get-theme-color(background);
+    @include border(1px, 1px, 1px, 1px);
+    height: 90%;
+  }
+}

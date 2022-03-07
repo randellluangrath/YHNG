@@ -1,0 +1,6 @@
+.item-row {
+  padding: 10px;
+  &:nth-child(even) {
+    background: #f8f9fa;
+  }
+}

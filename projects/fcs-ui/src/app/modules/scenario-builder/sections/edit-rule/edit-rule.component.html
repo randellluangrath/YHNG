@@ -1,0 +1,36 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgRule">
+  <yh-text [bold]="true">{{ name }}</yh-text>
+  <yh-select-button
+    label="Active"
+    [control]="fcActive"
+    [options]="options"
+  ></yh-select-button>
+
+  <yh-select-button
+    label="Red Flag"
+    [control]="fcRedFlag"
+    [options]="options"
+  ></yh-select-button>
+
+  <yh-text-field
+    label="Description"
+    placeholder="Description..."
+    [control]="fcDescription"
+  ></yh-text-field>
+  <yh-currency-field
+    label="Amount considered relevant"
+    placeholder="$0.00"
+    [control]="fcAmountRelevant"
+  ></yh-currency-field>
+  <yh-currency-field
+    label="Large $ Amount"
+    placeholder="$0.00"
+    [control]="fcLargeAmount"
+  ></yh-currency-field>
+  <yh-number-field
+    label="Risk Weight"
+    placeholder="0%"
+    [control]="fcRiskWeight"
+    suffix="%"
+  ></yh-number-field>
+</div>

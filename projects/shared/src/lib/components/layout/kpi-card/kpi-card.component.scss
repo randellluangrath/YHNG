@@ -1,0 +1,54 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include border-radius;
+  @include box-shadow;
+  color: get-theme-color(basic, white);
+  display: block;
+  padding: 15px;
+  height: 180px;
+
+  &.information {
+    background: get-theme-color(state, info);
+  }
+  &.success {
+    background: get-theme-color(state, success);
+  }
+  &.pending {
+    background: get-theme-color(state, pending);
+  }
+  &.warning {
+    background: get-theme-color(state, warn);
+  }
+  &.danger {
+    background: get-theme-color(state, danger);
+  }
+
+  .kpi {
+    &-value {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    &-value-category {
+      font-weight: 600;
+    }
+    &-progress-spark-chart {
+      @include border-radius(50px);
+      background: rgba(get-theme-color(basic, black), 0.2);
+      height: 5px;
+      position: relative;
+      &-progress {
+        @include border-radius(50px);
+        @include box-shadow;
+        background: get-theme-color(basic, white);
+        content: " ";
+        display: block;
+
+        height: 7px;
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+}

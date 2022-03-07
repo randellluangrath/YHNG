@@ -1,0 +1,7 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.content-wrapper {
+  background: get-theme-color(background);
+  padding: 50px;
+}

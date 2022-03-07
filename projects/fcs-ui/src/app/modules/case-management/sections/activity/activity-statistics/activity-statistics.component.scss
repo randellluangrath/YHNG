@@ -1,0 +1,83 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.activity-statistics-wrapper {
+  background: get-theme-color(basic, white);
+  height: 100%;
+  @include border(1px, 1px, 1px, 1px);
+}
+
+.filters-wrapper {
+  background: get-theme-color(background);
+  @include border(0, 0, 1px, 0);
+}
+
+.is-totals-row {
+  > td {
+    background: #e6ecf1; //lighten(get-theme-color(state), 30);
+    yh-text {
+      //   color: get-theme-color(brand, primary-dark);
+      //   font-weight: 600;
+    }
+  }
+}
+
+.is-grouped {
+  background: get-theme-color(background, light);
+
+  //   &.border-left {
+  //     border-left: 1px solid rgba(get-theme-color(state, secondary), 0.3);
+  //   }
+  //   &.border-right {
+  //     border-right: 1px solid rgba(get-theme-color(state, secondary), 0.3);
+  //   }
+}
+
+.activity-name-cell {
+  border-right: 1px solid rgba(get-theme-color(state, secondary), 0.3) !important;
+}
+
+.current-period-name-cell {
+  border-left: 1px solid rgba(get-theme-color(state, secondary), 0.3) !important;
+}
+
+.statistics-content {
+  background: get-theme-color(background);
+  padding: 50px;
+  height: 100%;
+  overflow: hidden;
+  &.no-pad {
+    padding: 0;
+  }
+}
+
+.visualization-content {
+  .visualization-wrapper-options {
+    padding: 10px 25px;
+    @include border(0, 0, 1px, 0);
+  }
+  .visualization-wrapper {
+    @include card-defaults();
+    height: 100%;
+  }
+  .visualization {
+    height: 90%;
+    padding: 50px;
+  }
+}
+
+.data-content {
+  @include border(1px, 1px, 0, 1px);
+  height: 100%;
+}
+
+// .alt {
+//   background: get-theme-color(background);
+// }
+.totals-alt {
+  //   background: lighten(get-theme-color(state), 30);
+  yh-text {
+    color: get-theme-color(brand, primary-dark);
+    font-weight: 600;
+  }
+}

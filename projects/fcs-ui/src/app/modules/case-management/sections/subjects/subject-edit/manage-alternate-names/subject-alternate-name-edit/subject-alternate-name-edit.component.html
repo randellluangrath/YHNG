@@ -1,0 +1,60 @@
+<div
+  [formGroup]="fgName"
+  fxLayout="column"
+  fxLayoutGap="15px"
+  fxLayoutAlign="start start"
+>
+  <yh-title [level]="3" title="Add Alternate Name"></yh-title>
+
+  <div fxLayout="column" fxLayoutGap="10px" style="width: 100%">
+    <yh-text-field
+      *ngIf="type === 'entity'"
+      fxFlex="100%"
+      label="Entity Name"
+      [required]="true"
+      [control]="fcEntityName"
+    >
+    </yh-text-field>
+    <yh-text-field
+      *ngIf="type === 'individual'"
+      fxFlex="100%"
+      label="First Name"
+      [control]="fcFirstName"
+    >
+    </yh-text-field>
+    <yh-text-field
+      *ngIf="type === 'individual'"
+      style="width: 125px"
+      label="Middle Initial"
+      [control]="fcMiddleInitial"
+    >
+    </yh-text-field>
+    <yh-text-field
+      *ngIf="type === 'individual'"
+      fxFlex="100%"
+      label="Last Name"
+      [control]="fcLastName"
+    >
+    </yh-text-field>
+    <yh-text-field
+      *ngIf="type === 'individual'"
+      fxFlex="100%"
+      label="Suffix"
+      [control]="fcSuffix"
+    >
+    </yh-text-field>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="10px"
+    style="width: 100%"
+  >
+    <yh-button (click)="handleSave()">Add</yh-button>
+
+    <yh-button (click)="handleCancel()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </div>
+</div>

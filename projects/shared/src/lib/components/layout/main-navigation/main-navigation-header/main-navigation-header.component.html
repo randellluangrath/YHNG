@@ -1,0 +1,14 @@
+<header
+  fxLayout="row"
+  fxLayoutGap="10px"
+  [fxLayoutAlign]="isExpanded ? 'start center' : 'center center'"
+>
+  <fa-icon (click)="toggleExpanded()" [icon]="menuExpandCollapseIcon"></fa-icon
+  ><yh-title
+    *ngIf="isExpanded"
+    [level]="2"
+    [knockout]="true"
+    [title]="title"
+    class="app-title"
+  ></yh-title>
+</header>

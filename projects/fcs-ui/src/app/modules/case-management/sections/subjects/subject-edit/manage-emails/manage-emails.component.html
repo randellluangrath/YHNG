@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutGap="5px" [formGroup]="fgEmails">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      icon="pi pi-plus"
+      [secondary]="true"
+      [bordered]="true"
+      (click)="addItem()"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <div
+      formArrayName="faEmails"
+      *ngFor="let item of fgEmails.get('faEmails')['controls']; let i = index"
+      class="item-row"
+    >
+      <div
+        [formGroupName]="i"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <yh-text-field
+          fxFlex="1 1 auto"
+          placeholder="Email..."
+          [control]="item.get('fcEmail')"
+        >
+          <yh-form-field-error *ngIf="item.get('fcEmail').errors?.pattern"
+            >Invalid email format</yh-form-field-error
+          >
+        </yh-text-field>
+        <yh-button
+          *ngIf="faEmails?.length > 1"
+          [iconButton]="true"
+          [secondary]="true"
+          [bordered]="true"
+          icon="pi pi-trash"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+</div>

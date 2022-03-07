@@ -1,0 +1,36 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="SAR Details" (close)="handleClose($event)">
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div>
+      <yh-text [strong]="true">SAR Title</yh-text>
+    </div>
+    <yh-divider></yh-divider>
+    <div xLayout="column" fxLayoutGap="15px">
+      <yh-display-value label="Label" [inline]="true">Value</yh-display-value>
+      <yh-display-value label="Label" [inline]="true">Value</yh-display-value>
+      <yh-display-value label="Label" [inline]="true">Value</yh-display-value>
+    </div>
+    <yh-divider></yh-divider>
+    <p-timeline [value]="events" align="left" styleClass="customized-timeline">
+      <ng-template pTemplate="content" let-event>
+        <div fxLayout="column" fxLayoutGap="10px" style="margin-bottom: 20px">
+          <div fxLayout="column" fxLayoutGap="5px">
+            <yh-text [strong]="true">{{ event.status }}</yh-text>
+            <yh-text [secondary]="true" [small]="true"
+              >{{ event.completedBy }} on
+              {{ event.date | date: "shortDate" }}</yh-text
+            >
+          </div>
+        </div>
+      </ng-template>
+    </p-timeline>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button>Continue</yh-button>
+    <yh-button [danger]="true" [ghost]="true" (click)="confirmDelete($event)"
+      >Remove</yh-button
+    >
+    <p-confirmPopup styleClass="confirm-delete"></p-confirmPopup>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

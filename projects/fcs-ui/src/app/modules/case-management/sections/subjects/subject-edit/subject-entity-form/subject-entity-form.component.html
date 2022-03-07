@@ -1,0 +1,19 @@
+<div [formGroup]="fgIdentity" fxLayout="column" fxLayoutGap="15px">
+  <yh-text-field
+    label="Entity Name"
+    [required]="true"
+    [control]="fcName"
+  ></yh-text-field>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <yh-text-field
+      fxFlex="1 1 23.5%"
+      label="TIN"
+      [control]="fcTin"
+    ></yh-text-field>
+    <yh-dropdown-field
+      fxFlex="1 1 24.5%"
+      label="TIN Type"
+      [control]="fcTinType"
+    ></yh-dropdown-field>
+  </div>
+</div>

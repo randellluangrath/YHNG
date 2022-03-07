@@ -1,0 +1,313 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header [title]="'Relationships'">
+    <yh-actions></yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="content">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-card [title]="'Crystal Jerde'" subtitle="Preferred">
+        <yh-actions>
+          <yh-button
+            [iconButton]="true"
+            icon="pi pi-ellipsis-h"
+            [bordered]="true"
+            [secondary]="true"
+            (click)="toggleOptionsMenu($event)"
+          ></yh-button>
+        </yh-actions>
+        <div fxLayout="column" fxLayoutGap="25px">
+          <yh-divider
+            [title]="'Preferred'"
+            placement="left"
+            background="white"
+          ></yh-divider>
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div
+              class="overview-details"
+              fxLayout="column"
+              fxLayoutGap="10px"
+              fxFlex="48%"
+            >
+              <yh-display-value [inline]="true" label="CIF"
+                >12345</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="TIN"
+                >123456</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Created"
+                >10/10/2021</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Type"
+                >Check Fraud</yh-display-value
+              >
+              <yh-display-value
+                [inline]="true"
+                label="Insider Code"
+                pTooltip="Insider Code Description"
+                tooltipPosition="top"
+                >ABC</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Address"
+                >504 Autumn Springs Court Franklin, TN 37067</yh-display-value
+              >
+            </div>
+            <div
+              class="overview-details"
+              fxLayout="column"
+              fxLayoutGap="10px"
+              fxFlex="48%"
+            >
+              <yh-display-value [inline]="true" label="Class Code"
+                >A1B2</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Risk Category"
+                >High</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Maintenanced"
+                >10/10/2021</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Date of Birth"
+                >10/10/2021</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Date of Death"
+                >10/10/2021</yh-display-value
+              >
+              <yh-display-value [inline]="true" label="Phone"
+                >(123)123-1234</yh-display-value
+              >
+              <!-- <yh-display-value [inline]="true" label="Beneficial Owner(s)"
+                      >John Smith, Jane Smith</yh-display-value
+                    >
+                    <yh-display-value [inline]="true" label="Percent Ownership"
+                      >15%</yh-display-value
+                    > -->
+            </div>
+          </div>
+          <yh-divider
+            [title]="'Matches'"
+            placement="left"
+            background="white"
+          ></yh-divider>
+          <yh-card
+            [expandable]="true"
+            [title]="'Crystal Williams'"
+            subtitle="CIF 23456"
+            [flat]="true"
+          >
+            <yh-actions>
+              <yh-text [secondary]="true" [strong]="true"
+                >Primary Match - TN</yh-text
+              >
+              <yh-button
+                [iconButton]="true"
+                icon="pi pi-ellipsis-h"
+                [bordered]="true"
+                [secondary]="true"
+                (click)="toggleOptionsMenu($event)"
+              ></yh-button>
+            </yh-actions>
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="CIF"
+                  >12345</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="TIN"
+                  >123456</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Created"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Type"
+                  >Check Fraud</yh-display-value
+                >
+                <yh-display-value
+                  [inline]="true"
+                  label="Insider Code"
+                  pTooltip="Insider Code Description"
+                  tooltipPosition="top"
+                  >ABC</yh-display-value
+                >
+              </div>
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="Class Code"
+                  >A1B2</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Risk Category"
+                  >High</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Maintenanced"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Birth"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Death"
+                  >10/10/2021</yh-display-value
+                >
+                <!-- <yh-display-value [inline]="true" label="Beneficial Owner(s)"
+                          >John Smith, Jane Smith</yh-display-value
+                        >
+                        <yh-display-value [inline]="true" label="Percent Ownership"
+                          >15%</yh-display-value
+                        > -->
+              </div>
+            </div>
+          </yh-card>
+          <yh-card
+            [expandable]="true"
+            [title]="'Crystal Williams'"
+            subtitle="CIF 23456"
+            [flat]="true"
+          >
+            <yh-actions>
+              <yh-text [secondary]="true" [strong]="true"
+                >Primary Match - TN</yh-text
+              >
+              <yh-button
+                [iconButton]="true"
+                icon="pi pi-ellipsis-h"
+                [bordered]="true"
+                [secondary]="true"
+                (click)="toggleOptionsMenu($event)"
+              ></yh-button>
+            </yh-actions>
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="CIF"
+                  >12345</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="TIN"
+                  >123456</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Created"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Type"
+                  >Check Fraud</yh-display-value
+                >
+                <yh-display-value
+                  [inline]="true"
+                  label="Insider Code"
+                  pTooltip="Insider Code Description"
+                  tooltipPosition="top"
+                  >ABC</yh-display-value
+                >
+              </div>
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="Class Code"
+                  >A1B2</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Risk Category"
+                  >High</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Maintenanced"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Birth"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Death"
+                  >10/10/2021</yh-display-value
+                >
+                <!-- <yh-display-value [inline]="true" label="Beneficial Owner(s)"
+                        >John Smith, Jane Smith</yh-display-value
+                      >
+                      <yh-display-value [inline]="true" label="Percent Ownership"
+                        >15%</yh-display-value
+                      > -->
+              </div>
+            </div>
+          </yh-card>
+          <yh-card
+            [expandable]="true"
+            [title]="'Crystal Williams'"
+            subtitle="CIF 23456"
+            [flat]="true"
+          >
+            <yh-actions>
+              <yh-text [secondary]="true" [strong]="true"
+                >Primary Match - TN</yh-text
+              >
+            </yh-actions>
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="CIF"
+                  >12345</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="TIN"
+                  >123456</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Created"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Type"
+                  >Check Fraud</yh-display-value
+                >
+                <yh-display-value
+                  [inline]="true"
+                  label="Insider Code"
+                  pTooltip="Insider Code Description"
+                  tooltipPosition="top"
+                  >ABC</yh-display-value
+                >
+              </div>
+              <div
+                class="overview-details"
+                fxLayout="column"
+                fxLayoutGap="10px"
+                fxFlex="48%"
+              >
+                <yh-display-value [inline]="true" label="Class Code"
+                  >A1B2</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Risk Category"
+                  >High</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Maintenanced"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Birth"
+                  >10/10/2021</yh-display-value
+                >
+                <yh-display-value [inline]="true" label="Date of Death"
+                  >10/10/2021</yh-display-value
+                >
+                <!-- <yh-display-value [inline]="true" label="Beneficial Owner(s)"
+                      >John Smith, Jane Smith</yh-display-value
+                    >
+                    <yh-display-value [inline]="true" label="Percent Ownership"
+                      >15%</yh-display-value
+                    > -->
+              </div>
+            </div>
+          </yh-card>
+        </div>
+      </yh-card>
+    </div>
+  </yh-general-layout-content>
+</yh-general-layout>
+<p-menu #menu [popup]="true" [model]="altItems"></p-menu>

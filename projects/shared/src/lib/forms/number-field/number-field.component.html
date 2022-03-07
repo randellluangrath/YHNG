@@ -1,0 +1,33 @@
+<yh-form-field
+  [label]="label"
+  [required]="required"
+  [disabled]="control.disabled"
+>
+  <div *ngIf="addOn" class="p-inputgroup">
+    <p-inputNumber
+      [formControl]="control"
+      [placeholder]="placeholder"
+      mode="decimal"
+      [min]="min"
+      [max]="max"
+      [suffix]="suffix"
+    >
+    </p-inputNumber>
+    <span class="p-inputgroup-addon"
+      ><p-checkbox [formControl]="addOnControl" [binary]="true"></p-checkbox
+    ></span>
+  </div>
+
+  <p-inputNumber
+    *ngIf="!addOn"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    mode="decimal"
+    [min]="min"
+    [max]="max"
+    [suffix]="suffix"
+  >
+  </p-inputNumber>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

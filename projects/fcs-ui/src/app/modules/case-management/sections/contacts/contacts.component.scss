@@ -1,0 +1,12 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.contacts-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+yh-contact-item {
+  margin-bottom: 25px;
+}

@@ -1,0 +1,50 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+$expandedWidth: 250px;
+$collapsedWidth: 75px;
+
+:host {
+  background: get-theme-color(brand, primary-dark);
+  @include full-height;
+
+  transition: width 0.3s ease-in-out;
+  &.is-collapsed {
+    width: $collapsedWidth;
+    header {
+      place-content: center center !important;
+    }
+    aside {
+      @include scrollbars(
+        0,
+        get-theme-color(brand, primary-light),
+        get-theme-color(brand, primary-dark)
+      );
+    }
+  }
+  &.is-expanded {
+    width: $expandedWidth;
+  }
+}
+
+aside {
+  overflow-y: auto;
+  @include scrollbars(
+    5px,
+    rgba(get-theme-color(basic, white), 0.2),
+    darken(get-theme-color(brand, primary-dark), 5)
+  );
+  position: relative;
+}
+
+.group {
+  padding: 15px 0;
+  .group-title {
+    display: block;
+    margin: 0 0 10px 25px;
+  }
+  + .group {
+    border-width: 0;
+    padding: 0;
+  }
+}

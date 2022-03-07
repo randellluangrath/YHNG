@@ -1,0 +1,9 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.main-content {
+  &-header,
+  header {
+    @include header-defaults;
+  }
+}

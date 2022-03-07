@@ -1,0 +1,13 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-multiSelect
+    [options]="options"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    display="chip"
+    optionLabel="label"
+    optionValue="value"
+    appendTo="body"
+  ></p-multiSelect>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

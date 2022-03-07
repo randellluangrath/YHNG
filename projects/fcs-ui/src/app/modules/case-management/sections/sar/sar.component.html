@@ -1,0 +1,64 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Resolve Case">
+    <yh-actions>
+      <!-- <yh-button (click)="showWorkflow()">Create SAR</yh-button> -->
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="contacts-content">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <!-- <p-messages severity="info">
+        <ng-template pTemplate>
+          <div
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="space-between center"
+            [style.width]="'100%'"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <fa-icon [icon]="infoIcon"></fa-icon>
+              <yh-text [strong]="true"
+                >A SAR is currently in progress, do you wish to continue working
+                the SAR?</yh-text
+              >
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="5px">
+              <yh-button>Continue</yh-button>
+              <yh-button [danger]="false" [ghost]="true">Abandon</yh-button>
+            </div>
+          </div>
+        </ng-template>
+      </p-messages> -->
+
+      <yh-sar-workflow-drawer [disabled]="false"></yh-sar-workflow-drawer>
+      <yh-card
+        *ngFor="let sar of sars"
+        (click)="selectedSar = sar"
+        [selectable]="true"
+        [selected]="selectedSar === sar"
+      >
+        <yh-sar-item [sar]="sar"></yh-sar-item>
+      </yh-card>
+    </div>
+  </yh-general-layout-content>
+  <!-- <yh-general-layout-sidebar
+    ><yh-sar-details></yh-sar-details
+  ></yh-general-layout-sidebar> -->
+</yh-general-layout>
+<yh-drawer
+  [visible]="showSarWizard"
+  [closeOnEscape]="false"
+  [showCloseIcon]="false"
+  [title]="'SAR Wizard'"
+  [fullscreen]="true"
+  [enableActions]="true"
+  [pad]="false"
+  (hide)="handleOnHide()"
+>
+  <yh-sar-wizard></yh-sar-wizard>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

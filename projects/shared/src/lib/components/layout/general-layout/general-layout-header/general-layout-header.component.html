@@ -1,0 +1,7 @@
+<yh-title *ngIf="template == null" [title]="title" [level]="2"></yh-title>
+<div *ngIf="template != null">
+  <ng-content select="yh-general-layout-header-template"></ng-content>
+</div>
+<div *ngIf="actions != null">
+  <ng-content select="yh-actions"></ng-content>
+</div>

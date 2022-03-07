@@ -1,0 +1,46 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.state-icon {
+  position: relative;
+  margin-right: 5px;
+
+  &.is-unknown {
+    color: get-theme-color(state, secondary);
+  }
+  &.is-started {
+    color: get-theme-color(state);
+  }
+  &.is-blocked {
+    color: get-theme-color(state, danger);
+  }
+  &.is-completed {
+    color: get-theme-color(state, success);
+  }
+}
+
+.indicators {
+  color: get-theme-color(state, secondary);
+  fa-icon {
+    &.has-item {
+      color: get-theme-color(state);
+    }
+  }
+}
+.comments-wrapper {
+  background: get-theme-color(background, light);
+  @include border;
+  padding: 25px;
+}
+
+.task-content {
+  padding: 25px;
+}
+.add-note-wrapper {
+  position: relative;
+  .edit-note-button {
+    position: absolute;
+    bottom: 45px;
+    right: 25px;
+  }
+}

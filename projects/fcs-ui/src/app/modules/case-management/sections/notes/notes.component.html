@@ -1,0 +1,63 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header title="Notes">
+    <yh-actions>
+      <yh-button (click)="handleAddNew()">Add New</yh-button>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="contacts-content" [formGroup]="fgFilters">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <yh-text-field
+          [search]="true"
+          placeholder="Search Notes"
+          [control]="fcFreeText"
+          fxFlex="0 1 300px"
+        ></yh-text-field>
+        <yh-dropdown-field
+          placeholder="By User"
+          [control]="fcUser"
+          fxFlex="0 1 300px"
+        ></yh-dropdown-field>
+      </div>
+      <div fxLayout="column" fxLayoutGap="20px">
+        <yh-card *ngIf="notes.length === 0" style="margin: 50px">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="25px"
+          >
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              fxLayoutGap="10px"
+            >
+              <yh-title [level]="2" title="No Results Found"></yh-title>
+              <yh-text [secondary]="true"
+                >No &lt;entity&gt;'s match your current filters. Please check
+                your filters and search criteria or add a new &lt;entity&gt; by
+                clicking <yh-text [strong]="true">Add New</yh-text>.</yh-text
+              >
+            </div>
+            <yh-button>Add New</yh-button>
+          </div>
+        </yh-card>
+        <yh-notes-item
+          *ngFor="let note of notes"
+          [note]="note"
+          (click)="handleNoteSelected(note)"
+        ></yh-notes-item>
+      </div>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar *ngIf="showNotesForm || selectedNote">
+    <yh-notes-edit
+      *ngIf="showNotesForm"
+      (close)="handleFormClose($event)"
+    ></yh-notes-edit>
+    <yh-note-details
+      *ngIf="selectedNote"
+      [note]="selectedNote"
+      (close)="handleDetailsClose($event)"
+    ></yh-note-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>

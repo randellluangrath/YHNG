@@ -1,0 +1,17 @@
+@import "theme-functions";
+@import "theme-mixins";
+.drawer {
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  &-content {
+    height: 100%;
+    overflow-y: auto;
+    @include scrollbar-defaults();
+
+    &.is-padded {
+      padding: 25px;
+    }
+  }
+}

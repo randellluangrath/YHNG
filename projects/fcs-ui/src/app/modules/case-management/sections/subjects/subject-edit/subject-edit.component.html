@@ -1,0 +1,179 @@
+<div [formGroup]="fgSubject" #container>
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="column" fxLayoutGap="25px">
+      <yh-text [bold]="true">Identifying Information</yh-text>
+      <!-- <yh-radio-group-field
+        label="Type"
+        [required]="true"
+        [options]="typeOptions"
+        [control]="fcType"
+      ></yh-radio-group-field> -->
+      <yh-select-button
+        style="width: 250px"
+        label="Type"
+        [options]="typeOptions"
+        [required]="true"
+        [control]="fcType"
+      ></yh-select-button>
+      <yh-subject-entity-form
+        *ngIf="fcType.value === 'Entity'"
+      ></yh-subject-entity-form>
+      <yh-subject-individual-form
+        *ngIf="fcType.value === 'Individual'"
+      ></yh-subject-individual-form>
+    </div>
+
+    <yh-divider></yh-divider>
+    <p-accordion>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Occupation Information</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px"></div>
+          </div>
+        </ng-template>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text-field
+            label="Occupation or Industry"
+            [control]="fcOccupationOrBusinessType"
+          ></yh-text-field>
+          <yh-dropdown-field
+            label="NAICS Code"
+            [filter]="true"
+            [options]="naicsOptions"
+            [control]="fcNaicsCode"
+          ></yh-dropdown-field>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Alternate Names</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [warning]="true"
+                ><fa-icon *ngIf="warningIcon" [icon]="warningIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true"
+                >({{ subject.alternateNames?.length }})</yh-text
+              >
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-alternate-names
+          [subject]="subject"
+        ></yh-manage-alternate-names>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Email Addresses</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true">(3)</yh-text>
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-emails [subject]="subject"></yh-manage-emails>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Phone Numbers</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true">(3)</yh-text>
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-phone-numbers [subject]="subject"></yh-manage-phone-numbers>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Websites</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true">(3)</yh-text>
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-websites [subject]="subject"></yh-manage-websites>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Addresses</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true">(3)</yh-text>
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-addresses [subject]="subject"></yh-manage-addresses>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            style="width: 100%"
+          >
+            <yh-text [strong]="true">Forms of Identification</yh-text>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <yh-text [danger]="true"
+                ><fa-icon *ngIf="errorIcon" [icon]="errorIcon"></fa-icon
+              ></yh-text>
+              <yh-text [secondary]="true" [strong]="true"
+                >({{ subject?.identifications.length }})</yh-text
+              >
+            </div>
+          </div>
+        </ng-template>
+        <yh-manage-identifications
+          [subject]="subject"
+        ></yh-manage-identifications>
+      </p-accordionTab>
+    </p-accordion>
+    <yh-divider></yh-divider>
+
+    <yh-textarea-field
+      label="Comments"
+      [control]="fcComments"
+    ></yh-textarea-field>
+  </div>
+</div>

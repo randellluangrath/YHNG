@@ -1,0 +1,55 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="Note Details" (close)="handleClose($event)">
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="25px">
+    <yh-display-value-container [horizontal]="true">
+      <yh-display-value label="Created" [inline]="true">{{
+        note.created | date: "shortDate"
+      }}</yh-display-value>
+      <yh-display-value label="Created By" [inline]="true">{{
+        note.createdBy
+      }}</yh-display-value>
+      <yh-display-value label="Updated" [inline]="true">{{
+        note.updated | date: "shortDate"
+      }}</yh-display-value>
+      <yh-display-value label="Updated By" [inline]="true">{{
+        note.updatedBy
+      }}</yh-display-value>
+    </yh-display-value-container>
+    <yh-divider></yh-divider>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <yh-text [secondary]="true">{{ note.note }}</yh-text>
+    </div>
+    <yh-divider></yh-divider>
+    <div
+      class="file-display-container"
+      fxLayout="row"
+      fxLayoutGap="25px"
+      fxLayoutAlign="space-between center"
+    >
+      <div fxLayout="row" fxLayoutGap="15px">
+        <yh-file-type-icon
+          [type]="FileTypeIconType.PDF"
+          [small]="true"
+        ></yh-file-type-icon>
+
+        <span fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center start">
+          <yh-title [level]="4" [title]="'Attachment Name'"></yh-title>
+          <yh-text [secondary]="true" [small]="true">File Size:10MB</yh-text>
+        </span>
+      </div>
+      <yh-button
+        [iconButton]="true"
+        [bordered]="true"
+        icon="pi pi-download"
+      ></yh-button>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button [information]="true">Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true" (click)="confirmDelete($event)"
+      >Delete</yh-button
+    >
+    <p-confirmPopup styleClass="confirm-delete"></p-confirmPopup>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

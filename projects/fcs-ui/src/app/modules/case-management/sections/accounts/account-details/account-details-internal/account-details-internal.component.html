@@ -1,0 +1,41 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <yh-display-value label="Product" [inline]="true">{{
+    account.product
+  }}</yh-display-value>
+  <yh-display-value label="Officer" [inline]="true">{{
+    account.officer
+  }}</yh-display-value>
+  <yh-display-value label="Status" [inline]="true"
+    >Status Value</yh-display-value
+  >
+  <yh-display-value label="Current Balance" [inline]="true">{{
+    account.averageBalance | currency
+  }}</yh-display-value>
+  <yh-display-value label="NAICS" [inline]="true">{{
+    account.naics
+  }}</yh-display-value>
+  <yh-display-value label="MSB" [inline]="true">{{
+    account.msb ? "Yes" : "No"
+  }}</yh-display-value>
+  <yh-display-value label="Opened" [inline]="true">{{
+    account.openedDate | localDate
+  }}</yh-display-value>
+  <yh-display-value label="Closed" [inline]="true">{{
+    account.closedDate | localDate
+  }}</yh-display-value>
+  <yh-display-value label="Branch" [inline]="true">{{
+    account.branch
+  }}</yh-display-value>
+  <yh-display-value label="Added By" [inline]="true">{{
+    account.addedBy
+  }}</yh-display-value>
+  <yh-display-value label="Added On" [inline]="true">{{
+    account.addedOnDate | localDate
+  }}</yh-display-value>
+  <yh-display-value label="Updated By" [inline]="true">{{
+    account.addedBy
+  }}</yh-display-value>
+  <yh-display-value label="Updated On" [inline]="true">{{
+    account.addedOnDate | localDate
+  }}</yh-display-value>
+</div>

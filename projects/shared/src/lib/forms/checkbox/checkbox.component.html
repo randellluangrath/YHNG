@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+  <p-checkbox
+    [formControl]="control"
+    [binary]="true"
+    [value]="control.value"
+    (onChange)="handleOnChange($event)"
+  ></p-checkbox>
+  <yh-text
+    *ngIf="label"
+    [secondary]="secondary"
+    [medium]="strong"
+    [small]="small"
+    >{{ label }}</yh-text
+  >
+</div>

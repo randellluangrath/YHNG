@@ -1,0 +1,23 @@
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+    <div class="score-wrapper">
+      <yh-text
+        [danger]="alert.score >= 75"
+        [warning]="alert.score > 60 && alert.score < 75"
+        [success]="alert.score <= 60"
+        [bold]="true"
+        >{{ alert.score }}</yh-text
+      >
+    </div>
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ alert.name }}</yh-text>
+      <yh-text [secondary]="true" [small]="true" [medium]="true"
+        >{{ alert.type }} on {{ alert.date | date: "short" }}</yh-text
+      >
+    </div>
+  </div>
+  <!-- <div fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="end end">
+    <yh-text [strong]="true">10/10/2021</yh-text>
+    <yh-text [secondary]="true" [small]="true"></yh-text>
+  </div> -->
+</div>

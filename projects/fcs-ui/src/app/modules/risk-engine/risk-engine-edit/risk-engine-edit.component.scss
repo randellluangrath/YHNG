@@ -1,0 +1,27 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+p-table {
+  @include border(1px, 1px, 1px, 1px);
+}
+.data-point-wrapper {
+  padding: 50px;
+  overflow-y: auto;
+  height: calc(100% - 75px);
+
+  @include scrollbar-defaults();
+}
+
+.expanded-row-wrapper {
+  background: rgba(get-theme-color(state), 0.05);
+  padding: 50px;
+  yh-risk-engine-scoring-form {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.delete-risk-analysis {
+  background: green;
+}

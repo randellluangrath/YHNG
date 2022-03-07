@@ -1,0 +1,28 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ sar.name }}</yh-text>
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <yh-text
+          class="indicator"
+          [information]="sar.status === SarStatus.Initial"
+          [warning]="sar.status === SarStatus.Correction"
+          [danger]="sar.status === SarStatus.Rejected"
+          [success]="sar.status === SarStatus.Review"
+          ><fa-icon [icon]="circleIcon"></fa-icon></yh-text
+        ><yh-text [secondary]="true" [small]="true" [medium]="true"
+          >{{ getStatusDescription(sar.status) }} - Due on
+          {{ sar.due | localDate }}</yh-text
+        >
+      </div>
+    </div>
+  </div>
+  <!-- <yh-tag
+    *ngIf="sar"
+    [info]="sar.status === SarStatus.Initial"
+    [warning]="sar.status === SarStatus.Correction"
+    [danger]="sar.status === SarStatus.Rejected"
+    [success]="sar.status === SarStatus.Review"
+    ></yh-tag
+  > -->
+</div>

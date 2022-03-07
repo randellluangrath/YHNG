@@ -1,0 +1,12 @@
+<yh-form-field [label]="label" [required]="required">
+  <p-radioButton
+    *ngFor="let option of options"
+    name="group"
+    [value]="option.value"
+    [label]="option.label"
+    [formControl]="control"
+    labelStyleClass="yh-radio-label"
+  ></p-radioButton>
+  <ng-content select="yh-form-field-error"></ng-content>
+  <ng-content select="yh-form-field-warning"></ng-content>
+</yh-form-field>

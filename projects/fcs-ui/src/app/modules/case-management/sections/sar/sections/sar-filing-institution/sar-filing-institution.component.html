@@ -1,0 +1,221 @@
+<div
+  fxLayout="column"
+  fxLayoutGap="15px"
+  [formGroup]="fgContact"
+  [style.width]="'100%'"
+>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <yh-title [level]="2" [title]="'Filing Institution'"></yh-title>
+  </div>
+  <yh-divider></yh-divider>
+  <yh-card [flat]="true">
+    <yh-actions>
+      <!-- <yh-button
+          [iconButton]="true"
+          icon="pi pi-trash"
+          [text]="true"
+          [bordered]="true"
+          [secondary]="true"
+        ></yh-button> -->
+    </yh-actions>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">General</yh-text>
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div
+          fxLayout="column"
+          fxLayoutGap="5px"
+          style="width: 100%"
+          fxFlex="48%"
+        >
+          <yh-text-field
+            label="Filer name"
+            [control]="fcFilerName"
+            [required]="true"
+          >
+            <yh-form-field-description
+              >Holding company, lead financial institution, or agency, if
+              applicable</yh-form-field-description
+            >
+          </yh-text-field>
+        </div>
+
+        <yh-text-field
+          label="Alternate Name"
+          [control]="fcAlternateName"
+          [required]="true"
+          fxFlex="48%"
+        >
+          <yh-form-field-description
+            >e.g., AKA - individual or trade name, DBA -
+            entity</yh-form-field-description
+          >
+        </yh-text-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-dropdown-field
+          label="Type"
+          [control]="fcType"
+          [required]="true"
+          [options]="[]"
+          fxFlex="48%"
+        >
+        </yh-dropdown-field>
+        <yh-text-field
+          label="Type Other"
+          [control]="fcTypeOther"
+          [required]="true"
+          fxFlex="48%"
+        >
+        </yh-text-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-dropdown-field
+          label="Primary Federal Regulator"
+          [control]="fcFederalRegulator"
+          [required]="true"
+          [options]="[]"
+          fxFlex="48%"
+        ></yh-dropdown-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Filing Institution Contact</yh-text>
+      <yh-text-field
+        label="Contact Office"
+        [control]="fcInstitutionContactOffice"
+      ></yh-text-field>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <yh-phone-field
+          label="Phone"
+          [control]="fcInstitutionContactPhone"
+          [required]="true"
+        ></yh-phone-field>
+        <yh-text-field
+          label="Ext."
+          [control]="fcInstitutionContactPhone"
+          [style.width]="'100px'"
+        ></yh-text-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Identification</yh-text>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text-field
+          label="TIN"
+          [control]="fcTin"
+          [required]="true"
+          fxFlex="48%"
+        ></yh-text-field>
+        <yh-dropdown-field
+          label="TIN Type"
+          [control]="fcTinType"
+          [required]="true"
+          [options]="[]"
+          fxFlex="48%"
+        ></yh-dropdown-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-dropdown-field
+          label="Identification"
+          [control]="fcIdentificationType"
+          fxFlex="48%"
+        >
+        </yh-dropdown-field>
+        <yh-text-field
+          label="Number"
+          [control]="fcIdentificationNumber"
+          fxFlex="48%"
+        >
+        </yh-text-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <yh-text-field
+          label="Internal Control / File Number"
+          [control]="fcFileNumber"
+          fxFlex="48%"
+        ></yh-text-field>
+      </div>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [strong]="true">Securities</yh-text>
+        <yh-checkbox-group
+          formArrayName="faSecurities"
+          [formGroup]="fgContact"
+          [options]="securitiesOptions"
+        ></yh-checkbox-group>
+        <yh-text-field
+          label="Other"
+          [control]="fcSecuritiesOther"
+          [style.width]="'400px'"
+        ></yh-text-field>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">Address</yh-text>
+      <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+        <yh-text-field label="Address" [control]="fcAddress" [required]="true">
+        </yh-text-field>
+      </div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="5px"
+        style="width: 100%"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48">
+          <yh-text-field label="City" [control]="fcCity" [required]="true">
+          </yh-text-field>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-dropdown-field
+            label="State"
+            [control]="fcState"
+            [required]="true"
+          >
+          </yh-dropdown-field>
+        </div>
+      </div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="5px"
+        style="width: 100%"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-text-field
+            label="Zip Code"
+            [control]="fcZipCode"
+            [required]="true"
+          >
+          </yh-text-field>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 48%">
+          <yh-dropdown-field
+            label="Country"
+            [control]="fcCountry"
+            [required]="true"
+          >
+          </yh-dropdown-field>
+        </div>
+      </div>
+    </div>
+  </yh-card>
+  <yh-card [flat]="true">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <yh-text [bold]="true">LE Contact</yh-text>
+      <div fxLayout="column" fxLayoutGap="5px" style="width: 100%">
+        <yh-dropdown-field
+          label="Contact"
+          [control]="fcLeName"
+          [style.width]="'400px'"
+        >
+        </yh-dropdown-field>
+      </div>
+    </div>
+  </yh-card>
+</div>

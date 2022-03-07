@@ -1,0 +1,15 @@
+<yh-sidebar-layout [pad]="false">
+  <yh-sidebar-layout-header title="Results"> </yh-sidebar-layout-header>
+  <div fxLayout="column" fxFlex="100%">
+    <div class="filter-wrapper" [formGroup]="fgFilter">
+      <yh-text-field
+        [control]="fcFilterTerm"
+        [search]="true"
+        placeholder="Search Results..."
+      ></yh-text-field>
+    </div>
+    <div class="results-wrapper">
+      <yh-client-account-matches-list></yh-client-account-matches-list>
+    </div>
+  </div>
+</yh-sidebar-layout>

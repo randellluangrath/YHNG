@@ -1,0 +1,17 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.client-management-navigation-footer {
+  padding: 15px 25px 15px 25px;
+  background: get-theme-color(brand, secondary);
+  transition: background 0.3s ease-in-out;
+  &:hover {
+    background: get-theme-color(brand, secondary-dark);
+    cursor: pointer;
+  }
+}
+.return-link {
+  color: get-theme-color(brand, primary-dark);
+  @include semibold-font-weight();
+  text-decoration: none;
+}

@@ -1,0 +1,64 @@
+<div fxLayout="column" [style.width]="'100%'" [style.height]="'100%'">
+  <div fxLayout="column" fxLayoutGap="15px" *ngIf="selectedInstitution == null">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <yh-title [level]="2" [title]="'Financial Institutions'"></yh-title>
+      <yh-button (click)="showLookupDrawer = true">Add Institution</yh-button>
+    </div>
+    <yh-divider></yh-divider>
+    <yh-card *ngFor="let institution of sar.financialInstitutions">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-text [strong]="true">{{ institution.name }}</yh-text>
+        </div>
+      </div>
+    </yh-card>
+  </div>
+  <div
+    fxLayout="column"
+    fxLayoutGap="15px"
+    fxFlex="auto"
+    *ngIf="selectedInstitution != null"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <yh-title [level]="2" [title]="selectedInstitution.name"></yh-title>
+      <yh-button [ghost]="true">Remove Institution</yh-button>
+    </div>
+    <yh-divider></yh-divider>
+    <div class="facility-form-wrapper">
+      <yh-sar-financial-institution-edit
+        [institution]="selectedInstitution"
+      ></yh-sar-financial-institution-edit>
+    </div>
+  </div>
+</div>
+
+<!-- <yh-card *ngIf="sar.financialInstitutions.length == 0" [style.width]="'100%'">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <yh-title [level]="2" title="Add Financial Institution"></yh-title>
+        <yh-text [secondary]="true"
+          >No Financial Institutions have been added to this SAR. Begin by
+          adding one.</yh-text
+        >
+      </div>
+      <yh-button>Add Institution</yh-button>
+    </div>
+  </yh-card> -->
+
+<!-- <yh-drawer
+  [visible]="showLookupDrawer"
+  [closeOnEscape]="false"
+  [showCloseIcon]="false"
+  [title]="'Add Financial Institution'"
+  [pad]="true"
+  (hide)="showLookupDrawer = false"
+  width="800px"
+>
+  <yh-sar-financial-institution-edit
+    [institution]="selectedInstitution"
+  ></yh-sar-financial-institution-edit>
+  <yh-drawer-footer>
+    <yh-button (click)="showLookupDrawer = false"> Save </yh-button>
+    <yh-button (click)="showLookupDrawer = false"> Cancel </yh-button>
+  </yh-drawer-footer>
+</yh-drawer> -->

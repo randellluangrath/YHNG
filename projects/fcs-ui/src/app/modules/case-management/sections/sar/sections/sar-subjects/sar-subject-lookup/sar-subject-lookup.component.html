@@ -1,0 +1,40 @@
+<div fxLayout="column" fxLayoutGap="15px" class="content-wrapper">
+  <yh-card
+    [flat]="true"
+    *ngFor="let subject of subjects"
+    [selectable]="true"
+    [selected]="isSelected(subject)"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="25px">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutAlign.lg="start start"
+        fxLayoutGap="5px"
+      >
+        <yh-title [level]="3" [title]="getSubjectName(subject)"></yh-title>
+        <yh-text [secondary]="true" [small]="true" [strong]="true"
+          >{{ subject.type }}
+          <span *ngIf="subject.type === 'Individual'"
+            >- Born {{ subject.dateOfBirth | date: "shortDate" }} &nbsp;</span
+          >
+          <yh-text
+            [secondary]="true"
+            [strong]="true"
+            [small]="true"
+            *ngIf="subject.type === 'Individual'"
+            >aka. {{ subject?.alternateNames[0].firstName }}
+            {{ subject?.alternateNames[0].lastName }}</yh-text
+          >
+          <yh-text
+            [secondary]="true"
+            [strong]="true"
+            [small]="true"
+            *ngIf="subject.type === 'Entity'"
+            >dba. {{ subject?.alternateNames[0].entity }}</yh-text
+          ></yh-text
+        >
+      </div>
+    </div>
+  </yh-card>
+</div>

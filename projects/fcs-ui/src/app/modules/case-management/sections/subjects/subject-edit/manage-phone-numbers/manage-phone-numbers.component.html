@@ -1,0 +1,75 @@
+<div fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      [text]="true"
+      [secondary]="true"
+      [bordered]="true"
+      icon="pi pi-plus"
+      (click)="showForm($event)"
+    ></yh-button>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="25px">
+    <yh-divider></yh-divider>
+    <yh-text *ngIf="subject?.phoneNumbers.length === 0" [secondary]="true"
+      >No phone numbers have been added.</yh-text
+    >
+    <ng-template ngFor let-index let-phone [ngForOf]="subject?.phoneNumbers">
+      <div class="item-row" fxLayout="column" fxLayoutGap="25px">
+        <div
+          fxLayout="row"
+          fxLayoutGap="25px"
+          fxLayoutAlign="space-between center"
+        >
+          <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start start">
+            <yh-button
+              [iconButton]="true"
+              [icon]="
+                phone === selectedPhone ? 'fas fa-circle' : 'fal fa-circle'
+              "
+              [text]="true"
+              [secondary]="phone !== selectedPhone"
+              [warning]="phone === selectedPhone"
+              (click)="selectedPhone = phone"
+            ></yh-button>
+            <div fxLayout="column" fxLayoutGap="5px">
+              <yh-subject-phone-item [phone]="phone"> </yh-subject-phone-item>
+              <yh-text
+                *ngIf="trashed.has(phone)"
+                [warning]="true"
+                [small]="true"
+                [strong]="true"
+                >Marked for deletion</yh-text
+              >
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="10px">
+            <yh-button
+              [iconButton]="true"
+              [bordered]="true"
+              icon="pi pi-pencil"
+              [text]="true"
+              [secondary]="true"
+            ></yh-button>
+            <yh-button
+              [iconButton]="true"
+              [bordered]="true"
+              [icon]="trashed.has(phone) ? 'pi pi-undo' : 'pi pi-trash'"
+              [text]="true"
+              [secondary]="true"
+              (click)="markForDelete(phone)"
+            ></yh-button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <yh-overlay-panel [dismissable]="false">
+    <yh-subject-phone-edit
+      (onSave)="saveItem($event)"
+      (onCancel)="cancelItem()"
+    ></yh-subject-phone-edit>
+  </yh-overlay-panel>
+</div>

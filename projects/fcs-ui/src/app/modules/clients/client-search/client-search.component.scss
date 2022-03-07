@@ -1,0 +1,50 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include full-height();
+}
+.content {
+  @include flex-content();
+  overflow: hidden;
+}
+
+.lookup-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lookup-column {
+  @include border(0, 1px, 0, 0);
+  height: 100%;
+
+  .search-wrapper {
+    @include border(0, 0, 1px, 0);
+    padding: 25px;
+  }
+  .lookup-results-wrapper {
+    background: get-theme-color(background);
+    padding: 25px;
+    overflow-y: auto;
+    @include scrollbar-defaults;
+  }
+  .lookup-results-tabs {
+    @include border(0, 0, 1px, 0);
+    padding: 0 25px;
+  }
+}
+
+.subject-details-wrapper {
+  padding: 25px;
+  overflow-y: auto;
+  @include scrollbar-defaults;
+}
+
+.scroll-section {
+  @include border(1px, 1px, 1px, 1px);
+  background: get-theme-color(background);
+  padding: 10px;
+  overflow-y: auto;
+  @include scrollbar-defaults;
+}

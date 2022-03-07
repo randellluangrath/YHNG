@@ -1,0 +1,37 @@
+<div
+  [formGroup]="fgEvent"
+  fxLayout="column"
+  fxLayoutGap="15px"
+  fxLayoutAlign="start start"
+>
+  <yh-title [level]="3" title="Add IP Address"></yh-title>
+  <yh-dropdown-field
+    label="Type"
+    [control]="fcType"
+    [required]="true"
+    [options]="typeOptions"
+  >
+  </yh-dropdown-field>
+  <yh-text-field
+    *ngIf="fcType.value === 'Other'"
+    label="Other Type"
+    [control]="fcTypeOther"
+    [required]="true"
+  >
+  </yh-text-field>
+  <yh-text-field label="Event Value" [control]="fcEventValue" [required]="true">
+  </yh-text-field>
+  <yh-date-field label="Date & Time" [control]="fcDate" [showTime]="true">
+  </yh-date-field>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="10px"
+    style="width: 100%"
+  >
+    <yh-button (click)="saveItem()">Add</yh-button>
+    <yh-button (click)="cancelItem()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </div>
+</div>

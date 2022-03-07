@@ -1,0 +1,54 @@
+<yh-general-layout [pad]="true">
+  <yh-general-layout-header [title]="'Scenario Tags'">
+    <yh-actions style="width: 100%"
+      ><yh-button (click)="showDrawer = true">Add New</yh-button></yh-actions
+    >
+  </yh-general-layout-header>
+  <yh-general-layout-content>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div *ngFor="let tag of tags" fxLayout="column" fxLayoutGap="15px">
+        <yh-card
+          (click)="selectedTag = tag"
+          [selectable]="true"
+          [selected]="selectedTag === tag"
+        >
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <yh-text [bold]="true">{{ tag.name }}</yh-text>
+            </div>
+            <yh-text [secondary]="true" [small]="true"
+              >{{ tag.scenarios.length }} Scenarios</yh-text
+            >
+            <!-- <yh-button
+              [iconButton]="true"
+              icon="pi pi-ellipsis-h"
+              [bordered]="true"
+              [secondary]="true"
+              (click)="toggleOptionsMenu($event)"
+            ></yh-button> -->
+          </div>
+        </yh-card>
+      </div>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar *ngIf="selectedTag">
+    <yh-scenario-tags-details [tag]="selectedTag"></yh-scenario-tags-details>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
+<yh-drawer
+  [visible]="showDrawer"
+  [closeOnEscape]="true"
+  [title]="'Add Tag'"
+  [pad]="true"
+  width="400px"
+  (hide)="showDrawer = false"
+>
+  <yh-scenario-tags-edit></yh-scenario-tags-edit>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="showDrawer = false">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

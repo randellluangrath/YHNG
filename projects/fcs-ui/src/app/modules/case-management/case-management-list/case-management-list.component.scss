@@ -1,0 +1,89 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+.status-indicator {
+  color: get-theme-color(state, secondary);
+  font-size: 0.5em;
+  position: relative;
+  top: -2px;
+  &.is-open {
+    color: get-theme-color(state);
+  }
+  &.is-closed {
+    color: get-theme-color(state, danger);
+  }
+  &.is-merged {
+    color: get-theme-color(state, warn);
+  }
+  &.is-pending {
+    color: get-theme-color(state, pending);
+  }
+  &.is-reopened {
+    color: get-theme-color(state);
+  }
+  &.is-sar-filed {
+    color: get-theme-color(state, success);
+  }
+}
+
+.flex-table-wrapper {
+  height: calc(100vh - 150px);
+  background: get-theme-color(basic, white);
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+  .filters {
+    display: none !important;
+  }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  /* CSS */
+}

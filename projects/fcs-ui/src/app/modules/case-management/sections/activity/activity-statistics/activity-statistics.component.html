@@ -1,0 +1,443 @@
+<div class="activity-statistics-wrapper" fxLayout="column">
+  <div
+    class="filters-wrapper"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    style="padding: 10px 50px"
+  >
+    <yh-activity-statistics-filters></yh-activity-statistics-filters>
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <yh-toggle-button
+        [icon]="showVisualization ? barIconSolid : barIconLight"
+        [active]="showVisualization"
+        (click)="showVisualization = !showVisualization"
+      ></yh-toggle-button>
+      <yh-button (click)="toggleFilters()">Filters</yh-button>
+    </div>
+  </div>
+  <div
+    fxFlex="auto"
+    class="statistics-content"
+    [class.no-pad]="!showVisualization"
+  >
+    <div class="data-content" *ngIf="!showVisualization" id="statisticsTables">
+      <div style="height: calc(100vh - 200px)">
+        <p-table
+          [value]="activityRecords"
+          [scrollable]="true"
+          scrollDirection="both"
+          scrollHeight="flex"
+          id="debitTable"
+        >
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th
+                style="width: 150px; padding-left: 50px"
+                alignFrozen="left"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true"></yh-text>
+              </th>
+
+              <ng-template
+                ngFor
+                let-index
+                let-column
+                [ngForOf]="timePeriodColumns"
+              >
+                <th [style]="{ width: '150px' }">
+                  <yh-text [strong]="true">{{ column.title }}</yh-text>
+                </th>
+              </ng-template>
+              <th
+                [style]="{ width: '150px', right: '225px' }"
+                alignFrozen="right"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true"> Q1 2021</yh-text>
+              </th>
+              <th
+                [style]="{ width: '75px' }"
+                alignFrozen="right"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true">%</yh-text>
+              </th>
+              <th
+                [style]="{ width: '150px' }"
+                alignFrozen="right"
+                pFrozenColumn
+                [frozen]="true"
+              >
+                <yh-text [strong]="true"> Average</yh-text>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template
+            pTemplate="frozenbody"
+            let-activity
+            let-columns="columns"
+            let-rowIndex="rowIndex"
+          >
+            <tr
+              [class.is-stats-row]="!activity.activityName.includes('Totals')"
+              [class.is-totals-row]="activity.activityName.includes('Totals')"
+            >
+              <td
+                pFrozenColumn
+                [style]="{ width: '150px', paddingLeft: '50px' }"
+                class="activity-name-cell"
+              >
+                <yh-text [strong]="true">{{
+                  activity.activityName === "Totals"
+                    ? "Debit Total"
+                    : activity.activityName
+                }}</yh-text>
+              </td>
+
+              <ng-template
+                ngFor
+                let-index="index"
+                let-period
+                [ngForOf]="activity.timePeriods"
+              >
+                <td [style]="{ width: '150px' }" class="border-left is-grouped">
+                  <yh-text
+                    [secondary]="activity.activityName !== 'Totals'"
+                    [strong]="activity.activityName === 'Totals'"
+                    >{{ period.credit | currency }}</yh-text
+                  >
+                </td>
+              </ng-template>
+
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '150px', right: '225px' }"
+                class="current-period-name-cell"
+              >
+                <yh-text
+                  [secondary]="true"
+                  [strong]="activity.activityName === 'Totals'"
+                  >$12,000.00</yh-text
+                >
+              </td>
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '75px' }"
+              >
+                <yh-text
+                  [success]="rowIndex % 2 == 0"
+                  [danger]="rowIndex % 2 == 1"
+                  [strong]="activity.activityName === 'Totals'"
+                  >{{ rowIndex % 2 == 0 ? "+" : "-" }} 3%</yh-text
+                >
+              </td>
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '150px' }"
+              >
+                <yh-text [medium]="true">$13,000.00</yh-text>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template
+            pTemplate="body"
+            let-activity
+            let-columns="columns"
+            let-rowIndex="rowIndex"
+          >
+            <tr
+              [class.is-stats-row]="!activity.activityName.includes('Totals')"
+              [class.is-totals-row]="activity.activityName.includes('Totals')"
+            >
+              <td
+                pFrozenColumn
+                [style]="{ width: '150px', paddingLeft: '50px' }"
+                class="activity-name-cell"
+              >
+                <yh-text [strong]="true">{{ activity.activityName }}</yh-text>
+              </td>
+
+              <ng-template
+                ngFor
+                let-index="index"
+                let-period
+                [ngForOf]="activity.timePeriods"
+              >
+                <td [style]="{ width: '150px' }" class="border-left is-grouped">
+                  <yh-text
+                    [secondary]="!activity.activityName.includes('Totals')"
+                    [strong]="activity.activityName.includes('Totals')"
+                    >{{ period.credit | currency }}</yh-text
+                  >
+                </td>
+              </ng-template>
+
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '150px', right: '225px' }"
+                class="current-period-name-cell"
+              >
+                <yh-text
+                  [secondary]="true"
+                  [strong]="activity.activityName.includes('Totals')"
+                  >$12,000.00</yh-text
+                >
+              </td>
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '75px' }"
+              >
+                <yh-text
+                  [success]="rowIndex % 2 == 0"
+                  [danger]="rowIndex % 2 == 1"
+                  [strong]="activity.activityName.includes('Totals')"
+                  >{{ rowIndex % 2 == 0 ? "+" : "-" }} 3%</yh-text
+                >
+              </td>
+              <td
+                pFrozenColumn
+                alignFrozen="right"
+                [frozen]="true"
+                [style]="{ width: '150px' }"
+              >
+                <yh-text [medium]="true">$13,000.00</yh-text>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <!-- <div fxFlex="50%">
+          <p-table
+            [value]="activityRecords"
+            [scrollable]="true"
+            [frozenValue]="lockedFlatData"
+            scrollDirection="both"
+            scrollHeight="flex"
+          >
+            <ng-template
+              pTemplate="frozenbody"
+              let-activity
+              let-columns="columns"
+              let-rowIndex="rowIndex"
+            >
+              <tr
+                [class.is-stats-row]="activity.activityName != 'Totals'"
+                [class.is-totals-row]="activity.activityName === 'Totals'"
+              >
+                <td
+                  pFrozenColumn
+                  [style]="{ width: '150px', paddingLeft: '50px' }"
+                  class="activity-name-cell"
+                >
+                  <yh-text [strong]="true">{{
+                    activity.activityName === "Totals"
+                      ? "Credit Total"
+                      : activity.activityName
+                  }}</yh-text>
+                </td>
+
+                <ng-template
+                  ngFor
+                  let-index="index"
+                  let-period
+                  [ngForOf]="activity.timePeriods"
+                >
+                  <td
+                    [style]="{ width: '150px' }"
+                    class="border-left is-grouped"
+                  >
+                    <yh-text
+                      [secondary]="activity.activityName !== 'Totals'"
+                      [strong]="activity.activityName === 'Totals'"
+                      >{{ period.credit | currency }}</yh-text
+                    >
+                  </td>
+                </ng-template>
+
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '150px', right: '230px' }"
+                  class="current-period-name-cell"
+                >
+                  <yh-text
+                    [secondary]="true"
+                    [strong]="activity.activityName === 'Totals'"
+                    >$12,000.00</yh-text
+                  >
+                </td>
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '75px' }"
+                >
+                  <yh-text
+                    [success]="rowIndex % 2 == 0"
+                    [danger]="rowIndex % 2 == 1"
+                    [strong]="activity.activityName === 'Totals'"
+                    >{{ rowIndex % 2 == 0 ? "+" : "-" }} 3%</yh-text
+                  >
+                </td>
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '150px' }"
+                >
+                  <yh-text [medium]="true">$13,000.00</yh-text>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template
+              pTemplate="body"
+              let-activity
+              let-columns="columns"
+              let-rowIndex="rowIndex"
+            >
+              <tr
+                [class.is-stats-row]="activity.activityName != 'Totals'"
+                [class.is-totals-row]="activity.activityName === 'Totals'"
+              >
+                <td
+                  pFrozenColumn
+                  [style]="{ width: '150px', paddingLeft: '50px' }"
+                  class="activity-name-cell"
+                >
+                  <yh-text [strong]="true">{{
+                    activity.activityName === "Totals"
+                      ? "Credit Total"
+                      : activity.activityName
+                  }}</yh-text>
+                </td>
+
+                <ng-template
+                  ngFor
+                  let-index="index"
+                  let-period
+                  [ngForOf]="activity.timePeriods"
+                >
+                  <td
+                    [style]="{ width: '150px' }"
+                    class="border-left is-grouped"
+                  >
+                    <yh-text
+                      [secondary]="activity.activityName !== 'Totals'"
+                      [strong]="activity.activityName === 'Totals'"
+                      >{{ period.credit | currency }}</yh-text
+                    >
+                  </td>
+                </ng-template>
+
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '150px', right: '230px' }"
+                  class="current-period-name-cell"
+                >
+                  <yh-text
+                    [secondary]="true"
+                    [strong]="activity.activityName === 'Totals'"
+                    >$12,000.00</yh-text
+                  >
+                </td>
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '75px' }"
+                >
+                  <yh-text
+                    [success]="rowIndex % 2 == 0"
+                    [danger]="rowIndex % 2 == 1"
+                    [strong]="activity.activityName === 'Totals'"
+                    >{{ rowIndex % 2 == 0 ? "+" : "-" }} 3%</yh-text
+                  >
+                </td>
+                <td
+                  pFrozenColumn
+                  alignFrozen="right"
+                  [frozen]="true"
+                  [style]="{ width: '150px' }"
+                >
+                  <yh-text [medium]="true">$13,000.00</yh-text>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div> -->
+      </div>
+    </div>
+    <div
+      *ngIf="showVisualization"
+      class="visualization-content"
+      [style.height]="'100%'"
+    >
+      <div class="visualization-wrapper" [formGroup]="fgMedium">
+        <div
+          class="visualization-wrapper-options"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <yh-select-button
+            [control]="fcMedium"
+            [options]="mediumOptions"
+          ></yh-select-button>
+          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <yh-toggle-button
+              [icon]="showAsLine ? lineIconSolid : lineIconLight"
+              [active]="showAsLine"
+              (click)="showAsLine = !showAsLine"
+            ></yh-toggle-button>
+            <yh-toggle-button
+              [icon]="showAsBar ? barIconSolid : barIconLight"
+              [active]="showAsBar"
+              (click)="showAsBar = !showAsBar"
+            ></yh-toggle-button>
+          </div>
+        </div>
+        <div class="visualization">
+          <yh-activity-stacked-bar-chart
+            *ngIf="showAsBar"
+          ></yh-activity-stacked-bar-chart>
+          <yh-activity-line-chart
+            *ngIf="showAsLine"
+            [months]="months"
+          ></yh-activity-line-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<yh-drawer
+  [visible]="showFilters"
+  [closeOnEscape]="true"
+  [title]="'Statistics Options'"
+  [pad]="true"
+  width="800px"
+  (hide)="handleOnHide()"
+>
+  <yh-activity-statistics-options></yh-activity-statistics-options>
+  <yh-drawer-footer>
+    <yh-button>Save</yh-button>
+    <yh-button [ghost]="true" [warning]="true" (click)="handleOnHide()">
+      Cancel
+    </yh-button>
+  </yh-drawer-footer>
+</yh-drawer>

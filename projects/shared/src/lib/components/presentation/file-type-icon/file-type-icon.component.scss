@@ -1,0 +1,74 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  width: auto;
+  height: auto;
+  display: flex;
+  place-content: center center;
+  align-items: center;
+  font-size: 1.5em;
+
+  &.is-image {
+    color: get-theme-color(state, pending);
+  }
+  &.is-video {
+    color: get-theme-color(state, warn);
+  }
+  &.is-text {
+    color: get-theme-color(state, secondary);
+  }
+  &.is-pdf {
+    color: get-theme-color(state, danger);
+  }
+  &.is-audio {
+    color: get-theme-color(state, warn);
+  }
+  &.is-word {
+    color: get-theme-color(state);
+  }
+  &.is-excel {
+    color: get-theme-color(state, success);
+  }
+
+  &.is-filled {
+    background: get-theme-color(basic, white);
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    &.is-image {
+      background-color: lighten(get-theme-color(state, pending), 30);
+    }
+    &.is-video {
+      background-color: lighten(get-theme-color(state, warn), 30);
+    }
+    &.is-text {
+      background-color: lighten(get-theme-color(state, secondary), 30);
+    }
+    &.is-pdf {
+      background-color: lighten(get-theme-color(state, danger), 30);
+    }
+    &.is-audio {
+      background-color: lighten(get-theme-color(state, warn), 30);
+    }
+    &.is-word {
+      background-color: lighten(get-theme-color(state), 30);
+    }
+    &.is-excel {
+      background-color: lighten(get-theme-color(state, success), 30);
+    }
+  }
+  &.is-bordered {
+    @include box-shadow;
+    @include border;
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    font-size: 1.5rem;
+  }
+  &.is-small {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25em;
+  }
+}

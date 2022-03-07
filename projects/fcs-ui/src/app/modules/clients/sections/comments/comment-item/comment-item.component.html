@@ -1,0 +1,63 @@
+<yh-card>
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-text [strong]="true">{{ comment.createdBy }}</yh-text>
+        <yh-text [secondary]="true" [medium]="true" [small]="true"
+          >Created on {{ comment.createdDate | date: "shortDate" }}</yh-text
+        >
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <yh-button
+          *ngIf="!showCommentForm"
+          [iconButton]="true"
+          [bordered]="true"
+          [secondary]="true"
+          size="small"
+          icon="pi pi-pencil"
+          (click)="showCommentForm = true"
+        ></yh-button>
+        <yh-button
+          *ngIf="!showCommentForm"
+          [iconButton]="true"
+          [bordered]="true"
+          [secondary]="true"
+          size="small"
+          icon="pi pi-trash"
+          (click)="showCommentForm = true"
+        ></yh-button>
+        <yh-button
+          *ngIf="showCommentForm"
+          [iconButton]="true"
+          [bordered]="true"
+          [secondary]="true"
+          size="small"
+          icon="pi pi-save"
+          (click)="showCommentForm = false"
+        ></yh-button>
+
+        <yh-button
+          *ngIf="showCommentForm"
+          [iconButton]="true"
+          [bordered]="true"
+          [secondary]="true"
+          size="small"
+          icon="pi pi-times"
+          (click)="showCommentForm = false"
+        ></yh-button>
+      </div>
+    </div>
+
+    <yh-text [secondary]="true" *ngIf="!showCommentForm">{{
+      comment.comment
+    }}</yh-text>
+    <div [formGroup]="fgComment">
+      <yh-textarea-field
+        *ngIf="showCommentForm"
+        [control]="fcComment"
+        [enableCharacterCounter]="true"
+        [small]="true"
+      ></yh-textarea-field>
+    </div>
+  </div>
+</yh-card>

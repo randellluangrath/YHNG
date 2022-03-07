@@ -1,0 +1,23 @@
+<div
+  [formGroup]="fgAssign"
+  fxLayout="column"
+  fxLayoutGap="10px"
+  style="width: 250px"
+>
+  <yh-dropdown-field
+    placeholder="Assignee"
+    [control]="fcAssignee"
+    [options]="assigneeOptions"
+    [filter]="true"
+  >
+  </yh-dropdown-field>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button [text]="true" label="Save"></yh-button>
+    <yh-button
+      [secondary]="true"
+      [text]="true"
+      [warning]="true"
+      label="Cancel"
+    ></yh-button>
+  </div>
+</div>

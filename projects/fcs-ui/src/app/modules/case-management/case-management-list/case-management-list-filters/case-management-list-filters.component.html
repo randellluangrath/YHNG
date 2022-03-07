@@ -1,0 +1,73 @@
+<div
+  [formGroup]="fgFilters"
+  [fxLayout]="vertical ? 'column' : 'row'"
+  fxLayoutGap="15px"
+>
+  <!-- <yh-text-field
+    placeholder="Search Cases"
+    [search]="true"
+    [control]="fcFreeText"
+    [fxFlex]="vertical ? '0 0 auto' : '0 0 200px'"
+  ></yh-text-field> -->
+  <!-- <yh-dropdown-field
+    [control]="fcStatus"
+    placeholder="Filter by Status"
+    [options]="[]"
+  ></yh-dropdown-field> -->
+  <yh-divider
+    [title]="'Status'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcStatus"
+    [options]="statusOptions"
+    [style.width]="'100%'"
+  >
+  </yh-listbox-field>
+  <yh-divider [title]="'Type'" placement="left" background="white"></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcType"
+    [options]="statusOptions"
+  >
+  </yh-listbox-field>
+  <!-- <yh-dropdown-field
+    [control]="fcType"
+    placeholder="Filter by Type"
+    [options]="[]"
+  ></yh-dropdown-field> -->
+  <!-- <yh-dropdown-field
+    [control]="fcAssignee"
+    placeholder="Filter by Assignee"
+    [options]="[]"
+  ></yh-dropdown-field> -->
+  <yh-divider
+    [title]="'Assignee'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <yh-listbox-field
+    [showFilter]="false"
+    [showToggleAll]="false"
+    [control]="fcAssignee"
+    [options]="assigneeOptions"
+  >
+  </yh-listbox-field>
+  <yh-divider
+    [title]="'Due On'"
+    placement="left"
+    background="white"
+  ></yh-divider>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <yh-date-field
+      [control]="fcDate"
+      [range]="true"
+      [months]="2"
+    ></yh-date-field>
+    <yh-checkbox [control]="fcBetween" label="Range"></yh-checkbox>
+  </div>
+</div>

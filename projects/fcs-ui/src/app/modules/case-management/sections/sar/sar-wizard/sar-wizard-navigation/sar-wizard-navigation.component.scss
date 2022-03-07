@@ -1,0 +1,34 @@
+@import "theme-functions";
+@import "theme-mixins";
+.section-list {
+  padding-top: 25px;
+}
+
+.section {
+  padding: 0 25px;
+}
+ul {
+  padding: 0;
+  li {
+    padding: 5px 0;
+    color: get-theme-color(state, secondary);
+    fa-icon {
+      color: get-theme-color(state, secondary);
+    }
+    &:hover,
+    &.is-active {
+      color: get-theme-color(state);
+      @include semibold-font-weight();
+      cursor: pointer;
+      fa-icon {
+        color: get-theme-color(state);
+      }
+    }
+
+    .link-title {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

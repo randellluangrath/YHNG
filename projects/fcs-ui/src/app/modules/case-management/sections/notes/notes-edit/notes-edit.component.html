@@ -1,0 +1,29 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header title="Create Note" (close)="handleClose($event)">
+  </yh-sidebar-layout-header>
+  <div
+    class="content"
+    [formGroup]="fgNote"
+    fxLayout="column"
+    fxLayoutGap="15px"
+  >
+    <yh-textarea-field
+      label="Note"
+      placeholder="Note"
+      [required]="true"
+      [control]="fcNote"
+    ></yh-textarea-field>
+    <yh-upload-field
+      label="Attachment"
+      [control]="fcAttachment"
+      [multiple]="true"
+    >
+    </yh-upload-field>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button>Save</yh-button>
+    <yh-button (click)="handleClose($event)" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

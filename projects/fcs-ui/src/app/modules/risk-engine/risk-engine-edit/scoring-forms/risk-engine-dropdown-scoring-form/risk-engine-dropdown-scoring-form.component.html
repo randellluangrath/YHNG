@@ -1,0 +1,133 @@
+<div [formGroup]="fgFilters" fxLayout="column" fxLayoutGap="15px">
+  <yh-dropdown-field
+    [placeholder]="'Search ' + labelPlural + '...'"
+    [options]="filteredOptions"
+    [filter]="true"
+    [control]="fcValue"
+  ></yh-dropdown-field>
+  <p-table
+    [value]="values"
+    dataKey="id"
+    editMode="row"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr class="add-new-row">
+        <td colspan="2">
+          <div fxLayout="row" fxLayoutGap="10px" [formGroup]="fgCreate">
+            <yh-dropdown-field
+              fxFlex="200px"
+              [placeholder]="'Select ' + labelSingular + '...'"
+              [options]="filteredOptions"
+              [control]="fcCode"
+              [filter]="true"
+            ></yh-dropdown-field>
+            <yh-number-field
+              fxFlex="100px"
+              placeholder="Score"
+              [min]="0"
+              [max]="0"
+              [control]="fcScore"
+            ></yh-number-field>
+          </div>
+        </td>
+        <td>
+          <yh-button (click)="addNewItem()">Add New</yh-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-point
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="point">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                [options]="getValidOptions(point)"
+                [(ngModel)]="point.code"
+                [ngModelOptions]="{ standalone: true }"
+                [filter]="true"
+                [placeholder]="'Select ' + labelSingular + '...'"
+                optionLabel="label"
+                optionValue="value"
+                [showClear]="true"
+              ></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ point.code }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-inputNumber
+                [(ngModel)]="point.score"
+                [ngModelOptions]="{ standalone: true }"
+                [min]="0"
+                [max]="100"
+              >
+              </p-inputNumber>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ point.score }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="text-align: center; width: 150px">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <yh-button
+              *ngIf="!editing"
+              [iconButton]="true"
+              [bordered]="true"
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(point)"
+              pInitEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="!editing"
+              [iconButton]="true"
+              [bordered]="true"
+              icon="pi pi-trash"
+              (click)="onRowEditInit(point)"
+              pInitEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="editing"
+              [iconButton]="true"
+              [bordered]="true"
+              icon="pi pi-check"
+              (click)="onRowEditSave(point)"
+              pSaveEditableRow
+            ></yh-button>
+            <yh-button
+              *ngIf="editing"
+              [iconButton]="true"
+              [bordered]="true"
+              icon="pi pi-times"
+              (click)="onRowEditCancel(point, ri)"
+              pCancelEditableRow
+            ></yh-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="empty-message" colspan="3">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <fa-icon [icon]="infoIcon" class="info-icon"></fa-icon>
+            <yh-text [secondary]="true"
+              >No items found for your search criteria.</yh-text
+            >
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

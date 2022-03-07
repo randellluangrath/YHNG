@@ -1,0 +1,25 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <div [formGroup]="fgFilters" fxLayout="row" fxLayoutGap="10px">
+    <!-- <yh-text-field
+      [search]="true"
+      [control]="fcFreeText"
+      placeholder="Search SARs"
+      fxFlex="200px"
+    ></yh-text-field>
+    <yh-dropdown-field
+      [control]="fcType"
+      [options]="[]"
+      placeholder="Select Type..."
+      fxFlex="200px"
+    ></yh-dropdown-field> -->
+  </div>
+  <div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+    <yh-sar-history-item
+      *ngFor="let sar of sars"
+      [style.width]="'100%'"
+      [sar]="sar"
+      [selected]="sar == selectedSar"
+      (click)="selectSar(sar)"
+    ></yh-sar-history-item>
+  </div>
+</div>

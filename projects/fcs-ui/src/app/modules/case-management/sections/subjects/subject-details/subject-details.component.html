@@ -1,0 +1,149 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Subject Details"
+    (close)="handleClose($event)"
+  >
+  </yh-sidebar-layout-header>
+  <div class="content" fxLayout="column" fxLayoutGap="35px">
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+        <!-- <yh-avatar
+          size="xlarge"
+          [label]="subject.firstName[0] + subject.lastName[0]"
+        ></yh-avatar> -->
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <yh-text [bold]="true">
+            {{
+              subject.firstName +
+                " " +
+                subject.middleName +
+                " " +
+                subject.lastName +
+                " " +
+                (subject.suffix ? subject.suffix : "")
+            }}</yh-text
+          >
+
+          <yh-text [secondary]="true" [small]="true" [strong]="true"
+            >{{ subject.type }}
+
+            <span *ngIf="subject.type === 'Individual'"
+              >&nbsp;- {{ subject.gender }}</span
+            >
+            <span *ngIf="subject.type === 'Individual'"
+              >&nbsp;- Born {{ subject.dateOfBirth | date: "shortDate" }}</span
+            ></yh-text
+          >
+          <yh-text [secondary]="true" [small]="true" [strong]="true"
+            >EIN: 122345</yh-text
+          >
+        </div>
+      </div>
+    </div>
+
+    <yh-divider></yh-divider>
+
+    <p-accordion>
+      <p-accordionTab header="Occupation Information">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <yh-display-value label="Occupation/Type" [inline]="true"
+              >Value</yh-display-value
+            >
+            <yh-display-value label="NAICS Code" [inline]="true"
+              >Value</yh-display-value
+            >
+          </div>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Alternate Names">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text
+            *ngFor="let name of subject.alternateNames"
+            [secondary]="true"
+            >{{ name }}</yh-text
+          >
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Email Addresses">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text
+            *ngFor="let email of subject.emailAddresses"
+            [secondary]="true"
+            >{{ email }}</yh-text
+          >
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Phone Numbers">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text *ngFor="let phone of subject.phoneNumbers" [secondary]="true"
+            >{{
+              (phone.phone | phone) +
+                (phone.extension ? " ext." + phone.extension : "")
+            }}
+            / {{ phone.type }}</yh-text
+          >
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Websites">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <yh-text *ngFor="let name of subject.websites" [secondary]="true">{{
+            name
+          }}</yh-text>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Addresses">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <ng-template
+            ngFor
+            let-index
+            let-address
+            [ngForOf]="subject?.addresses"
+          >
+            <yh-subject-address-item [address]="address">
+            </yh-subject-address-item>
+            <yh-divider></yh-divider>
+          </ng-template>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Forms of Identification">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <ng-template
+            ngFor
+            let-index
+            let-identity
+            [ngForOf]="subject?.identifications"
+          >
+            <div fxLayout="column" fxLayoutGap="10px">
+              <div
+                fxLayout="row"
+                fxLayoutGap="25px"
+                fxLayoutAlign="start center"
+              >
+                <yh-subject-identification-item
+                  [identification]="identity"
+                  fxFlex="1 1 100%"
+                ></yh-subject-identification-item>
+              </div>
+              <yh-divider></yh-divider>
+            </div>
+          </ng-template>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+    <yh-divider></yh-divider>
+    <yh-text [secondary]="true"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.</yh-text
+    >
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button [information]="true">Edit</yh-button>
+    <yh-button [danger]="true" [ghost]="true">Delete</yh-button>
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

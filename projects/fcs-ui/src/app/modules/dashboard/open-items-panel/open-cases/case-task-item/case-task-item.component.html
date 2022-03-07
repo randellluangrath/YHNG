@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutGap="3px">
+      <yh-text [strong]="true">{{ task.name }}</yh-text>
+      <yh-text [secondary]="true" [small]="true" [medium]="true"
+        >Due {{ task.due | localDate }}</yh-text
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<yh-general-layout [pad]="false" sidebarPosition="left">
+  <yh-general-layout-header title="Data Points">
+    <yh-actions>
+      <yh-button *ngIf="!isInEditMode">Edit</yh-button>
+      <p-splitButton
+        *ngIf="isInEditMode"
+        label="Save"
+        [model]="saveOptionItems"
+      ></p-splitButton>
+    </yh-actions>
+  </yh-general-layout-header>
+  <yh-general-layout-content class="risk-engine-content">
+    <p-tabMenu
+      class="data-points-tabs"
+      [model]="items"
+      [activeItem]="activeItem"
+    ></p-tabMenu>
+    <div
+      class="data-point-wrapper"
+      [formGroup]="fgDataPoint"
+      fxLayout="column"
+      fxLayoutGap="15px"
+    >
+      <yh-dropdown-field
+        *ngIf="isInEditMode"
+        placeholder="Select Data Point..."
+        [control]="fcDataPoint"
+        [filter]="true"
+      ></yh-dropdown-field>
+      <div *ngIf="dataPoints?.length === 0">
+        <yh-card>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="25px"
+          >
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              fxLayoutGap="10px"
+            >
+              <yh-title [level]="2" title="Add Data Point"></yh-title>
+              <yh-text [secondary]="true"
+                >No Data Points have been added to this case. Select one from
+                the dropdown above.</yh-text
+              >
+            </div>
+          </div>
+        </yh-card>
+      </div>
+      <p-table
+        *ngIf="dataPoints?.length > 0"
+        [value]="dataPoints"
+        dataKey="name"
+        responsiveLayout="scroll"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+        <ng-template pTemplate="body" let-point let-expanded="expanded">
+          <tr>
+            <td>
+              <button
+                type="button"
+                pButton
+                pRipple
+                [pRowToggler]="point"
+                class="p-button-text p-button-rounded p-button-plain"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              ></button>
+            </td>
+            <td>{{ point.name }}</td>
+            <td style="text-align: right">
+              <yh-button
+                *ngIf="isInEditMode"
+                [iconButton]="true"
+                [bordered]="true"
+                [secondary]="true"
+                icon="pi pi-trash"
+              ></yh-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-point>
+          <td colspan="3">
+            <div class="expanded-row-wrapper">
+              <!-- <yh-risk-engine-text-scoring-form></yh-risk-engine-text-scoring-form> -->
+              <!-- <yh-risk-engine-dropdown-scoring-form
+                labelSingular="Country"
+                labelPlural="Countries"
+                [options]="countryOptions"
+              ></yh-risk-engine-dropdown-scoring-form> -->
+              <yh-risk-enging-naics-scoring-form
+                labelSingular="NAICS codes"
+                labelPlural="NAICS code"
+              ></yh-risk-enging-naics-scoring-form>
+              <!-- <yh-risk-engine-dropdown-scoring-form
+                labelSingular="State"
+                labelPlural="States"
+                [options]="stateOptions"
+              ></yh-risk-engine-dropdown-scoring-form> -->
+            </div>
+          </td>
+        </ng-template>
+      </p-table>
+    </div>
+  </yh-general-layout-content>
+  <yh-general-layout-sidebar>
+    <yh-risk-engine-edit-form
+      [readonly]="!isInEditMode"
+    ></yh-risk-engine-edit-form>
+  </yh-general-layout-sidebar>
+</yh-general-layout>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
+  <ng-template pTemplate="footer">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+      <yh-button [warning]="true" [ghost]="true">Cancel</yh-button>
+      <yh-button>Delete Analysis</yh-button>
+    </div>
+  </ng-template>
+</p-confirmDialog>

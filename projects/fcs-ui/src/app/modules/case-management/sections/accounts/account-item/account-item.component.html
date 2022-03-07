@@ -1,0 +1,57 @@
+<yh-card [selectable]="true" [selected]="selected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column" fxLayoutGap="5px">
+        <yh-text [strong]="true" [preventWrap]="true">{{
+          account.name
+        }}</yh-text>
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <yh-text
+            [secondary]="true"
+            [small]="true"
+            [preventWrap]="true"
+            [style.width]="'125px'"
+            >{{ account.accountId }}
+          </yh-text>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <yh-text *ngIf="account.type == AccountType.External" [strong]="true"
+          >Closed</yh-text
+        >
+        <div
+          fxLayout="column"
+          fxLayoutGap="3px"
+          fxLayoutAlign="end end"
+          *ngIf="account.type == AccountType.Internal"
+        >
+          <div fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="end start">
+            <yh-text [strong]="true" [success]="true">+</yh-text>
+            <yh-text [strong]="true">{{
+              account.currentBalance | currency
+            }}</yh-text>
+          </div>
+          <yh-text
+            [small]="true"
+            [secondary]="true"
+            [strong]="true"
+            [preventWrap]="true"
+            [style.width]="'110px'"
+            >Municipal Checking</yh-text
+          >
+        </div>
+
+        <yh-text
+          pTooltip="Added by John Wood on 12/10/2021. <br/> <br/> Updated by Melanie Bennet on 12/11/2021"
+          [escape]="false"
+          tooltipPosition="left"
+          ><fa-icon [icon]="informationIcon"></fa-icon
+        ></yh-text>
+      </div>
+    </div>
+    <yh-divider></yh-divider>
+    <yh-text [secondary]="true" [small]="true">{{
+      account.institution
+    }}</yh-text>
+  </div>
+</yh-card>

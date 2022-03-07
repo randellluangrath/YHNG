@@ -1,0 +1,35 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgScheduling">
+  <yh-dropdown-field
+    label="Schedule"
+    [control]="fcType"
+    [required]="true"
+    [options]="schedulingOptions"
+  ></yh-dropdown-field>
+  <div *ngIf="fcType.value === 'Custom'" fxLayout="column" fxLayoutGap="15px">
+    <yh-divider></yh-divider>
+    <yh-card>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <yh-text [bold]="true">Configure Custom Timeframe</yh-text>
+        <yh-select-button
+          label="Run Analysis"
+          [control]="fcCustom"
+          [required]="true"
+          [options]="customOptions"
+        ></yh-select-button>
+
+        <yh-scheduling-custom-daily
+          *ngIf="fcCustom.value === 'Daily'"
+        ></yh-scheduling-custom-daily>
+        <yh-scheduling-custom-weekly
+          *ngIf="fcCustom.value === 'Weekly'"
+        ></yh-scheduling-custom-weekly>
+        <yh-scheduling-custom-monthly
+          *ngIf="fcCustom.value === 'Monthly'"
+        ></yh-scheduling-custom-monthly>
+        <yh-scheduling-custom-yearly
+          *ngIf="fcCustom.value === 'Yearly'"
+        ></yh-scheduling-custom-yearly>
+      </div>
+    </yh-card>
+  </div>
+</div>

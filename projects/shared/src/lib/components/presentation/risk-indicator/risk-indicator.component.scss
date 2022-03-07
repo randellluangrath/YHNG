@@ -1,0 +1,20 @@
+@import "theme-functions";
+.risk-indicator {
+  border-radius: 100%;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  &.is-low {
+    background: get-theme-color(state, success);
+  }
+  &.is-medium {
+    background: get-theme-color(state, warn);
+  }
+  &.is-high {
+    background: get-theme-color(state, danger);
+  }
+  &.is-small {
+    width: 7px;
+    height: 7px;
+  }
+}

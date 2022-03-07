@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutGap="5px" [formGroup]="fgAnswers">
+  <yh-button
+    [iconButton]="true"
+    icon="pi pi-plus"
+    [secondary]="true"
+    [bordered]="true"
+    (click)="addItem()"
+  ></yh-button>
+  <yh-divider></yh-divider>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div
+      formArrayName="faAnswers"
+      *ngFor="let item of fgAnswers.get('faAnswers')['controls']; let i = index"
+      class="item-row"
+    >
+      <div
+        [formGroupName]="i"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <yh-dropdown-field
+          fxFlex="1 1 50%"
+          placeholder="Select NAICS..."
+          [control]="item.get('fcAnswer')"
+        ></yh-dropdown-field>
+        <yh-number-field
+          fxFlex="1 1 50%"
+          [min]="0"
+          [max]="100"
+          placeholder="Score..."
+          [control]="item.get('fcAnswer')"
+        ></yh-number-field>
+        <yh-button
+          [disabled]="faAnswers?.length === 1"
+          (click)="removeItem(i)"
+          [iconButton]="true"
+          [secondary]="true"
+          [bordered]="true"
+          icon="pi pi-trash"
+        ></yh-button>
+      </div>
+    </div>
+  </div>
+  <yh-divider></yh-divider>
+  <yh-button
+    [iconButton]="true"
+    icon="pi pi-plus"
+    [secondary]="true"
+    [bordered]="true"
+    (click)="addItem()"
+  ></yh-button>
+</div>

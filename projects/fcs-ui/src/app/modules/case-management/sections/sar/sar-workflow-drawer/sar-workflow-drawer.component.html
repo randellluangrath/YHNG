@@ -1,0 +1,41 @@
+<yh-card [title]="'Case Disposition'">
+  <div [formGroup]="fgWorkflow" fxLayout="column" fxLayoutGap="15px">
+    <yh-select-button
+      label="Disposition"
+      [control]="fcWorkflow"
+      [options]="workflowOptions"
+      [required]="true"
+    ></yh-select-button>
+    <yh-dropdown-field
+      label="Reason"
+      *ngIf="fcWorkflow.value"
+      placeholder="Select Disposition..."
+      [control]="fcDisposition"
+      [required]="true"
+      [options]="fcWorkflow.value == '1' ? sarOptions : noSarOptions"
+    ></yh-dropdown-field>
+
+    <!-- <yh-textarea-field
+      *ngIf="fcWorkflow.value == '2' || fcWorkflow.value == '3'"
+      label="Narrative"
+      [control]="fcNarrative"
+      [max]="6000"
+      [required]="true"
+    ></yh-textarea-field> -->
+    <yh-editor-field
+      *ngIf="fcWorkflow.value == '2' || fcWorkflow.value == '3'"
+      label="Narrative"
+      [control]="fcNarrative"
+      [required]="true"
+      [max]="6000"
+    ></yh-editor-field>
+  </div>
+  <yh-card-footer-template>
+    <yh-button [disabled]="disabled">{{
+      fcWorkflow.value == "1" ? "Start SAR" : "Save"
+    }}</yh-button>
+    <yh-button [disabled]="disabled" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </yh-card-footer-template>
+</yh-card>

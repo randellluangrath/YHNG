@@ -1,0 +1,58 @@
+<yh-sidebar-layout>
+  <yh-sidebar-layout-header
+    title="Edit External Account"
+    (close)="handleClose()"
+  >
+  </yh-sidebar-layout-header>
+  <div fxLayout="column" fxLayoutGap="15px" [formGroup]="fgExternalAccount">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <yh-text-field
+        label="Account Title"
+        [required]="true"
+        [control]="fcTin"
+      ></yh-text-field>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <yh-text-field
+          label="Account Number"
+          [required]="true"
+          [control]="fcAccountNumber"
+        ></yh-text-field>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutGap="5px">
+        <yh-text-field
+          label="Financial Institution Name"
+          [required]="true"
+          [control]="fcInstitutionTitle"
+        ></yh-text-field>
+      </div>
+      <yh-text-field
+        label="Financial Institution TIN"
+        [required]="true"
+        [control]="fcTin"
+      ></yh-text-field>
+    </div>
+    <div fxLayout="column" fxLayoutGap="15px">
+      <div fxLayout="column" fxLayoutGap="5px">
+        <yh-checkbox
+          label="Account Closed"
+          [small]="true"
+          [control]="fcClosed"
+        ></yh-checkbox>
+        <yh-checkbox
+          label="Non-US Financial Institution"
+          [small]="true"
+          [control]="fcNonUsFinancialInstitution"
+        ></yh-checkbox>
+      </div>
+    </div>
+  </div>
+  <yh-sidebar-layout-footer>
+    <yh-button (click)="save()">Save</yh-button>
+
+    <yh-button (click)="save()" [ghost]="true" [warning]="true"
+      >Cancel</yh-button
+    >
+  </yh-sidebar-layout-footer>
+</yh-sidebar-layout>

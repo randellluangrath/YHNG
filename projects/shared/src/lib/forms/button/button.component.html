@@ -1,0 +1,24 @@
+<button
+  pButton
+  pRipple
+  type="button"
+  [class.p-button-secondary]="secondary && !information"
+  [class.p-button-warning]="warning"
+  [class.p-button-danger]="danger || hoverType === 'danger'"
+  [class.p-button-success]="success"
+  [class.p-button-text]="text"
+  [class.p-button-rounded]="iconButton"
+  [class.p-button-outlined]="bordered || ghost"
+  [disabled]="disabled || loading"
+  [icon]="icon"
+  [label]="label"
+  [iconPos]="'left'"
+>
+  <fa-icon
+    *ngIf="loading"
+    [icon]="loadingIcon"
+    [spin]="true"
+    style="margin-right: 5px"
+  ></fa-icon>
+  <ng-content *ngIf="!iconButton"></ng-content>
+</button>

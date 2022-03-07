@@ -1,0 +1,58 @@
+@import "theme-functions";
+@import "theme-mixins";
+
+:host {
+  @include card-defaults;
+
+  &.is-flat {
+    box-shadow: none;
+  }
+
+  .content {
+    &.pad {
+      padding: 25px;
+      &.is-large {
+        padding: 35px;
+      }
+      &.is-small {
+        padding: 15px;
+      }
+    }
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+  .header {
+    @include header-defaults;
+    &.is-small {
+      height: 50px;
+    }
+    gap: 10px;
+  }
+  .footer {
+    @include footer-defaults;
+  }
+
+  &.selectable {
+    &:before {
+      transition: border 0.3s ease-out;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      @include border(3px, 3px, 3px, 3px, transparent);
+      @include border-radius;
+      z-index: -1;
+    }
+    &:hover,
+    &.is-selected {
+      cursor: pointer;
+      &:before {
+        border-color: get-theme-color(state, info);
+      }
+    }
+  }
+}

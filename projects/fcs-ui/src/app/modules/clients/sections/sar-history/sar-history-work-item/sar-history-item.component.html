@@ -1,0 +1,13 @@
+<yh-card [selectable]="true" [selected]="selected">
+  <div fxLayout="column" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutGap="3px">
+        <yh-text [bold]="true">{{ sar.name }}</yh-text>
+        <yh-text [secondary]="true" [small]="true" [medium]="true">{{
+          sar.activityType
+        }}</yh-text>
+      </div>
+      <yh-text [secondary]="true" [small]="true" [medium]="true">Open</yh-text>
+    </div>
+  </div>
+</yh-card>

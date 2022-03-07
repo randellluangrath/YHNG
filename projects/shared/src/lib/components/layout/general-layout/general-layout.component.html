@@ -1,0 +1,29 @@
+<div
+  class="general-layout"
+  [class.has-navigation]="navigationComponent != null"
+  [class.has-sidebar]="sidebarComponent != null"
+  [class.has-sidebar-left]="sidebarPosition === 'left'"
+>
+  <div *ngIf="navigationComponent != null" class="general-layout-navigation">
+    <ng-content select="yh-general-layout-navigation"></ng-content>
+  </div>
+  <div class="general-layout-main">
+    <div *ngIf="headerComponent != null" class="general-layout-main-header">
+      <ng-content select="yh-general-layout-header"></ng-content>
+    </div>
+    <div
+      class="general-layout-main-content"
+      [class.has-sidebar]="contentSidebarComponent != null"
+    >
+      <div class="general-layout-main-content-wrapper" [class.pad]="pad">
+        <ng-content select="yh-general-layout-content"> </ng-content>
+      </div>
+      <div *ngIf="contentSidebarComponent != null" class="sidebar">
+        <ng-content select="yh-general-layout-content-sidebar"></ng-content>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="sidebarComponent != null" class="general-layout-sidebar">
+    <ng-content select="yh-general-layout-sidebar"></ng-content>
+  </div>
+</div>

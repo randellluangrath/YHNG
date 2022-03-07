@@ -1,0 +1,71 @@
+<yh-card>
+  <yh-card-content-template>
+    <div fxLayout="column" fxLayoutGap="25px">
+      <div
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="column" fxLayoutGap="3px">
+          <yh-title [level]="4" [title]="record.details.title"></yh-title>
+          <yh-text [small]="true" [secondary]="true" [medium]="true"
+            >{{ record.details.subtitle }}
+          </yh-text>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end center">
+          <yh-text [secondary]="true" [medium]="true">{{
+            record.opened | date: "shortDate"
+          }}</yh-text>
+          <!-- <yh-button [secondary]="true" [text]="true">
+            <fa-icon
+              class="state-icon is-completed"
+              [icon]="circleIcon"
+            ></fa-icon>
+            Open</yh-button
+          > -->
+          <!-- <yh-button
+            [secondary]="!showNotes"
+            [text]="!showNotes"
+            [bordered]="showNotes"
+            (click)="toggleNotes()"
+            icon="far fa-comment"
+            [label]="record.comments.length + ' Comments'"
+          ></yh-button> -->
+        </div>
+      </div>
+
+      <!-- <div
+        *ngIf="record.comments?.length > 0 && !showNotes"
+        fxLayout="column"
+        fxLayoutGap="25px"
+      >
+        <yh-card [flat]="true" padSize="small">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+            <yh-text [secondary]="true"
+              ><fa-icon [icon]="commentIcon"></fa-icon
+            ></yh-text>
+            <div fxLayout="column" fxLayoutGap="10px">
+              <yh-text [strong]="true">Most Recent Comment</yh-text>
+              <yh-text [secondary]="true">{{
+                record.comments[0].comment
+              }}</yh-text>
+            </div>
+          </div>
+        </yh-card>
+      </div>
+
+      <div *ngIf="showNotes" fxLayout="column" fxLayoutGap="25px">
+        <div class="comments-wrapper" fxLayout="column" fxLayoutGap="10px">
+          <yh-enhanced-due-diligence-comment-form></yh-enhanced-due-diligence-comment-form>
+          <div fxLayout="column" fxLayoutGap="5px" fxFlex="100%">
+            <yh-enhanced-due-diligence-comment-item
+              *ngFor="let comment of record.comments"
+              [comment]="comment"
+            ></yh-enhanced-due-diligence-comment-item>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </yh-card-content-template>
+</yh-card>

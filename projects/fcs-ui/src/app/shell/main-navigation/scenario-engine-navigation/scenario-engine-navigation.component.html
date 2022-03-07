@@ -1,0 +1,19 @@
+<yh-main-navigation
+  title="FCD"
+  [groupedItems]="groups"
+  (expanded)="handleExpanded($event)"
+>
+  <yh-main-navigation-footer>
+    <div class="client-management-navigation-footer" (click)="returnToList()">
+      <a
+        class="return-link"
+        routerLink="/dashboard"
+        fxLayout="row"
+        [fxLayoutGap]="isExpanded ? '10px' : '0'"
+        [fxLayoutAlign]="isExpanded ? 'start center' : 'center center'"
+        ><fa-icon [icon]="exitArrow"></fa-icon
+        ><span *ngIf="isExpanded">Return to Dashboard</span></a
+      >
+    </div>
+  </yh-main-navigation-footer>
+</yh-main-navigation>

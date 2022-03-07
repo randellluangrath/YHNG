@@ -1,0 +1,11 @@
+:host {
+  &.is-small {
+    padding: 15px;
+  }
+  &.is-medium {
+    padding: 25px;
+  }
+  &.is-large {
+    padding: 35px;
+  }
+}

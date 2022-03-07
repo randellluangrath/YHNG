@@ -1,0 +1,78 @@
+<div fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <yh-button
+      [iconButton]="true"
+      [text]="true"
+      [secondary]="true"
+      [bordered]="true"
+      icon="pi pi-plus"
+      (click)="showForm($event)"
+    ></yh-button>
+  </div>
+  <yh-divider></yh-divider>
+  <div>
+    <yh-text
+      style="margin-top: 15px; display: block"
+      *ngIf="subject.alternateNames.length === 0"
+      [secondary]="true"
+      >No alternate names have been added.</yh-text
+    >
+  </div>
+  <div
+    *ngIf="subject.alternateNames.length > 0"
+    fxLayout="column"
+    fxLayoutGap="5px"
+  >
+    <div class="item-row" *ngFor="let name of subject.alternateNames">
+      <div
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+          <yh-button
+            [iconButton]="true"
+            [icon]="name === selectedName ? 'fas fa-circle' : 'fal fa-circle'"
+            [text]="true"
+            [secondary]="name !== selectedName"
+            [warning]="name === selectedName"
+            (click)="selectedName = name"
+          ></yh-button>
+          <div fxLayout="column" fxLayoutGap="5px">
+            <yh-subject-alternate-name-item
+              [name]="name"
+            ></yh-subject-alternate-name-item>
+            <yh-text *ngIf="trashed.has(name)" [warning]="true"
+              >Marked for deletion</yh-text
+            >
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            icon="pi pi-pencil"
+            [text]="true"
+            [secondary]="true"
+          ></yh-button>
+          <yh-button
+            [iconButton]="true"
+            [bordered]="true"
+            [icon]="trashed.has(name) ? 'pi pi-undo' : 'pi pi-trash'"
+            [text]="true"
+            [secondary]="true"
+            (click)="markForDelete(name)"
+          ></yh-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<yh-overlay-panel [dismissable]="false">
+  <yh-subject-alternate-name-edit
+    [type]="'individual'"
+    (onSave)="saveItem($event)"
+    (onCancel)="cancelItem()"
+  ></yh-subject-alternate-name-edit>
+</yh-overlay-panel>
